@@ -5,13 +5,6 @@
     box-shadow: 0 0 16px 2px rgba(102, 148, 191, 0.1), 0 9px 13px -6px rgba(102, 148, 191, 0.05);
 }
 
-.container {
-    display: flex;
-    max-width: 1200px;
-    padding: 0 24px;
-    margin: 0 auto;
-}
-
 .logo {
     @media (max-width: $breakpoint-tab) {
         width: 126px;
