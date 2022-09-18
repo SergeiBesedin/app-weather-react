@@ -1,3 +1,12 @@
+import styles from './header.module.scss'
+import { ReactComponent as Logo } from '../../assets/icons/logo.svg'
+
 export function Header() {
-    return <header></header>
+    return (
+        <header className={styles.header}>
+            <div className={styles.container}>
+                <Logo className={styles.logo} />
+            </div>
+        </header>
+    )
 }

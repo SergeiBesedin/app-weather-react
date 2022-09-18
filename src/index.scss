@@ -1,6 +1,19 @@
-@import-normalize;
+@import './styles/reset.scss';
 @import './styles/fonts.scss';
+@import './styles/variables.scss';
 
+html,
 body {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    height: 100%;
+    background-color: $page-background;
     font-family: 'Rubik', sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }

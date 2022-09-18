@@ -1,5 +1,15 @@
+import styles from './app.module.scss'
+import { Header } from '../components/header/header'
+import { Footer } from '../components/footer/footer'
+
 function App() {
-    return <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, aperiam!</div>
+    return (
+        <>
+            <Header />
+            <main className={styles.main}></main>
+            <Footer />
+        </>
+    )
 }
 
 export default App
