@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+
+.custom {
+    background-color: $page-background;
+    color: $dark-blue;
+    border: 0;
+    outline: 0;
+    padding: 10px 15px;
+    border-radius: 55px;
+    font-size: 14px;
+    line-height: (17/14);
+
+    &::-webkit-input-placeholder {
+        color: $dark-blue;
+    }
+}
