@@ -11,6 +11,8 @@
 }
 
 .logo {
+    margin-right: 20px;
+
     @media (max-width: $breakpoint-tab) {
         width: 126px;
         height: 30px;

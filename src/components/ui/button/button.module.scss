@@ -1,0 +1,15 @@
+@import '../../../styles/variables.scss';
+
+.custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $white;
+    outline: 0;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.active {
+}

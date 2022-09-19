@@ -1,9 +1,10 @@
 import { Input } from '../ui/input/input'
+import styles from './search.module.scss'
 
 export function Search() {
     return (
-        <div>
-            <Input id='search' placeholder='Город или район' classes={['search-input']} />
+        <div className={styles.wrapper}>
+            <Input id='search' type='text' placeholder='Город или район' classes={[styles.input]} />
         </div>
     )
 }

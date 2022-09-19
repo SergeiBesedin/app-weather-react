@@ -1,8 +1,12 @@
 @import '../../../styles/variables.scss';
 
+.wrapper {
+}
+
 .custom {
-    background-color: $page-background;
+    background-color: $light-grey;
     color: $dark-blue;
+    opacity: 0.5;
     border: 0;
     outline: 0;
     padding: 10px 15px;
@@ -12,5 +16,9 @@
 
     &::-webkit-input-placeholder {
         color: $dark-blue;
+    }
+
+    &:focus {
+        outline: 2px solid $blue-2;
     }
 }
