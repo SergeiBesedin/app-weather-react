@@ -12,6 +12,7 @@
 
 .logo {
     margin-right: 20px;
+    cursor: pointer;
 
     @media (max-width: $breakpoint-tab) {
         width: 126px;
