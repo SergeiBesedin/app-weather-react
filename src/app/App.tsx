@@ -1,12 +1,12 @@
-import styles from './app.module.scss'
 import { Header } from '../components/header/header'
+import { Content } from '../components/content/content'
 import { Footer } from '../components/footer/footer'
 
 function App() {
     return (
         <>
             <Header />
-            <main className={styles.main}></main>
+            <Content />
             <Footer />
         </>
     )

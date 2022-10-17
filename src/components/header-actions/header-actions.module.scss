@@ -7,15 +7,16 @@
 .search {
     margin-right: 15px;
 
-    svg {
-        width: 22px;
-        height: 22px;
-    }
-
     @media (min-width: $breakpoint-tab + 1px) {
         display: none;
     }
 }
 
 .settings {
+    svg {
+        @media (min-width: $breakpoint-tab + 1px) {
+            width: 34px;
+            height: 34px;
+        }
+    }
 }
