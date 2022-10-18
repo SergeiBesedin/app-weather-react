@@ -1,23 +1,27 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-import { apiKey } from '../api/api-key'
+import { AxiosError } from 'axios'
+import { IWeather } from '../typings/typings'
+import axios from '../axios/axios'
 
 export const useCurrentWeather = () => {
-    const [weatherData, setWeatherData] = useState({})
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
+    const [weatherData, setWeatherData] = useState<IWeather>()
+    // const [loading, setLoading] = useState(false)
+    // const [error, setError] = useState('')
+
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     const fetchData = async () => {
         try {
-            setError('')
-            setLoading(true)
+            // setError('')
+            // setLoading(true)
             const city = 'москва'
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=ru&appid=${apiKey}`
-            const response = await axios.get(url)
+            const url = `weather?q=${city}&lang=ru&appid=${API_KEY}`
+            const response = await axios.get<IWeather>(url)
             setWeatherData(response.data)
-            setLoading(false)
-        } catch (e) {
-            // const error = e
+            // setLoading(false)
+        } catch (e: unknown) {
+            const error = e as AxiosError
+            console.log(error)
             // setLoading(false)
             // setError(error.message)
         }
@@ -27,5 +31,7 @@ export const useCurrentWeather = () => {
         fetchData()
     }, [])
 
-    return { weatherData, error, loading }
+    // return { weatherData, error, loading }
+
+    return { weatherData }
 }
