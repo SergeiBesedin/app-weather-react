@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
-import { IWeather } from '../typings/typings'
+import { IWeather, ICurrentWeather } from '../typings/typings'
 import axios from '../axios/axios'
 
 export const useCurrentWeather = () => {
-    const [weatherData, setWeatherData] = useState<IWeather>()
+    const [weatherData, setWeatherData] = useState<ICurrentWeather>()
     // const [loading, setLoading] = useState(false)
     // const [error, setError] = useState('')
 
@@ -14,10 +14,18 @@ export const useCurrentWeather = () => {
         try {
             // setError('')
             // setLoading(true)
-            const city = 'москва'
-            const url = `weather?q=${city}&lang=ru&appid=${API_KEY}`
+            const city = 'москва' // для теста
+            const url = `weather?q=${city}&lang=ru&appid=${API_KEY}&units=metric`
             const response = await axios.get<IWeather>(url)
-            setWeatherData(response.data)
+
+            const currentWeather = {
+                city: response.data.name,
+                weather: response.data.weather[0].description,
+                temp: response.data.main,
+                wind: response.data.wind.speed,
+            }
+
+            setWeatherData(currentWeather)
             // setLoading(false)
         } catch (e: unknown) {
             const error = e as AxiosError

@@ -1,4 +1,4 @@
-type Temp = {
+export type Temp = {
     temp: number // температура (единица по умолчанию: Кельвин)
     temp_max: number // максимальная температура на данный момент
     temp_min: number // минимальная температура на данный момент
@@ -7,19 +7,19 @@ type Temp = {
     pressure: number // атмосферное давление
 }
 
-type Wind = {
+export type Wind = {
     speed: number // скорость ветра (единица измерения по умолчанию: метр/сек)
     gust: number // порывы ветра (единица измерения по умолчанию: метр/сек)
     deg: number // направление ветра, градусы (метеорологические)
 }
 
-type Weather = {
+export type Weather = {
     id: number
     main: string // дождь, снег и тд
     description: string // пасмурно, солнечно
 }
 
-type Sys = {
+export type Sys = {
     id: number
     sunrise: number // время восхода солнца (unix)
     sunset: number // время заката (unix)
@@ -27,11 +27,12 @@ type Sys = {
 
 export interface IWeather {
     name: string // название города
+    dt: number // время расчета данных
     visibility: number // видимость, метр. Максимальное значение видимости = 10км
     main: Temp
     sys: Sys
     wind: Wind
-    weather: Weather
+    weather: Array<Weather>
     clouds: {
         all: number // Облачность (в %)
     }
@@ -43,4 +44,12 @@ export interface IWeather {
         '1h': number
         '3h': number
     }
+}
+
+// используется в плитке с погодой на текущий день
+export interface ICurrentWeather {
+    city: string
+    weather: string
+    temp: Temp
+    wind: number
 }

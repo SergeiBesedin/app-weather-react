@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+
+.tile {
+    border-radius: 32px;
+    background-color: $white;
+    padding: 40px;
+
+    h3 {
+        font-size: 20px;
+        line-height: (24/20);
+        opacity: 0.5;
+    }
+}

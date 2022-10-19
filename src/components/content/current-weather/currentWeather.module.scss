@@ -1,0 +1,10 @@
+@import '../../../styles/variables.scss';
+
+.tileContainer {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        color: $white;
+    }
+}
