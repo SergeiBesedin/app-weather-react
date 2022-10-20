@@ -3,8 +3,57 @@
 .tileContainer {
     display: flex;
     flex-direction: column;
+    background: linear-gradient(254.11deg, #6ab7ff 22.16%, #cbe6ff 103.68%);
 
     h3 {
         color: $white;
+    }
+
+    .city {
+        font-size: 36px;
+        line-height: (43/36);
+        color: $white;
+    }
+
+    .temp {
+        color: $white;
+        font-size: 98px;
+        line-height: (116/98);
+    }
+
+    .description {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3px 14px;
+        margin-bottom: 30px;
+        color: $white;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 80px;
+    }
+
+    .status {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            position: relative;
+            font-size: 20px;
+            line-height: (24/20);
+            color: $white;
+            padding-left: 30px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 24px;
+                height: 24px;
+                background-image: url('../../../assets/icons/drop.svg');
+                background-size: 24px;
+                background-repeat: no-repeat;
+            }
+        }
     }
 }
