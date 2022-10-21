@@ -6,16 +6,5 @@ export function Content() {
     const { weatherData } = useCurrentWeather()
     const className = [styles.content, 'container'].join(' ')
 
-    return (
-        <div className={className}>
-            {weatherData && (
-                <CurrentWeather
-                    city={weatherData.city}
-                    weather={weatherData.weather}
-                    wind={weatherData.wind}
-                    temp={weatherData.temp}
-                />
-            )}
-        </div>
-    )
+    return <div className={className}>{weatherData && <CurrentWeather {...weatherData} />}</div>
 }

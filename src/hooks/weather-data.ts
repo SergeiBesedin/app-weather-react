@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
 import { IWeather, ICurrentWeather } from '../typings/typings'
+import { dateFormat } from '../utils/utils'
 import axios from '../axios/axios'
 
 export const useCurrentWeather = () => {
@@ -20,9 +21,14 @@ export const useCurrentWeather = () => {
 
             const currentWeather = {
                 city: response.data.name,
-                weather: response.data.weather[0].description,
+                weatherName: response.data.weather[0].main,
+                weatherDesc: response.data.weather[0].description,
                 temp: response.data.main,
                 wind: response.data.wind.speed,
+                dateTime: dateFormat(response.data.dt * 1000, {
+                    month: 'long',
+                    day: 'numeric',
+                }),
             }
 
             setWeatherData(currentWeather)

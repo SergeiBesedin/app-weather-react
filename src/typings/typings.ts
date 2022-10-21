@@ -49,7 +49,9 @@ export interface IWeather {
 // используется в плитке с погодой на текущий день
 export interface ICurrentWeather {
     city: string
-    weather: string
+    weatherName: string
+    weatherDesc: string
     temp: Temp
     wind: number
+    dateTime: string
 }

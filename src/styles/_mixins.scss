@@ -1,0 +1,14 @@
+// вставляем картинки перед текстом
+@mixin pseudo-element-before($w, $h) {
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $w;
+        height: $w;
+        background-repeat: no-repeat;
+        background-size: $w;
+        @content;
+    }
+}
