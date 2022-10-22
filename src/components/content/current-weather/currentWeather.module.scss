@@ -3,6 +3,7 @@
 .tileContainer {
     display: flex;
     flex-direction: column;
+    width: 50%;
     background: linear-gradient(254.11deg, #6ab7ff 22.16%, #cbe6ff 103.68%);
 
     h3 {
@@ -10,12 +11,18 @@
         margin-bottom: 4px;
     }
 
+    .weather {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .city {
         position: relative;
         font-size: 36px;
         line-height: (43/36);
         color: $white;
-        padding-left: 40px;
+        padding-left: 48px;
+        margin-bottom: 19px;
 
         @include pseudo-element-before(46px, 46px) {
             background-image: url('/assets/icons/pin.svg');
@@ -26,14 +33,15 @@
         color: $white;
         font-size: 98px;
         line-height: (116/98);
+        margin-bottom: 16px;
     }
 
     .description {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 3px 14px;
-        margin-bottom: 30px;
+        padding: 11px 14px;
+        margin-bottom: 40px;
         color: $white;
         background: rgba(255, 255, 255, 0.2);
         border-radius: 80px;
@@ -48,23 +56,26 @@
             font-size: 20px;
             line-height: (24/20);
             color: $white;
-            padding-left: 30px;
+            padding-left: 50px;
         }
 
         .humidity {
-            @include pseudo-element-before(24px, 24px) {
+            @include pseudo-element-before(40px, 40px) {
+                top: -8px;
                 background-image: url('/assets/icons/drop.svg');
             }
         }
 
         .wind {
-            @include pseudo-element-before(24px, 24px) {
+            @include pseudo-element-before(40px, 40px) {
+                top: -8px;
                 background-image: url('/assets/icons/wind.svg');
             }
         }
 
         .pressure {
-            @include pseudo-element-before(24px, 24px) {
+            @include pseudo-element-before(40px, 40px) {
+                top: -8px;
                 background-image: url('/assets/icons/pressure.svg');
             }
         }

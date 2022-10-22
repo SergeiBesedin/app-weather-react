@@ -16,10 +16,16 @@ export function CurrentWeather({
 
     return (
         <Tile title={title} classes={[styles.tileContainer]}>
-            <div className={styles.city}>{city}</div>
-            <Image alt={weatherName} src={getIcon(weatherName)} classes={['']} />
-            <div className={styles.temp}>{temp.temp}</div>
-            <div className={styles.description}>{weatherDesc}</div>
+            <div className={styles.weather}>
+                <div>
+                    <div className={styles.city}>{city}</div>
+                    <div className={styles.temp}>{temp.temp}</div>
+                    <div className={styles.description}>{weatherDesc}</div>
+                </div>
+                <div>
+                    <Image alt={weatherName} src={getIcon(weatherName)} classes={['']} />
+                </div>
+            </div>
             <div className={styles.status}>
                 <div className={styles.humidity}>{temp.humidity}%</div>
                 <div className={styles.wind}>{wind}</div>
