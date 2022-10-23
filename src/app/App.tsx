@@ -1,6 +1,4 @@
-import { Header } from '../components/header/header'
-import { Content } from '../components/content/content'
-import { Footer } from '../components/footer/footer'
+import { Header, Content, Footer } from '../components/index'
 import styles from './app.module.scss'
 
 function App() {

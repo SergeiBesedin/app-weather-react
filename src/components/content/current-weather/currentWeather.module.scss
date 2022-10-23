@@ -14,6 +14,7 @@
     .weather {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 40px;
     }
 
     .city {
@@ -41,7 +42,6 @@
         justify-content: center;
         align-items: center;
         padding: 11px 14px;
-        margin-bottom: 40px;
         color: $white;
         background: rgba(255, 255, 255, 0.2);
         border-radius: 80px;
@@ -57,6 +57,10 @@
             line-height: (24/20);
             color: $white;
             padding-left: 50px;
+
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
         }
 
         .humidity {

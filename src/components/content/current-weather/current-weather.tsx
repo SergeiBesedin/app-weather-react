@@ -4,6 +4,8 @@ import { ICurrentWeather } from '../../../typings/typings'
 import { getIcon } from '../../../utils/get-icon'
 import styles from './currentWeather.module.scss'
 
+type CurrentWeather = ICurrentWeather & { tempUnit: string; unitSpeed: string }
+
 export function CurrentWeather({
     city,
     weatherName,
@@ -11,7 +13,9 @@ export function CurrentWeather({
     temp,
     wind,
     dateTime,
-}: ICurrentWeather) {
+    tempUnit,
+    unitSpeed,
+}: CurrentWeather) {
     const title = `Сегодня, ${dateTime}`
 
     return (
@@ -29,7 +33,7 @@ export function CurrentWeather({
             <div className={styles.status}>
                 <div className={styles.humidity}>{temp.humidity}%</div>
                 <div className={styles.wind}>{wind}</div>
-                <div className={styles.pressure}>{temp.pressure}</div>
+                <div className={styles.pressure}>{temp.pressure} мм. рт. ст.</div>
             </div>
         </Tile>
     )
