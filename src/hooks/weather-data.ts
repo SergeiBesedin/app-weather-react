@@ -18,7 +18,6 @@ export const useCurrentWeather = () => {
             const city = 'москва' // для теста
             const url = `weather?q=${city}&lang=ru&appid=${API_KEY}&units=metric`
             const response = await axios.get<IWeather>(url)
-
             const currentWeather = {
                 city: response.data.name,
                 weatherName: response.data.weather[0].main,

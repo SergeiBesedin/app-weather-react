@@ -1,4 +1,4 @@
-import sunny from '../assets/icons/sunny.svg'
+import clear from '../assets/icons/clear.svg'
 import cloudy from '../assets/icons/cloudy.svg'
 import partlyCloudy from '../assets/icons/partly-cloudy.svg'
 import rain from '../assets/icons/rain.svg'
@@ -11,7 +11,7 @@ export function getIcon(weather: string) {
         rain,
         snow,
         thunder,
-        sunny,
+        clear,
         'partly-сloudy': partlyCloudy,
     }
     return icons[weather.toLowerCase()]
