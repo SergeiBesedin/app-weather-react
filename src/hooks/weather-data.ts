@@ -4,18 +4,20 @@ import { IWeather, ICurrentWeather } from '../typings/typings'
 import { dateFormat } from '../utils/utils'
 import axios from '../axios/axios'
 
+const API_KEY = process.env.REACT_APP_API_KEY
+
 export const useCurrentWeather = () => {
     const [weatherData, setWeatherData] = useState<ICurrentWeather>()
     // const [loading, setLoading] = useState(false)
     // const [error, setError] = useState('')
 
-    const API_KEY = process.env.REACT_APP_API_KEY
-
     const fetchData = async () => {
         try {
             // setError('')
             // setLoading(true)
-            const city = 'москва' // для теста
+
+            const city = 'Москва' // по умолчанию - Москва
+
             const url = `weather?q=${city}&lang=ru&appid=${API_KEY}&units=metric`
             const response = await axios.get<IWeather>(url)
             const currentWeather = {
@@ -40,6 +42,12 @@ export const useCurrentWeather = () => {
         }
     }
 
+    // const getUserLocation = () => {
+    //     return navigator.geolocation.getCurrentPosition((position) => {
+    //         return `&lat=${position.coords.latitude}&lon=${position.coords.longitude}`
+    //     })
+    // }
+
     useEffect(() => {
         fetchData()
     }, [])
@@ -47,4 +55,27 @@ export const useCurrentWeather = () => {
     // return { weatherData, error, loading }
 
     return { weatherData }
+}
+
+export const useFiveDayForecast = () => {
+    const [fiveDayForecast, setFiveDayForecast] = useState<Array<ICurrentWeather>>()
+
+    const fetchData = async () => {
+        try {
+            const city = 'москва' // для теста
+            const url = `forecast?q=${city}&lang=ru&units=metric&appid=${API_KEY}`
+            const response = await axios.get<IWeather>(url)
+            console.log(response.data)
+            // setTenDayForecast(response)
+        } catch (e: unknown) {
+            const error = e as AxiosError
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    return { fiveDayForecast }
 }

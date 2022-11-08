@@ -1,0 +1,317 @@
+@import '../../../styles/common.scss';
+
+.tileContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background: linear-gradient(254.11deg, #6ab7ff 22.16%, #cbe6ff 103.68%);
+    padding-bottom: 40px;
+    overflow: hidden;
+
+    h3 {
+        color: $white;
+        margin-bottom: 4px;
+    }
+
+    @media (max-width: $breakpoint-desk) {
+        h3 {
+            margin-bottom: 8px;
+        }
+    }
+
+    @media (max-width: $breakpoint-tab) {
+        width: 100%;
+        padding-bottom: 30px;
+
+        h3 {
+            margin-bottom: 4px;
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        padding-bottom: 22px;
+    }
+
+    @media (max-width: $breakpoint-mob-xxs) {
+        padding-bottom: 25px;
+    }
+
+    .weather {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 41px;
+
+        @media (max-width: $breakpoint-desk) {
+            margin-bottom: 46px;
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            margin-bottom: 52px;
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            margin-bottom: 42px;
+        }
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            margin-bottom: 38px;
+        }
+    }
+
+    .picture {
+        position: absolute;
+        top: 45%;
+        transform: translateY(-50%);
+        right: -12px;
+        height: 128%;
+        object-fit: contain;
+
+        @media (max-width: $breakpoint-desk) {
+            top: 63%;
+            right: -110px;
+            height: 166%;
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            top: 54%;
+            right: -23px;
+            height: 159%;
+        }
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            top: 57%;
+            right: -54px;
+            height: 138%;
+        }
+    }
+
+    .city {
+        position: relative;
+        font-size: 36px;
+        line-height: (43/36);
+        color: $white;
+        padding-left: 48px;
+        margin-bottom: 18px;
+
+        @include pseudo-element-before(46px, 46px) {
+            background-image: url('/assets/icons/pin.svg');
+        }
+
+        @media (max-width: $breakpoint-desk) {
+            font-size: 24px;
+            line-height: (28/24);
+            padding-left: 38px;
+            @include pseudo-element-before(36px, 36px) {
+                top: -4px;
+            }
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            font-size: 36px;
+            line-height: (43/36);
+            padding-left: 48px;
+            @include pseudo-element-before(46px, 46px);
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            font-size: 26px;
+            line-height: (31/26);
+            padding-left: 33px;
+            margin-bottom: 11px;
+            @include pseudo-element-before(30px, 30px);
+        }
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            font-size: 20px;
+            line-height: (24/20);
+            padding-left: 26px;
+            @include pseudo-element-before(26px, 26px);
+        }
+    }
+
+    .temp {
+        color: $white;
+        font-size: 98px;
+        line-height: (116/98);
+        letter-spacing: -0.12em;
+        margin-bottom: 9px;
+
+        @media (max-width: $breakpoint-desk) {
+            font-size: 62px;
+            line-height: (73/62);
+            margin-bottom: 19px;
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            font-size: 72px;
+            line-height: (85/72);
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            font-size: 48px;
+            line-height: (57/48);
+            margin-bottom: 19px;
+        }
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            font-size: 44px;
+            line-height: (52/44);
+            margin-bottom: 34px;
+        }
+    }
+
+    .description {
+        display: block;
+        text-align: center;
+        padding: 8px 14px;
+        color: $white;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 80px;
+        font-size: 20px;
+        line-height: (24/20);
+
+        @media (max-width: $breakpoint-desk) {
+            font-size: 16px;
+            line-height: (19/16);
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            font-size: 20px;
+            line-height: (24/20);
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            padding: 3px 14px;
+            font-size: 14px;
+            line-height: (17/14);
+        }
+    }
+
+    .status {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            position: relative;
+            font-size: 20px;
+            line-height: (24/20);
+            color: $white;
+            padding-left: 50px;
+
+            &:not(:last-child) {
+                margin-right: 8px;
+            }
+
+            @media (max-width: $breakpoint-desk) {
+                padding-left: 32px;
+                font-size: 16px;
+                line-height: (19/16);
+            }
+
+            @media (max-width: $breakpoint-tab) {
+                padding-left: 42px;
+                font-size: 17px;
+                line-height: (20/17);
+            }
+
+            @media (max-width: $breakpoint-mob-xs) {
+                padding-left: 24px;
+                font-size: 14px;
+                line-height: (17/14);
+            }
+
+            @media (max-width: $breakpoint-mob-xxs) {
+                padding-left: 20px;
+                font-size: 12px;
+                line-height: (14/12);
+            }
+        }
+
+        .humidity {
+            @include pseudo-element-before(40px, 40px) {
+                top: -8px;
+                background-image: url('/assets/icons/drop.svg');
+
+                @media (max-width: $breakpoint-desk) {
+                    top: -6px;
+                    width: 32px;
+                    height: 32px;
+                    background-size: 32px;
+                }
+
+                @media (max-width: $breakpoint-mob-xs) {
+                    top: -3px;
+                    width: 22px;
+                    height: 22px;
+                    background-size: 22px;
+                }
+
+                @media (max-width: $breakpoint-mob-xxs) {
+                    top: -2px;
+                    width: 18px;
+                    height: 18px;
+                    background-size: 18px;
+                }
+            }
+        }
+
+        .wind {
+            @include pseudo-element-before(40px, 40px) {
+                top: -8px;
+                background-image: url('/assets/icons/wind.svg');
+
+                @media (max-width: $breakpoint-desk) {
+                    top: -6px;
+                    width: 32px;
+                    height: 32px;
+                    background-size: 32px;
+                }
+
+                @media (max-width: $breakpoint-mob-xs) {
+                    top: -3px;
+                    width: 22px;
+                    height: 22px;
+                    background-size: 22px;
+                }
+
+                @media (max-width: $breakpoint-mob-xxs) {
+                    top: -2px;
+                    width: 18px;
+                    height: 18px;
+                    background-size: 18px;
+                }
+            }
+        }
+
+        .pressure {
+            @include pseudo-element-before(40px, 40px) {
+                top: -8px;
+                background-image: url('/assets/icons/pressure.svg');
+
+                @media (max-width: $breakpoint-desk) {
+                    top: -6px;
+                    width: 32px;
+                    height: 32px;
+                    background-size: 32px;
+                }
+
+                @media (max-width: $breakpoint-mob-xs) {
+                    top: -3px;
+                    width: 22px;
+                    height: 22px;
+                    background-size: 22px;
+                }
+
+                @media (max-width: $breakpoint-mob-xxs) {
+                    top: -2px;
+                    width: 18px;
+                    height: 18px;
+                    background-size: 18px;
+                }
+            }
+        }
+    }
+}
