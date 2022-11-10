@@ -12,7 +12,7 @@
     }
 
     @media (max-width: $breakpoint-desk) {
-        padding: 28px 20px;
+        padding: 24px 20px;
 
         h3 {
             font-size: 16px;
@@ -40,8 +40,6 @@
     }
 
     @media (max-width: $breakpoint-mob-xxs) {
-        padding: 16px 20px;
-
         h3 {
             font-size: 12px;
             line-height: (14/12);

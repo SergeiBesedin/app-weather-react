@@ -1,0 +1,52 @@
+@import '../../../styles/common.scss';
+
+.tileContainer {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    h3 {
+        color: $dark-blue;
+        margin-bottom: 30px;
+    }
+
+    .wrapper {
+        position: relative;
+        padding: 0 54px;
+        overflow: hidden;
+    }
+
+    .listItems {
+        display: flex;
+        overflow: auto;
+
+        li:not(:last-child) {
+            margin-right: 52px;
+        }
+    }
+
+    .leftArrow,
+    .rightArrow {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        transform: translateY(-50%);
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+        border-radius: 24px;
+        background-color: $light-grey;
+        opacity: 0.5;
+    }
+
+    .leftArrow {
+        left: 0;
+        background-image: url('../../../assets/icons/left-arrow.svg');
+    }
+
+    .rightArrow {
+        right: 0;
+        background-image: url('../../../assets/icons/right-arrow.svg');
+    }
+}

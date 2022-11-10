@@ -55,3 +55,8 @@ export interface ICurrentWeather {
     wind: number
     dateTime: string
 }
+
+export interface IFiveDayForecast {
+    cnt: number // Количество меток времени, возвращенных в ответе API
+    list: Array<IWeather>
+}

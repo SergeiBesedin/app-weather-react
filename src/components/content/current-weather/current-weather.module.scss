@@ -3,37 +3,12 @@
 .tileContainer {
     display: flex;
     flex-direction: column;
-    width: 50%;
     background: linear-gradient(254.11deg, #6ab7ff 22.16%, #cbe6ff 103.68%);
-    padding-bottom: 40px;
     overflow: hidden;
 
     h3 {
         color: $white;
         margin-bottom: 4px;
-    }
-
-    @media (max-width: $breakpoint-desk) {
-        h3 {
-            margin-bottom: 8px;
-        }
-    }
-
-    @media (max-width: $breakpoint-tab) {
-        width: 100%;
-        padding-bottom: 30px;
-
-        h3 {
-            margin-bottom: 4px;
-        }
-    }
-
-    @media (max-width: $breakpoint-mob-xs) {
-        padding-bottom: 22px;
-    }
-
-    @media (max-width: $breakpoint-mob-xxs) {
-        padding-bottom: 25px;
     }
 
     .weather {
@@ -136,30 +111,26 @@
         font-size: 98px;
         line-height: (116/98);
         letter-spacing: -0.12em;
-        margin-bottom: 9px;
+        margin-bottom: 10px;
 
         @media (max-width: $breakpoint-desk) {
             font-size: 62px;
             line-height: (73/62);
-            margin-bottom: 19px;
         }
 
         @media (max-width: $breakpoint-tab) {
             font-size: 72px;
             line-height: (85/72);
-            margin-bottom: 15px;
         }
 
         @media (max-width: $breakpoint-mob-xs) {
             font-size: 48px;
             line-height: (57/48);
-            margin-bottom: 19px;
         }
 
         @media (max-width: $breakpoint-mob-xxs) {
             font-size: 44px;
             line-height: (52/44);
-            margin-bottom: 34px;
         }
     }
 

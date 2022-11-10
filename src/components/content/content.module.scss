@@ -1,3 +1,16 @@
+@import '../../styles/common.scss';
+
 .content {
     display: flex;
+}
+
+.currentWeatherBlock {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    row-gap: 30px;
+
+    @media (max-width: $breakpoint-tab) {
+        width: 100%;
+    }
 }

@@ -1,7 +1,8 @@
 import { useContext } from 'react'
 import { SettingsContext } from '../../context/settings-context'
 import { useCurrentWeather, useFiveDayForecast } from '../../hooks/weather-data'
-import { CurrentWeather } from './current-forecast/current-weather'
+import { CurrentWeather } from './current-weather/current-weather'
+import { HourlyForecast } from './hourly-forecast/hourly-forecast'
 import styles from './content.module.scss'
 
 export function Content() {
@@ -12,7 +13,12 @@ export function Content() {
 
     return (
         <div className={classNames}>
-            {weatherData && <CurrentWeather {...weatherData} units={units} />}
+            <div className={styles.currentWeatherBlock}>
+                {weatherData && <CurrentWeather {...weatherData} units={units} />}
+                {fiveDayForecast && (
+                    <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
+                )}
+            </div>
         </div>
     )
 }

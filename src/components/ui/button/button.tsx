@@ -1,10 +1,10 @@
 import styles from './button.module.scss'
 
 interface ButtonProps {
-    children: React.ReactNode
     classes: string[]
     disabled: boolean
     onClick: () => void
+    children?: React.ReactNode
 }
 
 export function Button({ children, classes, disabled, onClick, ...attrs }: ButtonProps) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
-import { IWeather, ICurrentWeather } from '../typings/typings'
+import { IWeather, IFiveDayForecast, ICurrentWeather } from '../typings/typings'
 import { dateFormat } from '../utils/utils'
 import axios from '../axios/axios'
 
@@ -58,15 +58,14 @@ export const useCurrentWeather = () => {
 }
 
 export const useFiveDayForecast = () => {
-    const [fiveDayForecast, setFiveDayForecast] = useState<Array<ICurrentWeather>>()
+    const [fiveDayForecast, setFiveDayForecast] = useState<Array<IWeather>>()
 
     const fetchData = async () => {
         try {
             const city = 'москва' // для теста
             const url = `forecast?q=${city}&lang=ru&units=metric&appid=${API_KEY}`
-            const response = await axios.get<IWeather>(url)
-            console.log(response.data)
-            // setTenDayForecast(response)
+            const response = await axios.get<IFiveDayForecast>(url)
+            setFiveDayForecast(response.data.list)
         } catch (e: unknown) {
             const error = e as AxiosError
             console.log(error)

@@ -5,7 +5,7 @@ import { unitFormat } from '../../../utils/utils'
 import { getIcon } from '../../../utils/get-icon'
 import styles from './current-weather.module.scss'
 
-type CurrentWeather = ICurrentWeather & {
+type CurrentWeatherProps = ICurrentWeather & {
     units: { [key: string]: string }
 }
 
@@ -17,7 +17,7 @@ export function CurrentWeather({
     wind,
     dateTime,
     units,
-}: CurrentWeather) {
+}: CurrentWeatherProps) {
     const title = `Сегодня, ${dateTime}`
     const temperature = unitFormat(temp.temp, units.temp)
     const windSpeed = unitFormat(wind, units.speed)
