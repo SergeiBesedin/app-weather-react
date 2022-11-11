@@ -24,7 +24,7 @@ export function CurrentWeather({
     const pressure = unitFormat(temp.pressure, units.pressure)
 
     return (
-        <Tile title={title} classes={[styles.tileContainer]}>
+        <Tile title={title} classes={[styles.currentWeather]}>
             <div className={styles.weather}>
                 <div className={styles.city}>{city}</div>
                 <div className={styles.temp}>{temperature}</div>

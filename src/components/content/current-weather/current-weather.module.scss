@@ -1,6 +1,6 @@
 @import '../../../styles/common.scss';
 
-.tileContainer {
+.currentWeather {
     display: flex;
     flex-direction: column;
     background: linear-gradient(254.11deg, #6ab7ff 22.16%, #cbe6ff 103.68%);
@@ -12,53 +12,36 @@
     }
 
     .weather {
-        position: relative;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        margin-bottom: 41px;
-
-        @media (max-width: $breakpoint-desk) {
-            margin-bottom: 46px;
-        }
-
-        @media (max-width: $breakpoint-tab) {
-            margin-bottom: 52px;
-        }
-
-        @media (max-width: $breakpoint-mob-xs) {
-            margin-bottom: 42px;
-        }
-
-        @media (max-width: $breakpoint-mob-xxs) {
-            margin-bottom: 38px;
-        }
+        margin-bottom: 30px;
     }
 
     .picture {
         position: absolute;
-        top: 45%;
+        top: 42%;
         transform: translateY(-50%);
-        right: -12px;
-        height: 128%;
+        right: 14px;
+        height: calc(77% + 2px);
         object-fit: contain;
 
         @media (max-width: $breakpoint-desk) {
-            top: 63%;
-            right: -110px;
-            height: 166%;
+            top: 48%;
+            right: -86px;
+            height: 96%;
         }
 
         @media (max-width: $breakpoint-tab) {
-            top: 54%;
-            right: -23px;
-            height: 159%;
+            top: calc(50% - 1px);
+            right: 0;
+            height: calc(100% - 2px);
         }
 
         @media (max-width: $breakpoint-mob-xxs) {
-            top: 57%;
-            right: -54px;
-            height: 138%;
+            top: 53%;
+            right: -33px;
+            height: 89%;
         }
     }
 
@@ -102,7 +85,7 @@
             font-size: 20px;
             line-height: (24/20);
             padding-left: 26px;
-            @include pseudo-element-before(26px, 26px);
+            @include pseudo-element-before(24px, 24px);
         }
     }
 

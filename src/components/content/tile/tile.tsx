@@ -11,8 +11,10 @@ export function Tile({ classes, children, title }: TileProps) {
 
     return (
         <div className={classNames}>
-            {title && <h3>{title}</h3>}
-            {children}
+            <div className={styles.container}>
+                {title && <h3>{title}</h3>}
+                {children}
+            </div>
         </div>
     )
 }
