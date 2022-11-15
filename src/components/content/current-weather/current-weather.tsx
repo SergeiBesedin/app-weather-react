@@ -5,7 +5,7 @@ import { unitFormat } from '../../../utils/utils'
 import { getIcon } from '../../../utils/get-icon'
 import styles from './current-weather.module.scss'
 
-type CurrentWeatherProps = ICurrentWeather & {
+interface CurrentWeatherProps extends ICurrentWeather {
     units: { [key: string]: string }
 }
 

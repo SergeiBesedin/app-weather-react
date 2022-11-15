@@ -59,6 +59,11 @@
         @media (max-width: $breakpoint-desk) {
             display: none;
         }
+
+        &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
     }
 
     .leftArrow {
