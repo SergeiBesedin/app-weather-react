@@ -1,6 +1,6 @@
 import { Button } from '../ui/button/button'
-import { ReactComponent as Search } from '../../assets/icons/search.svg'
-import { ReactComponent as Settings } from '../../assets/icons/settings.svg'
+import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg'
+import { ReactComponent as SettingsIcon } from '../../assets/icons/settings.svg'
 import styles from './header-actions.module.scss'
 
 export function HeaderActions() {
@@ -11,10 +11,10 @@ export function HeaderActions() {
     return (
         <div className={styles.actions}>
             <Button classes={[styles.search]} disabled={false} onClick={click}>
-                <Search />
+                <SearchIcon />
             </Button>
             <Button classes={[styles.settings]} disabled={false} onClick={click}>
-                <Settings />
+                <SettingsIcon />
             </Button>
         </div>
     )

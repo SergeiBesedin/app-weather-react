@@ -13,7 +13,7 @@ export function Input({ id, type, placeholder, classes, label, error, ...attrs }
     const classNames = [styles.custom, ...classes].join(' ')
 
     return (
-        <div className={styles.wrapper}>
+        <>
             {label && (
                 <label className='input-label' htmlFor={id}>
                     {label}
@@ -27,6 +27,6 @@ export function Input({ id, type, placeholder, classes, label, error, ...attrs }
                 className={classNames}
             />
             {error && <span className='input-error'>{error}</span>}
-        </div>
+        </>
     )
 }

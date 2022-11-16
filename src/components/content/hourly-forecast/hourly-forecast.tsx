@@ -6,8 +6,6 @@ import { Button } from '../../ui/button/button'
 import { HourlyForecastItem } from './hourly-forecast-item/hourly-forecast-item'
 import styles from './hourly-forecast.module.scss'
 
-const UNIX_TIME_DAY = 86400 // день, переведенный в unix
-
 interface HourlyForecastProps {
     items: Array<IWeather>
     tempUnit: string
@@ -18,6 +16,8 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     const listItemsRef = useRef<HTMLUListElement>(null)
     const { leftBtn, rightBtn, buttonClickHandler, showOrHideButtons } = useCarouselScrolling()
 
+    const ITEM_WIDTH = 60
+    const UNIX_TIME_DAY = 86400 // день, переведенный в unix
     const title = 'Почасовой прогноз'
 
     const filteredItems = items.filter((item) => item.dt <= items[0].dt + UNIX_TIME_DAY) // показываем в карусели только 9 временных меток
@@ -29,7 +29,12 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     classes={[styles.leftArrow]}
                     disabled={leftBtn}
                     onClick={() =>
-                        buttonClickHandler(wrapperRef.current, listItemsRef.current, true)
+                        buttonClickHandler(
+                            wrapperRef.current,
+                            listItemsRef.current,
+                            ITEM_WIDTH,
+                            true,
+                        )
                     }
                 />
                 <ul
@@ -51,7 +56,12 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     classes={[styles.rightArrow]}
                     disabled={rightBtn}
                     onClick={() =>
-                        buttonClickHandler(wrapperRef.current, listItemsRef.current, false)
+                        buttonClickHandler(
+                            wrapperRef.current,
+                            listItemsRef.current,
+                            ITEM_WIDTH,
+                            false,
+                        )
                     }
                 />
             </div>

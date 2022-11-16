@@ -1,0 +1,15 @@
+@import '../../../../styles/common.scss';
+
+.optionGroup {
+    &:not(:last-child) {
+        margin-bottom: 45px;
+    }
+
+    h4 {
+        font-size: 20px;
+        line-height: (24/20);
+        color: $dark-blue;
+        opacity: 0.5;
+        margin-bottom: 25px;
+    }
+}
