@@ -3,29 +3,27 @@ import styles from './input.module.scss'
 interface InputProps {
     id: string
     type: string
+    value: string
     classes: string[]
-    placeholder: string
+    name?: string
     label?: string
+    placeholder?: string
+    checked?: boolean
     error?: string
+    onChange?: () => void
 }
 
-export function Input({ id, type, placeholder, classes, label, error, ...attrs }: InputProps) {
+export function Input({ id, type, classes, label, error, onChange, ...attrs }: InputProps) {
     const classNames = [styles.custom, ...classes].join(' ')
 
     return (
         <>
             {label && (
-                <label className='input-label' htmlFor={id}>
+                <label className={styles.label} htmlFor={id}>
                     {label}
                 </label>
             )}
-            <input
-                {...attrs}
-                name={id}
-                type={type}
-                placeholder={placeholder}
-                className={classNames}
-            />
+            <input {...attrs} id={id} type={type} className={classNames} onChange={onChange} />
             {error && <span className='input-error'>{error}</span>}
         </>
     )

@@ -1,21 +1,64 @@
 @import '../../../styles/common.scss';
 
 .custom {
-    background-color: $light-grey;
-    color: $dark-blue;
-    opacity: 0.5;
-    border: 0;
-    outline: 0;
-    padding: 10px 15px;
-    border-radius: 55px;
-    font-size: 14px;
-    line-height: (17/14);
-
-    &::-webkit-input-placeholder {
+    &[type='text'] {
+        background-color: $light-grey;
         color: $dark-blue;
+        opacity: 0.5;
+        border: 0;
+        outline: 0;
+        padding: 10px 15px;
+        border-radius: 55px;
+        font-size: 14px;
+        line-height: (17/14);
+
+        &::-webkit-input-placeholder {
+            color: $dark-blue;
+        }
+
+        &:focus {
+            outline: 2px solid $blue-2;
+        }
     }
 
-    &:focus {
-        outline: 2px solid $blue-2;
+    &[type='radio'] {
+        position: relative;
+        height: 22px;
+        width: 22px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $white;
+            border: 2px solid $blue-2;
+        }
+
+        &:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: $blue-2;
+            transform: translate(-50%, -50%);
+            visibility: visible;
+        }
     }
+}
+
+.label {
+    cursor: pointer;
 }

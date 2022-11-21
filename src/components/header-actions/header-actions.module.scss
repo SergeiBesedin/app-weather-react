@@ -1,22 +1,26 @@
 @import '../../styles/common.scss';
 
-.actions {
-    display: flex;
-}
+.headerActions {
+    position: relative;
 
-.search {
-    margin-right: 15px;
-
-    @media (min-width: $breakpoint-tab + 1px) {
-        display: none;
+    .actions {
+        display: flex;
     }
-}
 
-.settings {
-    svg {
+    .search {
+        margin-right: 15px;
+
         @media (min-width: $breakpoint-tab + 1px) {
-            width: 34px;
-            height: 34px;
+            display: none;
+        }
+    }
+
+    .settings {
+        svg {
+            @media (min-width: $breakpoint-tab + 1px) {
+                width: 34px;
+                height: 34px;
+            }
         }
     }
 }

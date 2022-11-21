@@ -2,7 +2,7 @@ import { createContext, useState } from 'react'
 
 interface ISettingsContext {
     units: { [key: string]: string }
-    changeUnit: () => void
+    changeUnit: (payload: { [key: string]: string }) => void
 }
 
 const defaultState = {
@@ -24,7 +24,7 @@ export const SettingsContext = createContext<ISettingsContext>({
 
 export const SettingsState = ({ children }: { children: React.ReactNode }) => {
     const [units, setUnit] = useState<{ [key: string]: string }>(defaultState)
-    const changeUnit = () => setUnit({})
+    const changeUnit = (payload: { [key: string]: string }) => setUnit({ ...units, ...payload })
 
     return (
         <SettingsContext.Provider value={{ units, changeUnit }}>

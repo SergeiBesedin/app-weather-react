@@ -26,6 +26,7 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
         <Tile title={title} classes={[styles.tileContainer]}>
             <div className={styles.wrapper} ref={wrapperRef}>
                 <Button
+                    aria-label='Прокрутить назад'
                     classes={[styles.leftArrow]}
                     disabled={leftBtn}
                     onClick={() =>
@@ -53,6 +54,7 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     ))}
                 </ul>
                 <Button
+                    aria-label='Прокрутить вперед'
                     classes={[styles.rightArrow]}
                     disabled={rightBtn}
                     onClick={() =>

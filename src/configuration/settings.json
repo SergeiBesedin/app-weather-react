@@ -1,0 +1,53 @@
+[
+    {
+        "optionId": "a7cca169-717e-4274-b8b5-745eb5a4273b",
+        "optionGroup": "Температура",
+        "unitName": "temp",
+        "values": [
+            {
+                "optionValueId": "382239d4-29ee-47e4-a9d2-5bedc2a85c9f",
+                "optionValue": "Градусы Цельсия (°C)",
+                "unit": "celsius"
+            },
+            {
+                "optionValueId": "26cb990a-7d6f-4282-bb47-5a242f7a9c07",
+                "optionValue": "Градусы Фаренгейта (°F)",
+                "unit": "fahrenheit"
+            }
+        ]
+    },
+    {
+        "optionId": "afd03936-5c84-4929-9b9e-bc9d3520b51c",
+        "optionGroup": "Скорость ветра",
+        "unitName": "speed",
+        "values": [
+            {
+                "optionValueId": "056b2606-7fb0-4689-ad6c-7c222f227e5d",
+                "optionValue": "м/с",
+                "unit": "ms"
+            },
+            {
+                "optionValueId": "3369bf95-b64b-4886-a04a-d29ccf6a05eb",
+                "optionValue": "км/ч",
+                "unit": "kh"
+            }
+        ]
+    },
+    {
+        "optionId": "136b3a70-c2f6-434b-a13a-315f43698276",
+        "optionGroup": "Атмосферное давление",
+        "unitName": "pressure",
+        "values": [
+            {
+                "optionValueId": "a349bad2-7d89-4ef3-ba03-2c7b57a9ad2f",
+                "optionValue": "гПа",
+                "unit": "hpa"
+            },
+            {
+                "optionValueId": "5a52e635-6b82-4ba1-96c9-8769627ffdad",
+                "optionValue": "мм. рт. ст.",
+                "unit": "mm"
+            }
+        ]
+    }
+]

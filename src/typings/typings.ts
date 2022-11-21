@@ -60,3 +60,16 @@ export interface IFiveDayForecast {
     cnt: number // Количество меток времени, возвращенных в ответе API
     list: Array<IWeather>
 }
+
+export type Option = {
+    optionValueId: string
+    optionValue: string
+    unit: string
+}
+
+export interface ISettings {
+    optionId: string
+    optionGroup: string
+    unitName: string
+    values: Array<Option>
+}

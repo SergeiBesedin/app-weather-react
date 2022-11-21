@@ -1,2 +1,12 @@
+@import '../../../styles/common.scss';
+
 .settings {
+    position: absolute;
+    top: 39px;
+    left: -402px;
+    right: -3px;
+
+    @media (max-width: $breakpoint-tab) {
+        top: 29px;
+    }
 }
