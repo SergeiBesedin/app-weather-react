@@ -1,12 +1,21 @@
 @import '../../../styles/common.scss';
 
 .settings {
-    position: absolute;
-    top: 39px;
-    left: -402px;
-    right: -3px;
+    @media (min-width: $breakpoint-tab + 1px) {
+        top: 39px;
+        left: -402px;
+        right: -3px;
+    }
 
     @media (max-width: $breakpoint-tab) {
-        top: 29px;
+        border-radius: 24px 24px 0 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        .optionGroups {
+            padding-top: 36px;
+        }
     }
 }

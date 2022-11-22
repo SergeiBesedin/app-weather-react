@@ -12,4 +12,12 @@
         opacity: 0.5;
         margin-bottom: 25px;
     }
+
+    @media (max-width: $breakpoint-tab) {
+        h4 {
+            font-size: 14px;
+            line-height: (17/14);
+            margin-bottom: 16px;
+        }
+    }
 }

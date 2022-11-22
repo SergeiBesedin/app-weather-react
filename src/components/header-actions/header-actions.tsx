@@ -18,10 +18,20 @@ export function HeaderActions() {
     return (
         <div className={styles.headerActions}>
             <div className={styles.actions}>
-                <Button classes={[styles.search]} disabled={false} onClick={click}>
+                <Button
+                    classes={[styles.search]}
+                    disabled={false}
+                    aria-label='Поиск по названию города'
+                    onClick={click}
+                >
                     <SearchIcon />
                 </Button>
-                <Button classes={[styles.settings]} disabled={false} onClick={open}>
+                <Button
+                    classes={[styles.settings]}
+                    disabled={false}
+                    aria-label='Настройки'
+                    onClick={open}
+                >
                     <SettingsIcon />
                 </Button>
             </div>

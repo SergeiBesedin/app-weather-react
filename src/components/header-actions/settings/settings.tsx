@@ -11,7 +11,7 @@ interface SettingsProps {
 export function Settings({ options, close }: SettingsProps) {
     return (
         <Modal classes={[styles.settings]} close={close}>
-            <div>
+            <div className={styles.optionGroups}>
                 {options.map((option) => (
                     <OptionGroup
                         key={option.optionId}
