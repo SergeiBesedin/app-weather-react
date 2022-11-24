@@ -10,7 +10,7 @@ interface InputProps {
     placeholder?: string
     checked?: boolean
     error?: string
-    onChange?: () => void
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export function Input({ id, type, classes, label, error, onChange, ...attrs }: InputProps) {

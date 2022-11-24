@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 interface ISettingsContext {
     units: { [key: string]: string }
@@ -24,7 +24,17 @@ export const SettingsContext = createContext<ISettingsContext>({
 
 export const SettingsState = ({ children }: { children: React.ReactNode }) => {
     const [units, setUnit] = useState<{ [key: string]: string }>(defaultState)
-    const changeUnit = (payload: { [key: string]: string }) => setUnit({ ...units, ...payload })
+    const changeUnit = (payload: { [key: string]: string }) => {
+        setUnit({ ...units, ...payload })
+        localStorage.setItem('settings', JSON.stringify({ ...units, ...payload }))
+    }
+
+    useEffect(() => {
+        const settings = localStorage.getItem('settings')
+        settings
+            ? setUnit(JSON.parse(settings))
+            : localStorage.setItem('settings', JSON.stringify(units))
+    }, [])
 
     return (
         <SettingsContext.Provider value={{ units, changeUnit }}>

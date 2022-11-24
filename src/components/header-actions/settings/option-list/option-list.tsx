@@ -28,7 +28,9 @@ export function OptionList({ unitName, values }: OptionListProps) {
                         type={'radio'}
                         checked={units[unitName] === value.unit}
                         classes={['']}
-                        onChange={() => onChangeHandler({ [unitName]: value.unit })}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            onChangeHandler({ [e.target.name]: e.target.value })
+                        }
                     />
                 </li>
             ))}
