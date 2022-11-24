@@ -20,7 +20,6 @@ export function useCarouselScrolling() {
     }
 
     const showOrHideButtons = (listItemsRef: HTMLElement | null) => {
-        // TODO сделать через debounce
         if (!listItemsRef) return
         const listItemsWidth = Math.round(listItemsRef.getBoundingClientRect().width)
         const scrollLeft = listItemsRef.scrollLeft

@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 import { useCarouselScrolling } from '../../../hooks/carousel-scrolling'
 import { IWeather } from './../../../typings/typings'
 import { Tile } from '../tile/tile'
@@ -15,6 +16,10 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     const wrapperRef = useRef<HTMLDivElement>(null)
     const listItemsRef = useRef<HTMLUListElement>(null)
     const { leftBtn, rightBtn, buttonClickHandler, showOrHideButtons } = useCarouselScrolling()
+    const debouncedCarouselScrolling = useDebouncedCallback(
+        () => showOrHideButtons(listItemsRef.current),
+        300,
+    )
 
     const ITEM_WIDTH = 60
     const UNIX_TIME_DAY = 86400 // день, переведенный в unix
@@ -41,7 +46,7 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                 <ul
                     className={styles.listItems}
                     ref={listItemsRef}
-                    onScroll={() => showOrHideButtons(listItemsRef.current)}
+                    onScroll={debouncedCarouselScrolling}
                 >
                     {filteredItems.map((item) => (
                         <HourlyForecastItem
