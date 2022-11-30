@@ -1,0 +1,40 @@
+@import '../../styles/common.scss';
+
+.error {
+    display: flex;
+    flex: 1 1 auto;
+    height: 100%;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 36px;
+        margin: 0 auto;
+
+        .picture {
+            // TODO поправить стили
+            background-image: url('../../assets/icons/error.svg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 300px;
+            height: 300px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            line-height: (43/36);
+            color: $dark-blue;
+            margin-bottom: 24px;
+        }
+
+        .message {
+            text-align: center;
+            color: $dark-blue;
+            font-size: 24px;
+            line-height: (28/24);
+        }
+    }
+}
