@@ -12,3 +12,46 @@
         @content;
     }
 }
+
+// вставляем иконки (влажность, скорость ветра, атм. давление) на карточке с текущей погодой. В качестве параметра передаем путь до картинки
+@mixin insert-weather-status($path) {
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        background-image: url($path);
+        background-repeat: no-repeat;
+        background-size: 40px;
+
+        @media (max-width: $breakpoint-desk) {
+            top: -3px;
+            width: 22px;
+            height: 22px;
+            background-size: 22px;
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            top: -6px;
+            width: 32px;
+            height: 32px;
+            background-size: 32px;
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            top: -3px;
+            width: 22px;
+            height: 22px;
+            background-size: 22px;
+        }
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            top: -2px;
+            width: 18px;
+            height: 18px;
+            background-size: 18px;
+        }
+    }
+}
