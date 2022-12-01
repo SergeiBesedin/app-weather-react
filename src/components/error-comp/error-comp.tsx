@@ -1,3 +1,4 @@
+import { ReactComponent as ErrorIcon } from '../../assets/icons/error.svg'
 import styles from './error.module.scss'
 
 interface ErrorMessageProps {
@@ -5,12 +6,15 @@ interface ErrorMessageProps {
 }
 
 export function ErrorComp({ error }: ErrorMessageProps) {
+    const classNames = ['container', styles.container].join(' ')
     const title = 'Сервис погоды временно недоступен'
 
     return (
         <div className={styles.error}>
-            <div className={styles.container}>
-                <div className={styles.picture}></div>
+            <div className={classNames}>
+                <div className={styles.wrapper}>
+                    <ErrorIcon />
+                </div>
                 <div>
                     <h2 className={styles.title}>{title}</h2>
                     <p className={styles.message}>{error}</p>
