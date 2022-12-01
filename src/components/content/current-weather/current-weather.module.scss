@@ -160,9 +160,9 @@
             }
 
             @media (max-width: $breakpoint-desk) {
-                padding-left: 32px;
-                font-size: 16px;
-                line-height: (19/16);
+                padding-left: 24px;
+                font-size: 14px;
+                line-height: (17/14);
             }
 
             @media (max-width: $breakpoint-tab) {
@@ -190,6 +190,13 @@
                 background-image: url('/assets/icons/drop.svg');
 
                 @media (max-width: $breakpoint-desk) {
+                    top: -3px;
+                    width: 22px;
+                    height: 22px;
+                    background-size: 22px;
+                }
+
+                @media (max-width: $breakpoint-tab) {
                     top: -6px;
                     width: 32px;
                     height: 32px;
@@ -218,6 +225,13 @@
                 background-image: url('/assets/icons/wind.svg');
 
                 @media (max-width: $breakpoint-desk) {
+                    top: -3px;
+                    width: 22px;
+                    height: 22px;
+                    background-size: 22px;
+                }
+
+                @media (max-width: $breakpoint-tab) {
                     top: -6px;
                     width: 32px;
                     height: 32px;
@@ -246,6 +260,13 @@
                 background-image: url('/assets/icons/pressure.svg');
 
                 @media (max-width: $breakpoint-desk) {
+                    top: -3px;
+                    width: 22px;
+                    height: 22px;
+                    background-size: 22px;
+                }
+
+                @media (max-width: $breakpoint-tab) {
                     top: -6px;
                     width: 32px;
                     height: 32px;

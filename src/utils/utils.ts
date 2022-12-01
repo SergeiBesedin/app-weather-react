@@ -14,6 +14,11 @@ export function dateFormat(date: number | string | Date, params?: DateTimeFormat
     return new Intl.DateTimeFormat('ru', options).format(new Date(date))
 }
 
+// функция, которая делает первую букву в слове заглавной
+export function ucFirst(str: string): string {
+    return str[0].toUpperCase() + str.slice(1)
+}
+
 // функция изменения единицы измерения
 export function unitFormat(value: number, unit: string): string {
     let result: number

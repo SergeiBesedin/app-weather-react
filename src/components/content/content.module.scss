@@ -2,6 +2,8 @@
 
 .content {
     display: flex;
+    justify-content: space-between;
+    gap: 30px;
 }
 
 .currentWeatherBlock {
@@ -9,8 +11,25 @@
     flex-direction: column;
     width: 50%;
     row-gap: 30px;
+}
 
-    @media (max-width: $breakpoint-tab) {
+@media (max-width: $breakpoint-desk) {
+    .content {
+        gap: 20px;
+    }
+
+    .currentWeatherBlock {
+        width: 45%;
+        row-gap: 20px;
+    }
+}
+
+@media (max-width: $breakpoint-tab) {
+    .content {
+        flex-direction: column;
+    }
+
+    .currentWeatherBlock {
         width: 100%;
     }
 }

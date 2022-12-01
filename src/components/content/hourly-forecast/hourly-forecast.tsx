@@ -28,7 +28,7 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     const filteredItems = items.filter((item) => item.dt <= items[0].dt + UNIX_TIME_DAY) // показываем в карусели только 9 временных меток
 
     return (
-        <Tile title={title} classes={[styles.tileContainer]}>
+        <Tile title={title} classes={[styles.hourlyForecast]}>
             <div className={styles.wrapper} ref={wrapperRef}>
                 <Button
                     aria-label='Прокрутить назад'

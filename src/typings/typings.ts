@@ -27,7 +27,8 @@ export type Sys = {
 
 export interface IWeather {
     name: string // название города
-    dt: number // время расчета данных
+    dt: number // время расчета данных (timestamp)
+    dt_txt?: string // время расчета данных (UTC)
     visibility: number // видимость, метр. Максимальное значение видимости = 10км
     main: Temp
     sys: Sys

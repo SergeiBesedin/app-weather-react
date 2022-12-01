@@ -1,7 +1,7 @@
 import { Tile } from '../tile/tile'
 import { Image } from '../../ui/image/image'
 import { ICurrentWeather } from '../../../typings/typings'
-import { unitFormat } from '../../../utils/utils'
+import { unitFormat, ucFirst } from '../../../utils/utils'
 import { getIcon } from '../../../utils/get-icon'
 import styles from './current-weather.module.scss'
 
@@ -28,7 +28,7 @@ export function CurrentWeather({
             <div className={styles.weather}>
                 <div className={styles.city}>{city}</div>
                 <div className={styles.temp}>{temperature}</div>
-                <div className={styles.description}>{weatherDesc}</div>
+                <div className={styles.description}>{ucFirst(weatherDesc)}</div>
                 <Image alt={weatherName} src={getIcon(weatherName)} classes={[styles.picture]} />
             </div>
             <div className={styles.status}>

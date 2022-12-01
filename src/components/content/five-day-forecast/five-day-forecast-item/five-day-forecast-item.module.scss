@@ -1,0 +1,68 @@
+@import '../../../../styles/common.scss';
+
+.item {
+    // TODO требуются доработки
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $dark-blue;
+
+    &:not(:last-child) {
+        margin-bottom: 12px;
+    }
+
+    .day {
+        font-size: 24px;
+        line-height: (28/24);
+
+        @media (max-width: $breakpoint-desk) {
+            font-size: 20px;
+            line-height: (24/20);
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            font-size: 24px;
+            line-height: (28/24);
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            font-size: 14px;
+            line-height: (17/14);
+        }
+    }
+
+    .picture {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .temp {
+        font-size: 36px;
+        line-height: (43/36);
+
+        @media (max-width: $breakpoint-desk) {
+            font-size: 30px;
+            line-height: (36/30);
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            font-size: 36px;
+            line-height: (43/36);
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            font-size: 22px;
+            line-height: (26/22);
+        }
+
+        .min {
+            opacity: 0.5;
+            margin-right: 12px;
+        }
+
+        //   .max {
+        //   }
+    }
+}
