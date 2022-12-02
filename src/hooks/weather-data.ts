@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
+import { axiosOpenWeather, axiosDaData } from '../axios/axios'
 import { IWeather, IFiveDayForecast, ICurrentWeather } from '../typings/typings'
 import { dateFormat } from '../utils/utils'
-import { axiosOpenWeather, axiosDaData } from '../axios/axios'
 
-const API_OW_KEY = process.env.REACT_APP_API_KEY // ключ для сервиса OpenWeather
-const API_DADATA_KEY = process.env.REACT_APP_API_KEY2 // ключ для сервиса DaData
-
-// TODO хранить местоположение юзера в ls
+const API_OW_KEY = process.env.REACT_APP_OW_API_KEY // ключ для сервиса OpenWeather
+const API_DADATA_KEY = process.env.REACT_APP_DD_API_KEY // ключ для сервиса DaData
+const USER_LOCATION_KEY = 'user_location'
 
 export const useDataWeather = () => {
     const [location, setLocation] = useState<string>('Москва')
@@ -49,20 +48,33 @@ export const useDataWeather = () => {
             .finally(() => setLoading(false))
             .catch((e: unknown) => {
                 const error = e as AxiosError
-                setLoading(false)
                 setError(error.message)
             })
     }
 
     const getUserLocation = () => {
-        navigator.geolocation.getCurrentPosition(async (position) => {
-            const city = await getCityName(position.coords.latitude, position.coords.longitude)
-            setLocation(city)
-        })
+        const location = checkLocationInStorage()
+        if (location) {
+            setLocation(location)
+        } else {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                // выполняется, если пользователей дает доступ к местоположению
+                const city: string = await getCityName(
+                    position.coords.latitude,
+                    position.coords.longitude,
+                )
+                localStorage.setItem(USER_LOCATION_KEY, city)
+                setLocation(city)
+            })
+        }
+    }
+
+    const checkLocationInStorage = () => {
+        return localStorage.getItem(USER_LOCATION_KEY)
     }
 
     const getCityName = async (lat: number, lon: number) => {
-        // обратное геокодирование. Передаем широту и долготу, чтобы получить местоположение (название города) пользователя
+        // обратное геокодирование. Передаем сервису широту и долготу, чтобы получить местоположение (название города) пользователя
         const url = 'suggestions/api/4_1/rs/geolocate/address'
         const coords = { lat, lon }
         const options = {
@@ -77,9 +89,13 @@ export const useDataWeather = () => {
         return response.data.suggestions[0].data.city
     }
 
+    // При первом рендере пытаемся узнать местоположение пользователя
+    useEffect(() => {
+        getUserLocation()
+    }, [])
+
     useEffect(() => {
         fetchAllData()
-        getUserLocation()
     }, [location])
 
     return { weatherData, fiveDayForecast, error, loading }
