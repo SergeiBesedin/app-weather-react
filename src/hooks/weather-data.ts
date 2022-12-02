@@ -48,6 +48,7 @@ export const useDataWeather = () => {
             .finally(() => setLoading(false))
             .catch((e: unknown) => {
                 const error = e as AxiosError
+                console.error(error)
                 setError(error.message)
             })
     }
@@ -59,34 +60,37 @@ export const useDataWeather = () => {
         } else {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 // выполняется, если пользователей дает доступ к местоположению
-                const city: string = await getCityName(
-                    position.coords.latitude,
-                    position.coords.longitude,
-                )
+                const city = await getCityName(position.coords.latitude, position.coords.longitude)
                 localStorage.setItem(USER_LOCATION_KEY, city)
                 setLocation(city)
             })
         }
     }
 
-    const checkLocationInStorage = () => {
+    const checkLocationInStorage = (): string | null => {
         return localStorage.getItem(USER_LOCATION_KEY)
     }
 
-    const getCityName = async (lat: number, lon: number) => {
+    const getCityName = async (lat: number, lon: number): Promise<string> => {
         // обратное геокодирование. Передаем сервису широту и долготу, чтобы получить местоположение (название города) пользователя
-        const url = 'suggestions/api/4_1/rs/geolocate/address'
-        const coords = { lat, lon }
-        const options = {
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                Authorization: `Token ${API_DADATA_KEY}`,
-            },
+        try {
+            const url = 'suggestions/api/4_1/rs/geolocate/address'
+            const coords = { lat, lon }
+            const options = {
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Token ${API_DADATA_KEY}`,
+                },
+            }
+            const response = await axiosDaData.post(url, coords, options)
+            return response.data.suggestions[0].data.city
+        } catch (e: unknown) {
+            const error = e as AxiosError
+            console.error(error)
+            return 'Москва'
         }
-        const response = await axiosDaData.post(url, coords, options)
-        return response.data.suggestions[0].data.city
     }
 
     // При первом рендере пытаемся узнать местоположение пользователя
