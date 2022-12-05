@@ -15,20 +15,18 @@ export function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
 
     return (
         <Tile title={title} classes={[styles.fiveDayForecast]}>
-            <div className={styles.content}>
-                <ul>
-                    {filteredItems.map((item) => (
-                        <FiveDayForecastItem
-                            key={item.dt}
-                            timestamp={item.dt}
-                            weather={item.weather[0].main}
-                            tempMin={item.main.temp_min}
-                            tempMax={item.main.temp_max}
-                            tempUnit={tempUnit}
-                        />
-                    ))}
-                </ul>
-            </div>
+            <ul>
+                {filteredItems.map((item) => (
+                    <FiveDayForecastItem
+                        key={item.dt}
+                        timestamp={item.dt}
+                        weather={item.weather[0].main}
+                        tempMin={item.main.temp_min}
+                        tempMax={item.main.temp_max}
+                        tempUnit={tempUnit}
+                    />
+                ))}
+            </ul>
         </Tile>
     )
 }

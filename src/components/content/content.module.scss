@@ -4,14 +4,15 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 30px;
+    gap: 28px;
 }
 
-.currentWeatherBlock {
+.leftColumn,
+.rightColumn {
     display: flex;
     flex-direction: column;
     width: 50%;
-    row-gap: 30px;
+    row-gap: 28px;
 }
 
 @media (max-width: $breakpoint-desk) {
@@ -19,9 +20,17 @@
         gap: 20px;
     }
 
-    .currentWeatherBlock {
-        width: 45%;
+    .leftColumn,
+    .rightColumn {
         row-gap: 20px;
+    }
+
+    .leftColumn {
+        width: 45%;
+    }
+
+    .rightColumn {
+        width: 55%;
     }
 }
 
@@ -30,7 +39,8 @@
         flex-direction: column;
     }
 
-    .currentWeatherBlock {
+    .leftColumn,
+    .rightColumn {
         width: 100%;
     }
 }
