@@ -22,15 +22,17 @@ export function Content() {
                 <ErrorComp error={error} />
             ) : (
                 <div className={classNames}>
-                    <div className={styles.currentWeatherBlock}>
+                    <div className={styles.leftColumn}>
                         {weatherData && <CurrentWeather {...weatherData} units={units} />}
+                    </div>
+                    <div className={styles.rightColumn}>
                         {fiveDayForecast && (
                             <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
                         )}
+                        {fiveDayForecast && (
+                            <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
+                        )}
                     </div>
-                    {fiveDayForecast && (
-                        <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
-                    )}
                 </div>
             )}
         </>

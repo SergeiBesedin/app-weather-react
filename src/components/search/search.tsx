@@ -5,13 +5,13 @@ import styles from './search.module.scss'
 export function Search() {
     const [value, setValue] = useState<string>('')
 
-    const onChangeHandler = (value: string) => {
-        setValue(value)
+    const onChangeHandler = (location: string) => {
+        setValue(location)
     }
 
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log('отправка формы')
+        setValue('')
     }
 
     return (

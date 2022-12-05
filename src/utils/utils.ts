@@ -24,7 +24,7 @@ export function unitFormat(value: number, unit: string): string {
     let result: number
     const symbols: { [key: string]: string } = {
         // температура
-        fahrenheit: '° F',
+        fahrenheit: '°',
         celsius: '°',
 
         // скорость
