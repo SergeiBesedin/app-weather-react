@@ -15,7 +15,7 @@ export const useDataWeather = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
-    const fetchCurrentWeather = async () => {
+    const fetchCurrentWeather = async (): Promise<void> => {
         // получаем данные для карточки с текущей погодой
         const url = `weather?q=${location}&lang=ru&appid=${API_OW_KEY}&units=metric`
         const response = await axiosOpenWeather.get<IWeather>(url)
@@ -34,14 +34,14 @@ export const useDataWeather = () => {
         setWeatherData(currentWeather)
     }
 
-    const fetchFiveDayForecast = async () => {
+    const fetchFiveDayForecast = async (): Promise<void> => {
         // получаем данные с почасовым прогнозом на 5 дней
         const url = `forecast?q=${location}&lang=ru&units=metric&appid=${API_OW_KEY}`
         const response = await axiosOpenWeather.get<IFiveDayForecast>(url)
         setFiveDayForecast(response.data.list)
     }
 
-    const fetchAllData = () => {
+    const fetchAllData = (): void => {
         setError('')
         setLoading(true)
         Promise.all([fetchCurrentWeather(), fetchFiveDayForecast()])
@@ -53,7 +53,7 @@ export const useDataWeather = () => {
             })
     }
 
-    const getUserLocation = () => {
+    const getUserLocation = (): void => {
         const location = checkLocationInStorage()
         if (location) {
             setLocation(location)
