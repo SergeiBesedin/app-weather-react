@@ -21,7 +21,7 @@ export function HeaderActions() {
                 <Button
                     classes={[styles.search]}
                     disabled={false}
-                    aria-label='Поиск по названию города'
+                    aria-label="Поиск по названию города"
                     onClick={click}
                 >
                     <SearchIcon />
@@ -29,7 +29,7 @@ export function HeaderActions() {
                 <Button
                     classes={[styles.settings]}
                     disabled={false}
-                    aria-label='Настройки'
+                    aria-label="Настройки"
                     onClick={open}
                 >
                     <SettingsIcon />

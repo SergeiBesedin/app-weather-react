@@ -3,15 +3,13 @@
 .content {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    gap: 28px;
 }
 
 .leftColumn,
 .rightColumn {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: calc(50% - 14px);
     row-gap: 28px;
 }
 
@@ -26,11 +24,11 @@
     }
 
     .leftColumn {
-        width: 45%;
+        width: calc(47% - 10px);
     }
 
     .rightColumn {
-        width: 55%;
+        width: calc(53% - 10px);
     }
 }
 

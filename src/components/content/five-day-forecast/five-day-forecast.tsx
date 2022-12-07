@@ -1,3 +1,4 @@
+import React from 'react'
 import { Tile } from '../tile/tile'
 import { IWeather } from '../../../typings/typings'
 import { FiveDayForecastItem } from './five-day-forecast-item/five-day-forecast-item'
@@ -8,7 +9,7 @@ interface FiveDayForecastProps {
     tempUnit: string
 }
 
-export function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
+function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
     const title = 'Прогноз на 5 дней'
 
     const filteredItems = items.filter((item) => item.dt_txt!.includes('12:00:00'))
@@ -30,3 +31,5 @@ export function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
         </Tile>
     )
 }
+
+export default React.memo(FiveDayForecast)

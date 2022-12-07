@@ -21,7 +21,7 @@ export function Modal({ children, classes, close, title }: ModalProps) {
                         classes={[styles.close]}
                         disabled={false}
                         onClick={close}
-                        aria-label='Закрыть всплывающее окно'
+                        aria-label="Закрыть всплывающее окно"
                     >
                         <CloseIcon />
                     </Button>

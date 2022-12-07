@@ -24,7 +24,7 @@ export function Input({ id, type, classes, label, error, onChange, ...attrs }: I
                 </label>
             )}
             <input {...attrs} id={id} type={type} className={classNames} onChange={onChange} />
-            {error && <span className='input-error'>{error}</span>}
+            {error && <span className="input-error">{error}</span>}
         </>
     )
 }

@@ -18,10 +18,10 @@ export function Search() {
         <div className={styles.wrapper}>
             <form onSubmit={onSubmitHandler}>
                 <Input
-                    id='search'
-                    type='text'
+                    id="search"
+                    type="text"
                     value={value}
-                    placeholder='Город или район'
+                    placeholder="Город или район"
                     classes={[styles.input]}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         onChangeHandler(e.target.value)

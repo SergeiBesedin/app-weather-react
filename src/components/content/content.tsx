@@ -1,14 +1,14 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { SettingsContext } from '../../context/settings-context'
 import { useDataWeather } from '../../hooks/weather-data'
 import { CurrentWeather } from './current-weather/current-weather'
-import { HourlyForecast } from './hourly-forecast/hourly-forecast'
-import { FiveDayForecast } from './five-day-forecast/five-day-forecast'
+import HourlyForecast from './hourly-forecast/hourly-forecast'
+import FiveDayForecast from './five-day-forecast/five-day-forecast'
 import { ErrorComp } from '../error-comp/error-comp'
 import { Loader } from '../ui/loader/loader'
 import styles from './content.module.scss'
 
-export function Content() {
+function Content() {
     const { units } = useContext(SettingsContext)
     const { weatherData, fiveDayForecast, loading, error } = useDataWeather()
     const classNames = [styles.content, 'container'].join(' ')
@@ -38,3 +38,5 @@ export function Content() {
         </>
     )
 }
+
+export default React.memo(Content)

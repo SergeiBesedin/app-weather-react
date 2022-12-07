@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useCarouselScrolling } from '../../../hooks/carousel-scrolling'
 import { IWeather } from './../../../typings/typings'
@@ -12,7 +12,7 @@ interface HourlyForecastProps {
     tempUnit: string
 }
 
-export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
+function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     const wrapperRef = useRef<HTMLDivElement>(null)
     const listItemsRef = useRef<HTMLUListElement>(null)
     const { leftBtn, rightBtn, buttonClickHandler, showOrHideButtons } = useCarouselScrolling()
@@ -31,7 +31,7 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
         <Tile title={title} classes={[styles.hourlyForecast]}>
             <div className={styles.wrapper} ref={wrapperRef}>
                 <Button
-                    aria-label='Прокрутить назад'
+                    aria-label="Прокрутить назад"
                     classes={[styles.leftArrow]}
                     disabled={leftBtn}
                     onClick={() =>
@@ -59,7 +59,7 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     ))}
                 </ul>
                 <Button
-                    aria-label='Прокрутить вперед'
+                    aria-label="Прокрутить вперед"
                     classes={[styles.rightArrow]}
                     disabled={rightBtn}
                     onClick={() =>
@@ -75,3 +75,5 @@ export function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
         </Tile>
     )
 }
+
+export default React.memo(HourlyForecast)
