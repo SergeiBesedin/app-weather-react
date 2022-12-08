@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
 import { axiosOpenWeather, axiosDaData } from '../axios/axios'
 import { IWeather, IFiveDayForecast, ICurrentWeather } from '../typings/typings'
-import { dateFormat } from '../utils/utils'
+import { dateFormat, getTomorrowDate } from '../utils/utils'
 
 const API_OW_KEY = process.env.REACT_APP_OW_API_KEY // ключ для сервиса OpenWeather
 const API_DADATA_KEY = process.env.REACT_APP_DD_API_KEY // ключ для сервиса DaData
@@ -12,8 +12,9 @@ export const useDataWeather = () => {
     const [location, setLocation] = useState<string>('Москва')
     const [weatherData, setWeatherData] = useState<ICurrentWeather>()
     const [fiveDayForecast, setFiveDayForecast] = useState<Array<IWeather>>()
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
+    const [weatherTomorrow, setWeatherTomorrow] = useState<Array<IWeather>>()
+    const [loading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string>('')
 
     const fetchCurrentWeather = async (): Promise<void> => {
         // получаем данные для карточки с текущей погодой
@@ -39,6 +40,12 @@ export const useDataWeather = () => {
         const url = `forecast?q=${location}&lang=ru&units=metric&appid=${API_OW_KEY}`
         const response = await axiosOpenWeather.get<IFiveDayForecast>(url)
         setFiveDayForecast(response.data.list)
+        getWeatherForTomorrow(response.data.list)
+    }
+
+    const getWeatherForTomorrow = (items: Array<IWeather>): void => {
+        const weatherTomorrowList = items.filter((item) => item.dt_txt?.includes(getTomorrowDate()))
+        setWeatherTomorrow(weatherTomorrowList)
     }
 
     const fetchAllData = (): void => {
@@ -102,5 +109,5 @@ export const useDataWeather = () => {
         fetchAllData()
     }, [location])
 
-    return { weatherData, fiveDayForecast, error, loading }
+    return { weatherData, fiveDayForecast, weatherTomorrow, error, loading }
 }

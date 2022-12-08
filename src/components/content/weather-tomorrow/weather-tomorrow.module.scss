@@ -1,0 +1,17 @@
+@import '../../../styles/common.scss';
+
+.weatherTomorrow {
+    border-radius: 24px;
+    background-color: $white;
+
+    .container {
+        padding: 20px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: (24/18);
+        color: $dark-blue;
+        opacity: 0.5;
+    }
+}
