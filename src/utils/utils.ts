@@ -14,6 +14,14 @@ export function dateFormat(date: number | string | Date, params?: DateTimeFormat
     return new Intl.DateTimeFormat('ru', options).format(new Date(date))
 }
 
+export function getTomorrowDate(): string {
+    const tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    return `${tomorrow.getFullYear()}-${tomorrow.getMonth() + 1}-${
+        tomorrow.getDate() < 10 ? '0' + tomorrow.getDate() : tomorrow.getDate()
+    }`
+}
+
 // функция, которая делает первую букву в слове заглавной
 export function ucFirst(str: string): string {
     return str[0].toUpperCase() + str.slice(1)
