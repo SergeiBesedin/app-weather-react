@@ -3,7 +3,8 @@ import { SettingsContext } from '../../context/settings-context'
 import { useDataWeather } from '../../hooks/weather-data'
 import { CurrentWeather } from './current-weather/current-weather'
 import HourlyForecast from './hourly-forecast/hourly-forecast'
-import WeatherTomorrow from './weather-tomorrow/weather-tomorrow'
+import { ForecastTomorrow } from './forecast-tomorrow/forecast-tomorrow'
+import { RecommendedClothing } from './recommended-clothing/recommended-clothing'
 import FiveDayForecast from './five-day-forecast/five-day-forecast'
 import { ErrorComp } from '../error-comp/error-comp'
 import { Loader } from '../ui/loader/loader'
@@ -25,13 +26,19 @@ function Content() {
                 <div className={classNames}>
                     <div className={styles.leftColumn}>
                         {weatherData && <CurrentWeather {...weatherData} units={units} />}
+                        {weatherData && (
+                            <RecommendedClothing
+                                feelsLikeTemp={weatherData.temp.feels_like}
+                                tempUnit={units.temp}
+                            />
+                        )}
                     </div>
                     <div className={styles.rightColumn}>
                         {fiveDayForecast && (
                             <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
                         )}
                         {weatherTomorrow && weatherData && (
-                            <WeatherTomorrow
+                            <ForecastTomorrow
                                 curTemp={weatherData.temp.temp}
                                 tempUnit={units.temp}
                                 list={weatherTomorrow}

@@ -1,5 +1,5 @@
 import { IWeather } from '../typings/typings'
-import { dateFormat } from './utils'
+import { dateFormat, unitFormat } from './utils'
 
 const enum typeOfPrecipitation {
     rain = 'дождь',
@@ -11,7 +11,57 @@ type Message = {
     message: string
 }
 
-export function generateMessageText(
+export function generateRecommendedClothingMessage(
+    feelsLikeTemp: number,
+    tempUnit: string,
+): Message {
+    const temperature = unitFormat(feelsLikeTemp, tempUnit)
+    const roundedTemp = Math.round(feelsLikeTemp)
+
+    const message = [`Ощущается как ${temperature}.`]
+
+    let recommendedClothing = ''
+
+    if (tempUnit === 'celsius') {
+        if (roundedTemp >= 20) {
+            recommendedClothing = 'футболка, шорты и кепка'
+        } else if (roundedTemp < 20 && roundedTemp >= 15) {
+            recommendedClothing = 'жакет или джинсовка'
+        } else if (roundedTemp < 15 && roundedTemp >= 10) {
+            recommendedClothing = 'ветровка и теплая кофта'
+        } else if (roundedTemp < 10 && roundedTemp >= 0) {
+            recommendedClothing = 'головной убор, пальто и свитер'
+        } else if (roundedTemp < 0 && roundedTemp >= -25) {
+            recommendedClothing = 'шапка, шарф и зимняя куртка'
+        } else {
+            recommendedClothing = 'шапка, шарф, шерстяные носки и зимняя куртка'
+        }
+    }
+
+    if (tempUnit === 'fahrenheit') {
+        if (roundedTemp >= 68) {
+            recommendedClothing = 'футболка, шорты и кепка'
+        } else if (roundedTemp < 68 && roundedTemp >= 59) {
+            recommendedClothing = 'жакет или джинсовка'
+        } else if (roundedTemp < 59 && roundedTemp >= 50) {
+            recommendedClothing = 'ветровка и теплая кофта'
+        } else if (roundedTemp < 50 && roundedTemp >= 32) {
+            recommendedClothing = 'головной убор, пальто и свитер'
+        } else if (roundedTemp < 32 && roundedTemp >= -13) {
+            recommendedClothing = 'шапка, шарф и зимняя куртка'
+        } else {
+            recommendedClothing = 'шапка, шарф, шерстяные носки и зимняя куртка'
+        }
+    }
+
+    if (recommendedClothing) {
+        message.push(`Лучшая одежда для этой погоды: ${recommendedClothing}.`)
+    }
+
+    return { type: 'thermometer', message: message.join(' ') }
+}
+
+export function generateForecastTomorrowMessage(
     curTemp: number,
     tempUnit: string,
     list: Array<IWeather>,
@@ -53,7 +103,7 @@ function tempDifferenceCreate(
             ? Math.round(listItem!.main.temp * (9 / 5) + 32)
             : Math.round(listItem!.main.temp)
 
-    const difference = Math.abs(tempCurrent - tempTomorrow) // считаем разницу в температуре
+    const difference = Math.abs(tempCurrent - tempTomorrow) // получаем разницу в температуре
 
     if (tempCurrent > tempTomorrow) {
         message.push(`Завтра ${tempTomorrow}°, на ${difference}° холоднее, чем сегодня`)
