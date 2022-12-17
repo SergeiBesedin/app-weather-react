@@ -29,7 +29,11 @@ export function CurrentWeather({
                 <div className={styles.city}>{city}</div>
                 <div className={styles.temp}>{temperature}</div>
                 <div className={styles.description}>{ucFirst(weatherDesc)}</div>
-                <Image alt={weatherName} src={getIcon(weatherName)} classes={[styles.picture]} />
+                <Image
+                    alt={weatherName}
+                    src={getIcon(weatherName.toLowerCase())}
+                    classes={[styles.picture]}
+                />
             </div>
             <div className={styles.status}>
                 <div className={styles.humidity}>{temp.humidity}%</div>

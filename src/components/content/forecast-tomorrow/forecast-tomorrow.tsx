@@ -12,7 +12,7 @@ interface ForecastTomorrowProps {
 function ForecastTomorrow({ curTemp, tempUnit, list }: ForecastTomorrowProps) {
     const message = generateForecastTomorrowMessage(curTemp, tempUnit, list)
 
-    return <TextBlock message={message.message} img={message.icon + 'tomorrow'} />
+    return <TextBlock message={message.message} img={message.icon + 'Tomorrow'} />
 }
 
 export default React.memo(ForecastTomorrow)

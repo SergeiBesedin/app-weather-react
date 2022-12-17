@@ -25,7 +25,11 @@ export function HourlyForecastItem({
     return (
         <li className={styles.item}>
             <div className={styles.time}>{time}</div>
-            <Image alt={weather} src={getIcon(weather + 'mini')} classes={[styles.picture]} />
+            <Image
+                alt={weather}
+                src={getIcon(weather.toLowerCase() + 'Mini')}
+                classes={[styles.picture]}
+            />
             <div className={styles.temp}>{temperature}</div>
         </li>
     )

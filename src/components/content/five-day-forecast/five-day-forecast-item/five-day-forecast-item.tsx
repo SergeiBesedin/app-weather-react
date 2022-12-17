@@ -29,7 +29,11 @@ export function FiveDayForecastItem({
     return (
         <li className={styles.item}>
             <div className={styles.day}>{dayOfTheWeek}</div>
-            <Image alt={weather} src={getIcon(weather + 'mini')} classes={[styles.picture]} />
+            <Image
+                alt={weather}
+                src={getIcon(weather.toLowerCase() + 'Mini')}
+                classes={[styles.picture]}
+            />
             <div className={styles.temp}>
                 <span className={styles.min}>{tMin}</span>
                 <span className={styles.max}>{tMax}</span>
