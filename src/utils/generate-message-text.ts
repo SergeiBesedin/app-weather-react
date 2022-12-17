@@ -1,5 +1,5 @@
 import { IWeather } from '../typings/typings'
-import { dateFormat, unitFormat } from './utils'
+import { dateFormat, unitFormat, tempUnitFormat } from './utils'
 
 const enum typeOfPrecipitation {
     rain = 'дождь',
@@ -7,7 +7,7 @@ const enum typeOfPrecipitation {
 }
 
 type Message = {
-    type: string
+    icon: string
     message: string
 }
 
@@ -15,50 +15,12 @@ export function generateRecommendedClothingMessage(
     feelsLikeTemp: number,
     tempUnit: string,
 ): Message {
-    const temperature = unitFormat(feelsLikeTemp, tempUnit)
-    const roundedTemp = Math.round(feelsLikeTemp)
+    const temp = unitFormat(feelsLikeTemp, tempUnit)
+    const recommendedClothing = getRecommendedClothes(Math.round(feelsLikeTemp), tempUnit)
 
-    const message = [`Ощущается как ${temperature}.`]
+    const message = `Ощущается как ${temp}. Лучшая одежда для этой погоды: ${recommendedClothing}.`
 
-    let recommendedClothing = ''
-
-    if (tempUnit === 'celsius') {
-        if (roundedTemp >= 20) {
-            recommendedClothing = 'футболка, шорты и кепка'
-        } else if (roundedTemp < 20 && roundedTemp >= 15) {
-            recommendedClothing = 'жакет или джинсовка'
-        } else if (roundedTemp < 15 && roundedTemp >= 10) {
-            recommendedClothing = 'ветровка и теплая кофта'
-        } else if (roundedTemp < 10 && roundedTemp >= 0) {
-            recommendedClothing = 'головной убор, пальто и свитер'
-        } else if (roundedTemp < 0 && roundedTemp >= -25) {
-            recommendedClothing = 'шапка, шарф и зимняя куртка'
-        } else {
-            recommendedClothing = 'шапка, шарф, шерстяные носки и зимняя куртка'
-        }
-    }
-
-    if (tempUnit === 'fahrenheit') {
-        if (roundedTemp >= 68) {
-            recommendedClothing = 'футболка, шорты и кепка'
-        } else if (roundedTemp < 68 && roundedTemp >= 59) {
-            recommendedClothing = 'жакет или джинсовка'
-        } else if (roundedTemp < 59 && roundedTemp >= 50) {
-            recommendedClothing = 'ветровка и теплая кофта'
-        } else if (roundedTemp < 50 && roundedTemp >= 32) {
-            recommendedClothing = 'головной убор, пальто и свитер'
-        } else if (roundedTemp < 32 && roundedTemp >= -13) {
-            recommendedClothing = 'шапка, шарф и зимняя куртка'
-        } else {
-            recommendedClothing = 'шапка, шарф, шерстяные носки и зимняя куртка'
-        }
-    }
-
-    if (recommendedClothing) {
-        message.push(`Лучшая одежда для этой погоды: ${recommendedClothing}.`)
-    }
-
-    return { type: 'thermometer', message: message.join(' ') }
+    return { icon: 'thermometer', message }
 }
 
 export function generateForecastTomorrowMessage(
@@ -67,29 +29,29 @@ export function generateForecastTomorrowMessage(
     list: Array<IWeather>,
 ): Message {
     const message: Array<string> = []
-    let type: string
+    let icon: string
 
     const rain = list.filter((el) => el.rain)
     const snow = list.filter((el) => el.snow)
 
     if (rain.length && snow.length) {
-        type = 'rainAndSnow'
+        icon = 'rainAndSnow'
     } else if (rain.length) {
-        type = 'rain'
+        icon = 'rain'
     } else if (snow.length) {
-        type = 'snow'
+        icon = 'snow'
     } else {
-        type = 'clear'
+        icon = 'clear'
     }
 
-    tempDifferenceCreate(curTemp, tempUnit, list, message)
-    rainOrSnowTimeCreate(typeOfPrecipitation.rain, rain, message)
-    rainOrSnowTimeCreate(typeOfPrecipitation.snow, snow, message)
+    getTempDifference(curTemp, tempUnit, list, message)
+    getRainOrSnowTime(typeOfPrecipitation.rain, rain, message)
+    getRainOrSnowTime(typeOfPrecipitation.snow, snow, message)
 
-    return { type, message: message.join('; ') }
+    return { icon, message: message.join('; ') }
 }
 
-function tempDifferenceCreate(
+function getTempDifference(
     curTemp: number,
     tempUnit: string,
     list: Array<IWeather>,
@@ -114,7 +76,7 @@ function tempDifferenceCreate(
     }
 }
 
-function rainOrSnowTimeCreate(type: string, list: Array<IWeather>, message: Array<string>): void {
+function getRainOrSnowTime(type: string, list: Array<IWeather>, message: Array<string>): void {
     if (!list.length) return
 
     if (list.length >= 3) {
@@ -133,4 +95,20 @@ function getTimeInHours(dt: number): string {
         hour: '2-digit',
         minute: '2-digit',
     })
+}
+
+function getRecommendedClothes(temp: number, tempUnit: string): string {
+    if (temp >= tempUnitFormat(20, tempUnit)) {
+        return 'футболка, шорты и кепка'
+    } else if (temp < tempUnitFormat(20, tempUnit) && temp >= tempUnitFormat(15, tempUnit)) {
+        return 'жакет или джинсовка'
+    } else if (temp < tempUnitFormat(15, tempUnit) && temp >= tempUnitFormat(10, tempUnit)) {
+        return 'ветровка и теплая кофта'
+    } else if (temp < tempUnitFormat(10, tempUnit) && temp >= tempUnitFormat(0, tempUnit)) {
+        return 'головной убор, пальто и свитер'
+    } else if (temp < tempUnitFormat(0, tempUnit) && temp >= tempUnitFormat(-25, tempUnit)) {
+        return 'шапка, шарф и зимняя куртка'
+    } else {
+        return 'шапка, шарф, шерстяные носки и зимняя куртка'
+    }
 }

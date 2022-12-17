@@ -27,7 +27,7 @@ export function ucFirst(str: string): string {
     return str[0].toUpperCase() + str.slice(1)
 }
 
-// функция изменения единицы измерения
+// функция изменения единиц измерения
 export function unitFormat(value: number, unit: string): string {
     let result: number
     const symbols: { [key: string]: string } = {
@@ -73,5 +73,20 @@ export function unitFormat(value: number, unit: string): string {
             result = Math.round(value)
             break
     }
-    return `${result} ${symbols[unit]}`
+
+    return unit === 'fahrenheit' || unit === 'celsius'
+        ? `${result}${symbols[unit]}`
+        : `${result} ${symbols[unit]}`
+}
+
+// в отличие от unitFormat возвращает только число
+export function tempUnitFormat(value: number, unit: string): number {
+    switch (unit) {
+        case 'fahrenheit':
+            return Math.round(value * (9 / 5) + 32)
+        case 'celsius':
+            return Math.round(value) // получаем по умолчанию
+        default:
+            return Math.round(value)
+    }
 }
