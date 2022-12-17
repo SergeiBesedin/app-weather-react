@@ -11,11 +11,13 @@ import cloudsmini from '../assets/icons/clouds-mini.svg'
 import partlycloudymini from '../assets/icons/partly-cloudy-mini.svg'
 import rainmini from '../assets/icons/rain-mini.svg'
 import snowmini from '../assets/icons/snow-mini.svg'
-// Иконки для карточки с прогнозом на завтра
+// Иконки для блока с прогнозом на завтра
 import cleartomorrow from '../assets/icons/clear-tomorrow.svg'
 import raintomorrow from '../assets/icons/rain-tomorrow.svg'
 import snowtomorrow from '../assets/icons/snow-tomorrow.svg'
 import rainAndSnowtomorrow from '../assets/icons/rain-and-snow-tomorrow.svg'
+// Иконки для блока с рекомендуемой одеждой
+import thermometer from '../assets/icons/thermometer.svg'
 
 export function getIcon(weather: string) {
     const icons: { [key: string]: string } = {
@@ -36,6 +38,8 @@ export function getIcon(weather: string) {
         raintomorrow,
         snowtomorrow,
         rainAndSnowtomorrow,
+
+        thermometer,
     }
     return icons[weather.toLowerCase()]
 }

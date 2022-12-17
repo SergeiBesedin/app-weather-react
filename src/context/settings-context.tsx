@@ -1,9 +1,12 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext } from 'react'
+import { useLocalStorage } from '../hooks/use-localStorage'
 
 interface ISettingsContext {
     units: { [key: string]: string }
     changeUnit: (payload: { [key: string]: string }) => void
 }
+
+const SETTINGS_KEY = 'settings'
 
 const defaultState = {
     temp: 'celsius',
@@ -23,18 +26,11 @@ export const SettingsContext = createContext<ISettingsContext>({
 })
 
 export const SettingsState = ({ children }: { children: React.ReactNode }) => {
-    const [units, setUnit] = useState<{ [key: string]: string }>(defaultState)
+    const [units, setUnit] = useLocalStorage<{ [key: string]: string }>(defaultState, SETTINGS_KEY)
+
     const changeUnit = (payload: { [key: string]: string }) => {
         setUnit({ ...units, ...payload })
-        localStorage.setItem('settings', JSON.stringify({ ...units, ...payload }))
     }
-
-    useEffect(() => {
-        const settings = localStorage.getItem('settings')
-        settings
-            ? setUnit(JSON.parse(settings))
-            : localStorage.setItem('settings', JSON.stringify(units))
-    }, [])
 
     return (
         <SettingsContext.Provider value={{ units, changeUnit }}>
