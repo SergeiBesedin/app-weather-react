@@ -17,9 +17,13 @@ export function dateFormat(date: number | string | Date, params?: DateTimeFormat
 export function getTomorrowDate(): string {
     const tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1)
-    return `${tomorrow.getFullYear()}-${tomorrow.getMonth() + 1}-${
-        tomorrow.getDate() < 10 ? '0' + tomorrow.getDate() : tomorrow.getDate()
-    }`
+
+    const year = tomorrow.getFullYear()
+    const month =
+        tomorrow.getMonth() + 1 < 10 ? '0' + (tomorrow.getMonth() + 1) : tomorrow.getMonth() + 1
+    const day = tomorrow.getDate() < 10 ? '0' + tomorrow.getDate() : tomorrow.getDate()
+
+    return `${year}-${month}-${day}`
 }
 
 // функция, которая делает первую букву в слове заглавной
