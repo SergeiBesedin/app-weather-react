@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { SettingsContext } from '../../context/settings-context'
+import { LocationContext } from '../../context/location-context'
 import { useDataWeather } from '../../data/weather-data'
 import { CurrentWeather } from './current-weather/current-weather'
 import HourlyForecast from './hourly-forecast/hourly-forecast'
@@ -12,7 +13,11 @@ import styles from './content.module.scss'
 
 function Content() {
     const { units } = useContext(SettingsContext)
-    const { weatherData, fiveDayForecast, weatherTomorrow, loading, error } = useDataWeather()
+    const { location } = useContext(LocationContext)
+
+    const { weatherData, fiveDayForecast, weatherTomorrow, loading, error } =
+        useDataWeather(location)
+
     const classNames = [styles.content, 'container'].join(' ')
 
     // TODO рефакторинг

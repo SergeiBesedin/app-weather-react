@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { LocationContext } from '../../context/location-context'
 import { Input } from '../ui/input/input'
 import styles from './search.module.scss'
 
 export function Search() {
     const [value, setValue] = useState<string>('')
+    const { changeLocation } = useContext(LocationContext)
 
     const onChangeHandler = (location: string) => {
         setValue(location)
@@ -11,6 +13,7 @@ export function Search() {
 
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        changeLocation(value)
         setValue('')
     }
 

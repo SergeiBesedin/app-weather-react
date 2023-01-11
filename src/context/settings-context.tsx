@@ -8,7 +8,7 @@ interface ISettingsContext {
 
 const SETTINGS_KEY = 'settings'
 
-const defaultState = {
+const initialState = {
     temp: 'celsius',
     speed: 'ms',
     pressure: 'hpa',
@@ -16,17 +16,13 @@ const defaultState = {
 
 // состояние для единиц измерения
 export const SettingsContext = createContext<ISettingsContext>({
-    units: {
-        temp: 'celsius',
-        speed: 'ms',
-        pressure: 'hpa',
-    },
+    units: initialState,
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     changeUnit: () => {},
 })
 
 export const SettingsState = ({ children }: { children: React.ReactNode }) => {
-    const [units, setUnit] = useLocalStorage<{ [key: string]: string }>(defaultState, SETTINGS_KEY)
+    const [units, setUnit] = useLocalStorage<{ [key: string]: string }>(initialState, SETTINGS_KEY)
 
     const changeUnit = (payload: { [key: string]: string }) => {
         setUnit({ ...units, ...payload })
