@@ -1,0 +1,15 @@
+@import '../../styles/common.scss';
+
+.hints {
+    position: absolute;
+    width: 100%;
+    margin-top: 8px;
+    background-color: $white;
+    border-radius: 24px;
+    box-shadow: 0px -7px 16px 2px rgba(102, 148, 191, 0.1), 0px 8px 20px -6px rgba(0, 0, 0, 0.15);
+    z-index: $z-index-modal;
+}
+
+.container {
+    padding: 24px 0;
+}

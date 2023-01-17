@@ -1,0 +1,13 @@
+@import '../../../styles/common.scss';
+
+.hint {
+    font-size: 18px;
+    line-height: (24/18);
+    color: $dark-blue;
+    padding: 12px 35px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $light-grey;
+    }
+}

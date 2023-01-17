@@ -10,6 +10,7 @@ interface InputProps {
     placeholder?: string
     checked?: boolean
     error?: string
+    autoComplete?: string
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 

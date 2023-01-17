@@ -50,7 +50,6 @@ export const LocationState = ({ children }: { children: React.ReactNode }) => {
             const url = 'suggestions/api/4_1/rs/geolocate/address'
             const coords = { lat, lon }
             const options = {
-                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
