@@ -9,7 +9,9 @@ export function Header() {
     return (
         <header className={styles.header}>
             <div className={classNames}>
-                <Logo className={styles.logo} />
+                <div className={styles.logo}>
+                    <Logo />
+                </div>
                 <Search />
                 <HeaderActions />
             </div>

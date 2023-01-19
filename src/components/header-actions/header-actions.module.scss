@@ -3,6 +3,10 @@
 .headerActions {
     position: relative;
 
+    @media (min-width: $breakpoint-tab + 1px) {
+        margin-left: 20px;
+    }
+
     .actions {
         display: flex;
     }
