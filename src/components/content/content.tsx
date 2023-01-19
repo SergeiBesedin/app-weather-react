@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { SettingsContext } from '../../context/settings-context'
 import { LocationContext } from '../../context/location-context'
-import { useDataWeather } from '../../data/weather-data'
+import { getWeatherData } from '../../data/weather-data'
 import { CurrentWeather } from './current-weather/current-weather'
 import HourlyForecast from './hourly-forecast/hourly-forecast'
 import ForecastTomorrow from './forecast-tomorrow/forecast-tomorrow'
@@ -16,7 +16,7 @@ function Content() {
     const { location } = useContext(LocationContext)
 
     const { weatherData, fiveDayForecast, weatherTomorrow, loading, error } =
-        useDataWeather(location)
+        getWeatherData(location)
 
     const classNames = [styles.content, 'container'].join(' ')
 

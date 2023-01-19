@@ -7,7 +7,9 @@
     padding: 12px 35px;
     cursor: pointer;
 
-    &:hover {
-        background-color: $light-grey;
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background-color: $light-grey;
+        }
     }
 }

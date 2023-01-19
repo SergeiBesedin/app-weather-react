@@ -1,27 +1,43 @@
 import React, { useState, useContext } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 import { LocationContext } from '../../context/location-context'
-import { getHints, CityData } from '../../data/hints-data'
+import { getSearchHints, HintData } from '../../data/search-hints-data'
 import { Input } from '../ui/input/input'
-import { Hints } from '../hints/hints'
+import { SearchHints } from '../search-hints/search-hints'
 import styles from './search.module.scss'
 
 export function Search() {
-    const [value, setValue] = useState<string>('')
-    const [hints, setHints] = useState<Array<CityData>>([])
+    const [value, setValue] = useState('')
+    const [hints, setHints] = useState<Array<HintData>>([])
+    const [isVisible, setVisible] = useState(false)
     const { changeLocation } = useContext(LocationContext)
+
+    const closeHintsDebounce = useDebouncedCallback(() => setVisible(false), 300)
 
     const onChangeHandler = (value: string) => {
         setValue(value)
-        getHints(value).then((data) => setHints(data))
+
+        getSearchHints(value).then((data) => {
+            setVisible(data.length > 0)
+            setHints(data)
+        })
+    }
+
+    const onFocusHandler = () => {
+        setVisible(hints.length > 0)
+    }
+
+    const onBlurHandler = () => {
+        closeHintsDebounce()
     }
 
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         changeLocation(value)
-        setValue('')
+        setVisible(false)
     }
 
-    const onClickHandler = (value: string) => {
+    const onHintClickHandler = (value: string) => {
         setValue(value)
         changeLocation(value)
     }
@@ -39,10 +55,12 @@ export function Search() {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         onChangeHandler(e.target.value)
                     }
+                    onFocus={onFocusHandler}
+                    onBlur={onBlurHandler}
                 />
             </form>
 
-            <Hints cities={hints} clickOnHint={(e) => onClickHandler(e)} />
+            {isVisible && <SearchHints hints={hints} clickOnHint={(e) => onHintClickHandler(e)} />}
         </div>
     )
 }

@@ -4,7 +4,7 @@ const API_DADATA_KEY = process.env.REACT_APP_DD_API_KEY // ключ для се�
 
 const MAX_HINTS = 4
 
-interface Suggest {
+interface HintsResponseData {
     value: string
     unrestricted_value: string
     data: {
@@ -16,16 +16,12 @@ interface Suggest {
     }
 }
 
-type HintsData = {
-    suggestions: Array<Suggest>
-}
-
-export type CityData = {
+export type HintData = {
     city: string
     id: string
 }
 
-export const getHints = async (q: string): Promise<Array<CityData>> => {
+export const getSearchHints = async (q: string): Promise<Array<HintData>> => {
     const url = 'suggestions/api/4_1/rs/suggest/address'
     const query = {
         query: q,
@@ -47,7 +43,11 @@ export const getHints = async (q: string): Promise<Array<CityData>> => {
         },
     }
 
-    const response = await axiosDaData.post<HintsData>(url, query, options)
+    const response = await axiosDaData.post<{ suggestions: Array<HintsResponseData> }>(
+        url,
+        query,
+        options,
+    )
 
     return response.data.suggestions.map((el) => {
         return { city: el.data.city, id: el.data.city_fias_id }

@@ -11,10 +11,22 @@ interface InputProps {
     checked?: boolean
     error?: string
     autoComplete?: string
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
-export function Input({ id, type, classes, label, error, onChange, ...attrs }: InputProps) {
+export function Input({
+    id,
+    type,
+    classes,
+    label,
+    error,
+    onChange,
+    onFocus,
+    onBlur,
+    ...attrs
+}: InputProps) {
     const classNames = [styles.custom, ...classes].join(' ')
 
     return (
@@ -24,7 +36,15 @@ export function Input({ id, type, classes, label, error, onChange, ...attrs }: I
                     {label}
                 </label>
             )}
-            <input {...attrs} id={id} type={type} className={classNames} onChange={onChange} />
+            <input
+                {...attrs}
+                id={id}
+                type={type}
+                className={classNames}
+                onChange={onChange}
+                onFocus={onFocus}
+                onBlur={onBlur}
+            />
             {error && <span className="input-error">{error}</span>}
         </>
     )
