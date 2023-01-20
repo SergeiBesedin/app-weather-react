@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import styles from './input.module.scss'
 
 interface InputProps {
@@ -16,17 +17,10 @@ interface InputProps {
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
-export function Input({
-    id,
-    type,
-    classes,
-    label,
-    error,
-    onChange,
-    onFocus,
-    onBlur,
-    ...attrs
-}: InputProps) {
+function Input(
+    { id, type, classes, label, error, onChange, onFocus, onBlur, ...attrs }: InputProps,
+    ref: React.Ref<HTMLInputElement>,
+) {
     const classNames = [styles.custom, ...classes].join(' ')
 
     return (
@@ -40,6 +34,7 @@ export function Input({
                 {...attrs}
                 id={id}
                 type={type}
+                ref={ref}
                 className={classNames}
                 onChange={onChange}
                 onFocus={onFocus}
@@ -49,3 +44,5 @@ export function Input({
         </>
     )
 }
+
+export default forwardRef(Input)
