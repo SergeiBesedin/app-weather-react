@@ -2,21 +2,14 @@
 
 .headerActions {
     position: relative;
+    margin-left: 20px;
 
-    @media (min-width: $breakpoint-tab + 1px) {
-        margin-left: 20px;
+    @media (max-width: $breakpoint-tab) {
+        margin-left: 15px;
     }
 
     .actions {
         display: flex;
-    }
-
-    .search {
-        margin-right: 15px;
-
-        @media (min-width: $breakpoint-tab + 1px) {
-            display: none;
-        }
     }
 
     .settings {

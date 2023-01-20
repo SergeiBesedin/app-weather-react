@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { SettingsContext } from '../../../../context/settings-context'
-import { Input } from '../../../ui/input/input'
+import Input from '../../../ui/input/input'
 import { Option } from '../../../../typings/typings'
 import styles from './option-list.module.scss'
 

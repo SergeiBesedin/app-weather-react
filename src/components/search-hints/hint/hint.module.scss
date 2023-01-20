@@ -12,4 +12,10 @@
             background-color: $light-grey;
         }
     }
+
+    @media (max-width: $breakpoint-tab) {
+        font-size: 14px;
+        line-height: (17/14);
+        padding: 15px 0;
+    }
 }
