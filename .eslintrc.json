@@ -15,13 +15,15 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["react", "@typescript-eslint", "prettier"],
+    "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
     "rules": {
         "react/react-in-jsx-scope": "off",
         "camelcase": "warn",
         "spaced-comment": "error",
         "quotes": ["error", "single"],
-        "no-duplicate-imports": "error"
+        "no-duplicate-imports": "error",
+        "react-hooks/rules-of-hooks": "error", // Проверяем правила хуков
+        "react-hooks/exhaustive-deps": "warn" // Проверяем зависимости эффекта
     },
     "settings": {
         "import/resolver": {

@@ -6,7 +6,7 @@ import { dateFormat, getTomorrowDate } from '../utils/utils'
 
 const API_OW_KEY = process.env.REACT_APP_OW_API_KEY // ключ для сервиса OpenWeather
 
-export const getWeatherData = (location: string) => {
+export const useGetWeatherData = (location: string) => {
     const [weatherData, setWeatherData] = useState<ICurrentWeather>()
     const [fiveDayForecast, setFiveDayForecast] = useState<Array<IWeather>>()
     const [weatherTomorrow, setWeatherTomorrow] = useState<Array<IWeather>>()
