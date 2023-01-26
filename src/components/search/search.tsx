@@ -9,7 +9,6 @@ import { Button } from '../ui/button/button'
 import styles from './search.module.scss'
 
 export function Search() {
-    // ХУКИ
     const [inputValue, setInputValue] = useState('')
     // Состояние для переключения стилей (десктоп-мобила)
     const [searchOpen, setSearchOpen] = useState(false)
@@ -20,12 +19,10 @@ export function Search() {
 
     const { changeLocation } = useContext(LocationContext)
 
-    // DEBOUNCE
     const onBlurHandlerDebounce = useDebouncedCallback(() => onBlurHandler(), 300)
 
     const focusOnInputDebounce = useDebouncedCallback(() => inputRef.current?.focus())
 
-    // ОБРАБОТЧИКИ
     const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value)
         setVisible(true)
