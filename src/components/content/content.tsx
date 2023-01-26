@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { SettingsContext } from '../../context/settings-context'
 import { LocationContext } from '../../context/location-context'
-import { getWeatherData } from '../../data/weather-data'
+import { useGetWeatherData } from '../../data/weather-data'
 import { CurrentWeather } from './current-weather/current-weather'
 import HourlyForecast from './hourly-forecast/hourly-forecast'
 import ForecastTomorrow from './forecast-tomorrow/forecast-tomorrow'
@@ -16,46 +16,41 @@ function Content() {
     const { location } = useContext(LocationContext)
 
     const { weatherData, fiveDayForecast, weatherTomorrow, loading, error } =
-        getWeatherData(location)
+        useGetWeatherData(location)
 
     const classNames = [styles.content, 'container'].join(' ')
 
-    // TODO рефакторинг
+    if (loading) {
+        return <Loader />
+    }
+
+    if (error) {
+        return <ErrorComp error={error} />
+    }
+
+    if (!weatherData || !weatherTomorrow || !fiveDayForecast) {
+        return <></>
+    }
+
     return (
-        <>
-            {loading ? (
-                <Loader />
-            ) : error ? (
-                <ErrorComp error={error} />
-            ) : (
-                <div className={classNames}>
-                    <div className={styles.leftColumn}>
-                        {weatherData && <CurrentWeather {...weatherData} units={units} />}
-                        {weatherData && (
-                            <RecommendedClothing
-                                feelsLikeTemp={weatherData.temp.feels_like}
-                                tempUnit={units.temp}
-                            />
-                        )}
-                    </div>
-                    <div className={styles.rightColumn}>
-                        {fiveDayForecast && (
-                            <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
-                        )}
-                        {weatherTomorrow && weatherData && (
-                            <ForecastTomorrow
-                                curTemp={weatherData.temp.temp}
-                                tempUnit={units.temp}
-                                list={weatherTomorrow}
-                            />
-                        )}
-                        {fiveDayForecast && (
-                            <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
-                        )}
-                    </div>
-                </div>
-            )}
-        </>
+        <div className={classNames}>
+            <div className={styles.leftColumn}>
+                <CurrentWeather {...weatherData} units={units} />
+                <RecommendedClothing
+                    feelsLikeTemp={weatherData.temp.feels_like}
+                    tempUnit={units.temp}
+                />
+            </div>
+            <div className={styles.rightColumn}>
+                <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
+                <ForecastTomorrow
+                    curTemp={weatherData.temp.temp}
+                    tempUnit={units.temp}
+                    list={weatherTomorrow}
+                />
+                <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
+            </div>
+        </div>
     )
 }
 

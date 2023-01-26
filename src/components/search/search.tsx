@@ -1,60 +1,46 @@
-import React, { useState, useRef, useContext } from 'react'
+import { useState, useRef, useContext } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { LocationContext } from '../../context/location-context'
-import { getSearchHints, HintData } from '../../data/search-hints-data'
-import Input from '../ui/input/input'
-import { Button } from '../ui/button/button'
 import { SearchHints } from '../search-hints/search-hints'
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg'
 import { ReactComponent as BackIcon } from '../../assets/icons/left-arrow.svg'
+import Input from '../ui/input/input'
+import { Button } from '../ui/button/button'
 import styles from './search.module.scss'
 
 export function Search() {
-    const [value, setValue] = useState('')
-    const [hints, setHints] = useState<Array<HintData>>([])
-
-    const [isVisible, setVisible] = useState(false)
+    const [inputValue, setInputValue] = useState('')
+    // Состояние для переключения стилей (десктоп-мобила)
     const [searchOpen, setSearchOpen] = useState(false)
+    // Состояние для показа/скрытия подсказок
+    const [visible, setVisible] = useState(false)
 
     const inputRef = useRef<HTMLInputElement>(null)
 
     const { changeLocation } = useContext(LocationContext)
 
     const onBlurHandlerDebounce = useDebouncedCallback(() => onBlurHandler(), 300)
+
     const focusOnInputDebounce = useDebouncedCallback(() => inputRef.current?.focus())
 
-    const classes = [`${styles.search}`, `${styles.searchOpen}`].join(' ')
-
-    const onChangeHandler = (value: string) => {
-        setValue(value)
-
-        getSearchHints(value).then((data) => {
-            setVisible(data.length > 0)
-            setHints(data)
-        })
-    }
-
-    const onFocusHandler = () => {
-        setVisible(hints.length > 0)
-        // TODO возможно, стоит убрать
-        setSearchOpen(true)
+    const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value)
+        setVisible(true)
     }
 
     const onBlurHandler = () => {
         setVisible(false)
-        // TODO возможно, стоит убрать
-        setSearchOpen(false)
     }
 
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        changeLocation(value)
+        changeLocation(inputValue)
         setVisible(false)
         setSearchOpen(false)
     }
 
     const onHintClickHandler = (value: string) => {
-        setValue(value)
+        setInputValue(value)
         changeLocation(value)
         setSearchOpen(false)
         setVisible(false)
@@ -62,7 +48,6 @@ export function Search() {
 
     const onSearchClickHandler = () => {
         setSearchOpen(true)
-        // TODO уточнить, стоит ли делать фокус
         focusOnInputDebounce()
     }
 
@@ -72,22 +57,26 @@ export function Search() {
         setSearchOpen(false)
     }
 
+    const classes = [styles.search]
+
+    // Вешаем дополнительный класс для мобильных устройств
+    if (searchOpen) {
+        classes.push(styles.searchOpen)
+    }
+
     return (
-        <div className={searchOpen ? classes : styles.search}>
+        <div className={classes.join(' ')}>
             <div className={styles.top}>
                 <form onSubmit={onSubmitHandler}>
                     <Input
                         id="search"
                         type="text"
-                        value={value}
+                        value={inputValue}
                         placeholder="Название города"
                         autoComplete="off"
                         ref={inputRef}
                         classes={[styles.input]}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            onChangeHandler(e.target.value)
-                        }
-                        onFocus={onFocusHandler}
+                        onChange={onChangeHandler}
                         onBlur={onBlurHandlerDebounce}
                     />
 
@@ -112,9 +101,11 @@ export function Search() {
             </div>
 
             <div className={styles.bottom}>
-                {isVisible && (
-                    <SearchHints hints={hints} clickOnHint={(e) => onHintClickHandler(e)} />
-                )}
+                <SearchHints
+                    inputValue={inputValue}
+                    visible={visible}
+                    clickOnHint={(e) => onHintClickHandler(e)}
+                />
             </div>
         </div>
     )

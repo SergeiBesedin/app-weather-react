@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios'
 import { axiosDaData } from '../axios/axios'
 
 const API_DADATA_KEY = process.env.REACT_APP_DD_API_KEY // ключ для сервиса DaData
@@ -23,6 +24,7 @@ export type HintData = {
 
 export const getSearchHints = async (q: string): Promise<Array<HintData>> => {
     const url = 'suggestions/api/4_1/rs/suggest/address'
+
     const query = {
         query: q,
         count: MAX_HINTS,
@@ -43,13 +45,21 @@ export const getSearchHints = async (q: string): Promise<Array<HintData>> => {
         },
     }
 
-    const response = await axiosDaData.post<{ suggestions: Array<HintsResponseData> }>(
-        url,
-        query,
-        options,
-    )
+    try {
+        const response = await axiosDaData.post<{ suggestions: Array<HintsResponseData> }>(
+            url,
+            query,
+            options,
+        )
 
-    return response.data.suggestions.map((el) => {
-        return { city: el.data.city, id: el.data.city_fias_id }
-    })
+        const hintsData = response.data.suggestions.map((el) => {
+            return { city: el.data.city, id: el.data.city_fias_id }
+        })
+
+        return hintsData
+    } catch (e: unknown) {
+        const error = e as AxiosError
+        console.error(error)
+        return []
+    }
 }
