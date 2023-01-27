@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDebounce } from './../../hooks/use-debounce'
-import { Hint } from './hint/hint'
 import { getSearchHints, HintData } from '../../data/search-hints-data'
+import { Hint } from './hint/hint'
 import styles from './search-hints.module.scss'
 
 interface SearchHintsProps {

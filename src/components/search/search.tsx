@@ -12,7 +12,7 @@ export function Search() {
     const [inputValue, setInputValue] = useState('')
     // Состояние для переключения стилей (десктоп-мобила)
     const [searchOpen, setSearchOpen] = useState(false)
-    // Состояние для показа/скрытия подсказок
+    // Состояние для переключения видимости подсказок
     const [visible, setVisible] = useState(false)
 
     const inputRef = useRef<HTMLInputElement>(null)
@@ -24,7 +24,7 @@ export function Search() {
     const focusOnInputDebounce = useDebouncedCallback(() => inputRef.current?.focus())
 
     const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value)
+        setInputValue(e.target.value.trim())
         setVisible(true)
     }
 
@@ -34,6 +34,9 @@ export function Search() {
 
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        if (inputValue === '') return
+
         changeLocation(inputValue)
         setVisible(false)
         setSearchOpen(false)
@@ -81,6 +84,7 @@ export function Search() {
                     />
 
                     <Button
+                        type={'button'}
                         classes={[styles.backBtn]}
                         disabled={false}
                         aria-label="Назад"
@@ -91,6 +95,7 @@ export function Search() {
                 </form>
 
                 <Button
+                    type={'button'}
                     classes={[styles.searchBtn]}
                     disabled={false}
                     aria-label="Поиск по названию города"

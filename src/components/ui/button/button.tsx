@@ -1,6 +1,7 @@
 import styles from './button.module.scss'
 
 interface ButtonProps {
+    type: 'button' | 'submit'
     classes: string[]
     disabled: boolean
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void

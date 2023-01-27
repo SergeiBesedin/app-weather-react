@@ -18,6 +18,7 @@ export function Modal({ children, classes, close, title }: ModalProps) {
             <div className={classNames}>
                 <div className={styles.container}>
                     <Button
+                        type={'button'}
                         classes={[styles.close]}
                         disabled={false}
                         onClick={close}

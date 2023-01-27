@@ -14,8 +14,11 @@ interface HourlyForecastProps {
 
 function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     const wrapperRef = useRef<HTMLDivElement>(null)
+
     const listItemsRef = useRef<HTMLUListElement>(null)
+
     const { leftBtn, rightBtn, buttonClickHandler, showOrHideButtons } = useCarouselScrolling()
+
     const debouncedCarouselScrolling = useDebouncedCallback(
         () => showOrHideButtons(listItemsRef.current),
         300,
@@ -31,6 +34,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
         <Tile title={title} classes={[styles.hourlyForecast]}>
             <div className={styles.wrapper} ref={wrapperRef}>
                 <Button
+                    type={'button'}
                     aria-label="Прокрутить назад"
                     classes={[styles.leftArrow]}
                     disabled={leftBtn}
@@ -59,6 +63,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     ))}
                 </ul>
                 <Button
+                    type={'button'}
                     aria-label="Прокрутить вперед"
                     classes={[styles.rightArrow]}
                     disabled={rightBtn}

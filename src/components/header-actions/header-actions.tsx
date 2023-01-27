@@ -14,6 +14,7 @@ export function HeaderActions() {
         <div className={styles.headerActions}>
             <div className={styles.actions}>
                 <Button
+                    type={'button'}
                     classes={[styles.settings]}
                     disabled={false}
                     aria-label="Настройки"
