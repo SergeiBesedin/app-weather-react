@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 import { useSettingsProvider } from '../../context/settings-context'
 import { useLocationProvider } from '../../context/location-context'
 import { useGetWeatherData } from '../../data/weather-data'
@@ -54,4 +54,4 @@ function Content() {
     )
 }
 
-export default React.memo(Content)
+export default memo(Content)

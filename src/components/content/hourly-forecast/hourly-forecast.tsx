@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { memo, useRef } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useCarouselScrolling } from '../../../hooks/carousel-scrolling'
 import { IWeather } from './../../../typings/typings'
@@ -81,4 +81,4 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     )
 }
 
-export default React.memo(HourlyForecast)
+export default memo(HourlyForecast)

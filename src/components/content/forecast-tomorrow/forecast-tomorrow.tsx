@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 import { IWeather } from '../../../typings/typings'
 import { generateForecastTomorrowMessage } from '../../../utils/generate-message-text'
 import { TextBlock } from '../text-block/text-block'
@@ -15,4 +15,4 @@ function ForecastTomorrow({ curTemp, tempUnit, list }: ForecastTomorrowProps) {
     return <TextBlock message={message.message} img={message.icon + 'Tomorrow'} />
 }
 
-export default React.memo(ForecastTomorrow)
+export default memo(ForecastTomorrow)
