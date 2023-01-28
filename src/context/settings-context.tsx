@@ -1,10 +1,5 @@
-import { createContext } from 'react'
 import { useLocalStorage } from '../hooks/use-localStorage'
-
-interface ISettingsContext {
-    units: { [key: string]: string }
-    changeUnit: (payload: { [key: string]: string }) => void
-}
+import constate from 'constate'
 
 const SETTINGS_KEY = 'settings'
 
@@ -14,23 +9,14 @@ const initialState = {
     pressure: 'hpa',
 }
 
-// состояние для единиц измерения
-export const SettingsContext = createContext<ISettingsContext>({
-    units: initialState,
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    changeUnit: () => {},
-})
-
-export const SettingsState = ({ children }: { children: React.ReactNode }) => {
+const useSettingsState = () => {
     const [units, setUnit] = useLocalStorage<{ [key: string]: string }>(initialState, SETTINGS_KEY)
 
     const changeUnit = (payload: { [key: string]: string }) => {
         setUnit({ ...units, ...payload })
     }
 
-    return (
-        <SettingsContext.Provider value={{ units, changeUnit }}>
-            {children}
-        </SettingsContext.Provider>
-    )
+    return { units, changeUnit }
 }
+
+export const [SettingsProvider, useSettingsProvider] = constate(useSettingsState)

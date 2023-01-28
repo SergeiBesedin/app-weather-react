@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 import { Tile } from '../tile/tile'
 import { IWeather } from '../../../typings/typings'
 import { FiveDayForecastItem } from './five-day-forecast-item/five-day-forecast-item'
@@ -32,4 +32,4 @@ function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
     )
 }
 
-export default React.memo(FiveDayForecast)
+export default memo(FiveDayForecast)
