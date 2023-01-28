@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { SettingsContext } from '../../../../context/settings-context'
+import { useSettingsProvider } from '../../../../context/settings-context'
 import Input from '../../../ui/input/input'
 import { Option } from '../../../../typings/typings'
 import styles from './option-list.module.scss'
@@ -10,7 +9,7 @@ interface OptionListProps {
 }
 
 export function OptionList({ unitName, values }: OptionListProps) {
-    const { units, changeUnit } = useContext(SettingsContext)
+    const { units, changeUnit } = useSettingsProvider()
 
     const onChangeHandler = (option: { [key: string]: string }) => {
         changeUnit(option)

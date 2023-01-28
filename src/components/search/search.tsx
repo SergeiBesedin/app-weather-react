@@ -1,6 +1,6 @@
-import { useState, useRef, useContext } from 'react'
+import { useState, useRef } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
-import { LocationContext } from '../../context/location-context'
+import { useLocationProvider } from '../../context/location-context'
 import { SearchHints } from '../search-hints/search-hints'
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg'
 import { ReactComponent as BackIcon } from '../../assets/icons/left-arrow.svg'
@@ -17,7 +17,7 @@ export function Search() {
 
     const inputRef = useRef<HTMLInputElement>(null)
 
-    const { changeLocation } = useContext(LocationContext)
+    const { changeLocation } = useLocationProvider()
 
     const onBlurHandlerDebounce = useDebouncedCallback(() => onBlurHandler(), 300)
 

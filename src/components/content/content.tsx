@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import { SettingsContext } from '../../context/settings-context'
-import { LocationContext } from '../../context/location-context'
+import React from 'react'
+import { useSettingsProvider } from '../../context/settings-context'
+import { useLocationProvider } from '../../context/location-context'
 import { useGetWeatherData } from '../../data/weather-data'
 import { CurrentWeather } from './current-weather/current-weather'
 import HourlyForecast from './hourly-forecast/hourly-forecast'
@@ -12,8 +12,8 @@ import { Loader } from '../ui/loader/loader'
 import styles from './content.module.scss'
 
 function Content() {
-    const { units } = useContext(SettingsContext)
-    const { location } = useContext(LocationContext)
+    const { units } = useSettingsProvider()
+    const { location } = useLocationProvider()
 
     const { weatherData, fiveDayForecast, weatherTomorrow, loading, error } =
         useGetWeatherData(location)

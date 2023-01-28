@@ -1,26 +1,14 @@
-import { createContext, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
 import { axiosDaData } from '../axios/axios'
-
-interface ILocationContext {
-    location: string
-    changeLocation: (payload: string) => void
-}
+import constate from 'constate'
 
 const API_DADATA_KEY = process.env.REACT_APP_DD_API_KEY // ключ для сервиса DaData
 
 const USER_LOCATION_KEY = 'user_location'
 
-const initialState = 'Москва'
-
-export const LocationContext = createContext<ILocationContext>({
-    location: initialState,
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    changeLocation: () => {},
-})
-
-export const LocationState = ({ children }: { children: React.ReactNode }) => {
-    const [location, setLocation] = useState<string>(initialState)
+const useLocationState = () => {
+    const [location, setLocation] = useState('Москва')
 
     const changeLocation = (payload: string) => {
         setLocation(payload)
@@ -70,9 +58,7 @@ export const LocationState = ({ children }: { children: React.ReactNode }) => {
         getUserLocation()
     }, [])
 
-    return (
-        <LocationContext.Provider value={{ location, changeLocation }}>
-            {children}
-        </LocationContext.Provider>
-    )
+    return { location, changeLocation }
 }
+
+export const [LocationProvider, useLocationProvider] = constate(useLocationState)
