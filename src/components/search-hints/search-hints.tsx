@@ -16,10 +16,10 @@ export function SearchHints({ inputValue, visible, clickOnHint }: SearchHintsPro
     // Используем хук, чтобы отложить вызов API
     const debouncedInputValue = useDebounce<string>(inputValue, 300)
 
-    const classes = [styles.hints]
+    const classNames = [styles.hints]
 
     if (!hints.length || !visible) {
-        classes.push(styles.hide)
+        classNames.push('hide')
     }
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export function SearchHints({ inputValue, visible, clickOnHint }: SearchHintsPro
     }, [debouncedInputValue])
 
     return (
-        <div className={classes.join(' ')}>
+        <div className={classNames.join(' ')}>
             <div className={styles.container}>
                 <ul>
                     {hints.map((hint) => (

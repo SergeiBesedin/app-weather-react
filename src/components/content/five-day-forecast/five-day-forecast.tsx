@@ -12,10 +12,16 @@ interface FiveDayForecastProps {
 function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
     const title = 'Прогноз на 5 дней'
 
-    const filteredItems = items.filter((item) => item.dt_txt!.includes('12:00:00'))
+    const filteredItems = items.filter((item) => item.dt_txt.includes('12:00:00'))
+
+    const classNames = [styles.fiveDayForecast]
+
+    if (!filteredItems.length) {
+        classNames.push('hide')
+    }
 
     return (
-        <Tile title={title} classes={[styles.fiveDayForecast]}>
+        <Tile title={title} classes={classNames}>
             <ul>
                 {filteredItems.map((item) => (
                     <FiveDayForecastItem

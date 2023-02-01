@@ -30,8 +30,14 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
 
     const filteredItems = items.filter((item) => item.dt <= items[0].dt + UNIX_TIME_DAY) // показываем в карусели только 9 временных меток
 
+    const classNames = [styles.hourlyForecast]
+
+    if (!filteredItems.length) {
+        classNames.push('hide')
+    }
+
     return (
-        <Tile title={title} classes={[styles.hourlyForecast]}>
+        <Tile title={title} classes={classNames}>
             <div className={styles.wrapper} ref={wrapperRef}>
                 <Button
                     type={'button'}
