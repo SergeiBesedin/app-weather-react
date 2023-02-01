@@ -6,7 +6,7 @@ import options from '../../configuration/settings.json'
 import styles from './header-actions.module.scss'
 
 export function HeaderActions() {
-    const [modalActive, setModalActive] = useState<boolean>(false)
+    const [modalActive, setModalActive] = useState(false)
     const open = () => setModalActive(true)
     const close = () => setModalActive(false)
 

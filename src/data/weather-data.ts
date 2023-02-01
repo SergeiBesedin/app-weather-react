@@ -14,8 +14,8 @@ type WeatherData = {
 
 export const useGetWeatherData = (location: string) => {
     const [weatherData, setWeatherData] = useState<WeatherData>()
-    const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string>('')
+    const [loading, setLoading] = useState(false)
+    const [errorStatus, setErrorStatus] = useState(200)
 
     const fetchCurrentWeather = async (): Promise<{ currentWeather: ICurrentWeather }> => {
         // получаем данные для карточки с текущей погодой
@@ -55,7 +55,7 @@ export const useGetWeatherData = (location: string) => {
     }
 
     const fetchAllData = (): void => {
-        setError('')
+        setErrorStatus(200)
         setLoading(true)
 
         Promise.all([fetchCurrentWeather(), fetchFiveDayForecast()])
@@ -70,8 +70,10 @@ export const useGetWeatherData = (location: string) => {
             })
             .catch((e: unknown) => {
                 const error = e as AxiosError
+
                 console.error(error)
-                setError(error.message)
+
+                setErrorStatus(error.response?.status || 401)
             })
             .finally(() => setLoading(false))
     }
@@ -80,5 +82,5 @@ export const useGetWeatherData = (location: string) => {
         fetchAllData()
     }, [location])
 
-    return { weatherData, error, loading }
+    return { weatherData, errorStatus, loading }
 }

@@ -15,7 +15,7 @@ function Content() {
     const { units } = useSettingsProvider()
     const { location } = useLocationProvider()
 
-    const { weatherData, loading, error } = useGetWeatherData(location)
+    const { weatherData, loading, errorStatus } = useGetWeatherData(location)
 
     const classNames = [styles.content, 'container'].join(' ')
 
@@ -23,8 +23,8 @@ function Content() {
         return <Loader />
     }
 
-    if (error) {
-        return <ErrorComp error={error} />
+    if (errorStatus !== 200) {
+        return <ErrorComp status={errorStatus} />
     }
 
     if (!weatherData) {
