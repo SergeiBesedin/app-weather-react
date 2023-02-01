@@ -4,8 +4,8 @@ import { useLocationProvider } from '../../context/location-context'
 import { SearchHints } from '../search-hints/search-hints'
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg'
 import { ReactComponent as BackIcon } from '../../assets/icons/left-arrow.svg'
-import Input from '../ui/input/input'
 import { Button } from '../ui/button/button'
+import Input from '../ui/input/input'
 import styles from './search.module.scss'
 
 export function Search() {

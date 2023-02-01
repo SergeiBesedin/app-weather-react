@@ -15,8 +15,7 @@ function Content() {
     const { units } = useSettingsProvider()
     const { location } = useLocationProvider()
 
-    const { weatherData, fiveDayForecast, weatherTomorrow, loading, error } =
-        useGetWeatherData(location)
+    const { weatherData, loading, error } = useGetWeatherData(location)
 
     const classNames = [styles.content, 'container'].join(' ')
 
@@ -28,23 +27,25 @@ function Content() {
         return <ErrorComp error={error} />
     }
 
-    if (!weatherData || !weatherTomorrow || !fiveDayForecast) {
+    if (!weatherData) {
         return <></>
     }
+
+    const { currentWeather, fiveDayForecast, weatherTomorrow } = weatherData
 
     return (
         <div className={classNames}>
             <div className={styles.leftColumn}>
-                <CurrentWeather {...weatherData} units={units} />
+                <CurrentWeather {...currentWeather} units={units} />
                 <RecommendedClothing
-                    feelsLikeTemp={weatherData.temp.feels_like}
+                    feelsLikeTemp={currentWeather.temp.feels_like}
                     tempUnit={units.temp}
                 />
             </div>
             <div className={styles.rightColumn}>
                 <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
                 <ForecastTomorrow
-                    curTemp={weatherData.temp.temp}
+                    curTemp={currentWeather.temp.temp}
                     tempUnit={units.temp}
                     list={weatherTomorrow}
                 />

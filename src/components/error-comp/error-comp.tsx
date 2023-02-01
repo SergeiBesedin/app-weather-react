@@ -1,4 +1,4 @@
-import { ReactComponent as ErrorIcon } from '../../assets/icons/error.svg'
+import { ReactComponent as ErrorIcon } from '../../assets/icons/connection-error.svg'
 import styles from './error.module.scss'
 
 interface ErrorMessageProps {
