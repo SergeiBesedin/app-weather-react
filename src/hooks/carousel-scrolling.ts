@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export const useCarouselScrolling = () => {
+export function useCarouselScrolling() {
     const [leftBtn, setLeftBtn] = useState(true)
     const [rightBtn, setRightBtn] = useState(false)
 

@@ -47,7 +47,7 @@ export interface IWeather {
     }
 }
 
-// используется в плитке с погодой на текущий день
+// плитка с погодой на текущий день
 export interface ICurrentWeather {
     city: string
     weatherName: string
@@ -57,6 +57,7 @@ export interface ICurrentWeather {
     dateTime: string
 }
 
+// плитка с прогнозом на пять дней
 export interface IFiveDayForecast {
     cnt: number // Количество меток времени, возвращенных в ответе API
     list: Array<IWeather>

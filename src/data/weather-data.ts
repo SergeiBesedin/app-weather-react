@@ -12,7 +12,7 @@ type WeatherData = {
     weatherTomorrow: Array<IWeather>
 }
 
-export const useGetWeatherData = (location: string) => {
+export function useGetWeatherData(location: string) {
     const [weatherData, setWeatherData] = useState<WeatherData>()
     const [loading, setLoading] = useState(false)
     const [errorStatus, setErrorStatus] = useState(200)
