@@ -18,11 +18,17 @@ export function useSearchHistory() {
     const saveToHistory = (location: string) => {
         const history = getHistory()
 
-        if (history.length === MAX_RECORDS) {
-            history.shift()
+        const city = location.toLowerCase()
+
+        if (history.includes(city)) {
+            return
         }
 
-        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([...history, location]))
+        if (history.length === MAX_RECORDS) {
+            history.pop()
+        }
+
+        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([city, ...history]))
     }
 
     return { getHistory, saveToHistory }

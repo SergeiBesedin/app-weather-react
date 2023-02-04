@@ -36,7 +36,7 @@ export function Autocomplete({ inputValue, visible, clickOnHint }: AutocompleteP
     if (visible && !hints.length && searchHistory.length) {
         return (
             <div className={styles.autocomplete}>
-                <SearchHistory history={searchHistory} />
+                <SearchHistory history={searchHistory} clickOnHint={clickOnHint} />
             </div>
         )
     }

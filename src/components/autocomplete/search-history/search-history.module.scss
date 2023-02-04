@@ -1,15 +1,23 @@
 @import '../../../styles/common.scss';
 
 .history {
-    padding: 12px 35px;
+    padding: 24px 0;
 
     h3 {
         color: $dark-blue;
         font-size: 20px;
         line-height: (24/20);
+        opacity: 0.5;
+        padding: 12px 35px;
     }
 
     @media (max-width: $breakpoint-tab) {
         padding: 0;
+
+        h3 {
+            font-size: 14px;
+            line-height: (17/14);
+            padding: 15px 0;
+        }
     }
 }
