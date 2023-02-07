@@ -1,11 +1,12 @@
 import { useState, useRef } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useLocationProvider } from '../../context/location-context'
-import { SearchHints } from '../search-hints/search-hints'
+import { useSearchHistory } from '../../hooks/use-search-history'
+import { Autocomplete } from '../autocomplete/autocomplete'
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg'
 import { ReactComponent as BackIcon } from '../../assets/icons/left-arrow.svg'
-import Input from '../ui/input/input'
 import { Button } from '../ui/button/button'
+import Input from '../ui/input/input'
 import styles from './search.module.scss'
 
 export function Search() {
@@ -17,7 +18,9 @@ export function Search() {
 
     const inputRef = useRef<HTMLInputElement>(null)
 
-    const { changeLocation } = useLocationProvider()
+    const { location, changeLocation } = useLocationProvider()
+
+    const { saveToHistory, clearHistory } = useSearchHistory()
 
     const onBlurHandlerDebounce = useDebouncedCallback(() => onBlurHandler(), 300)
 
@@ -25,6 +28,10 @@ export function Search() {
 
     const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value.trim())
+        setVisible(true)
+    }
+
+    const onFocusHandler = () => {
         setVisible(true)
     }
 
@@ -38,15 +45,20 @@ export function Search() {
         if (inputValue === '') return
 
         changeLocation(inputValue)
+        saveToHistory(inputValue)
         setVisible(false)
         setSearchOpen(false)
     }
 
     const onHintClickHandler = (value: string) => {
         setInputValue(value)
-        changeLocation(value)
+        saveToHistory(value)
         setSearchOpen(false)
         setVisible(false)
+
+        if (location.toLowerCase() !== value.toLowerCase()) {
+            changeLocation(value)
+        }
     }
 
     const onSearchClickHandler = () => {
@@ -80,6 +92,7 @@ export function Search() {
                         ref={inputRef}
                         classes={[styles.input]}
                         onChange={onChangeHandler}
+                        onFocus={onFocusHandler}
                         onBlur={onBlurHandlerDebounce}
                     />
 
@@ -106,10 +119,11 @@ export function Search() {
             </div>
 
             <div className={styles.bottom}>
-                <SearchHints
+                <Autocomplete
                     inputValue={inputValue}
                     visible={visible}
                     clickOnHint={(e) => onHintClickHandler(e)}
+                    clearHistory={clearHistory}
                 />
             </div>
         </div>

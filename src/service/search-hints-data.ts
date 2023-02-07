@@ -22,7 +22,7 @@ export type HintData = {
     id: string
 }
 
-export const getSearchHints = async (q: string): Promise<Array<HintData>> => {
+export async function getSearchHints(q: string): Promise<Array<HintData>> {
     const url = 'suggestions/api/4_1/rs/suggest/address'
 
     const query = {

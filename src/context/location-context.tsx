@@ -16,6 +16,7 @@ const useLocationState = () => {
 
     const getUserLocation = (): void => {
         const location = checkLocationInStorage()
+
         if (location) {
             setLocation(location)
         } else {

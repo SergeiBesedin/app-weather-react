@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-export const useCarouselScrolling = () => {
-    const [leftBtn, setLeftBtn] = useState<boolean>(true)
-    const [rightBtn, setRightBtn] = useState<boolean>(false)
+export function useCarouselScrolling() {
+    const [leftBtn, setLeftBtn] = useState(true)
+    const [rightBtn, setRightBtn] = useState(false)
 
     const buttonClickHandler = (
         wrapperRef: HTMLElement | null,

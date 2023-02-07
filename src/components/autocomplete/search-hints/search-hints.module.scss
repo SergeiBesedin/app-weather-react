@@ -1,0 +1,9 @@
+@import '../../../styles/common.scss';
+
+.hints {
+    padding: 24px 0;
+
+    @media (max-width: $breakpoint-tab) {
+        padding: 0;
+    }
+}

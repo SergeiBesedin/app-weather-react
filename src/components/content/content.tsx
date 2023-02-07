@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useSettingsProvider } from '../../context/settings-context'
 import { useLocationProvider } from '../../context/location-context'
-import { useGetWeatherData } from '../../data/weather-data'
+import { useGetWeatherData } from '../../service/weather-data'
 import { CurrentWeather } from './current-weather/current-weather'
 import HourlyForecast from './hourly-forecast/hourly-forecast'
 import ForecastTomorrow from './forecast-tomorrow/forecast-tomorrow'
@@ -15,8 +15,7 @@ function Content() {
     const { units } = useSettingsProvider()
     const { location } = useLocationProvider()
 
-    const { weatherData, fiveDayForecast, weatherTomorrow, loading, error } =
-        useGetWeatherData(location)
+    const { weatherData, loading, errorStatus } = useGetWeatherData(location)
 
     const classNames = [styles.content, 'container'].join(' ')
 
@@ -24,27 +23,29 @@ function Content() {
         return <Loader />
     }
 
-    if (error) {
-        return <ErrorComp error={error} />
+    if (errorStatus !== 200) {
+        return <ErrorComp status={errorStatus} />
     }
 
-    if (!weatherData || !weatherTomorrow || !fiveDayForecast) {
+    if (!weatherData) {
         return <></>
     }
+
+    const { currentWeather, fiveDayForecast, weatherTomorrow } = weatherData
 
     return (
         <div className={classNames}>
             <div className={styles.leftColumn}>
-                <CurrentWeather {...weatherData} units={units} />
+                <CurrentWeather {...currentWeather} units={units} />
                 <RecommendedClothing
-                    feelsLikeTemp={weatherData.temp.feels_like}
+                    feelsLikeTemp={currentWeather.temp.feels_like}
                     tempUnit={units.temp}
                 />
             </div>
             <div className={styles.rightColumn}>
                 <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
                 <ForecastTomorrow
-                    curTemp={weatherData.temp.temp}
+                    curTemp={currentWeather.temp.temp}
                     tempUnit={units.temp}
                     list={weatherTomorrow}
                 />

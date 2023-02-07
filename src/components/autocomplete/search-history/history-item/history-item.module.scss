@@ -1,0 +1,22 @@
+@import '../../../../styles/common.scss';
+
+.item {
+    font-size: 18px;
+    line-height: (24/18);
+    color: $dark-blue;
+    text-transform: capitalize;
+    padding: 12px 35px;
+    cursor: pointer;
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background-color: $light-grey;
+        }
+    }
+
+    @media (max-width: $breakpoint-tab) {
+        font-size: 14px;
+        line-height: (17/14);
+        padding: 15px 0;
+    }
+}
