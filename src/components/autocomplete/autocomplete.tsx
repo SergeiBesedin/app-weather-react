@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDebounce } from '../../hooks/use-debounce'
 import { useSearchHistory } from '../../hooks/use-search-history'
-import { getSearchHints, HintData } from '../../data/search-hints-data'
+import { getSearchHints, HintData } from '../../service/search-hints-data'
 import { SearchHistory } from './search-history/search-history'
 import { SearchHints } from './search-hints/search-hints'
 import styles from './autocomplete.module.scss'
@@ -10,9 +10,15 @@ interface AutocompleteProps {
     inputValue: string
     visible: boolean
     clickOnHint: (value: string) => void
+    clearHistory: () => void
 }
 
-export function Autocomplete({ inputValue, visible, clickOnHint }: AutocompleteProps) {
+export function Autocomplete({
+    inputValue,
+    visible,
+    clickOnHint,
+    clearHistory,
+}: AutocompleteProps) {
     const [hints, setHints] = useState<Array<HintData>>([])
     const { getHistory } = useSearchHistory()
 
@@ -36,7 +42,11 @@ export function Autocomplete({ inputValue, visible, clickOnHint }: AutocompleteP
     if (visible && !hints.length && searchHistory.length) {
         return (
             <div className={styles.autocomplete}>
-                <SearchHistory history={searchHistory} clickOnHint={clickOnHint} />
+                <SearchHistory
+                    history={searchHistory}
+                    clickOnHint={clickOnHint}
+                    clearHistory={clearHistory}
+                />
             </div>
         )
     }

@@ -18,9 +18,9 @@ export function Search() {
 
     const inputRef = useRef<HTMLInputElement>(null)
 
-    const { changeLocation } = useLocationProvider()
+    const { location, changeLocation } = useLocationProvider()
 
-    const { saveToHistory } = useSearchHistory()
+    const { saveToHistory, clearHistory } = useSearchHistory()
 
     const onBlurHandlerDebounce = useDebouncedCallback(() => onBlurHandler(), 300)
 
@@ -52,10 +52,13 @@ export function Search() {
 
     const onHintClickHandler = (value: string) => {
         setInputValue(value)
-        changeLocation(value)
         saveToHistory(value)
         setSearchOpen(false)
         setVisible(false)
+
+        if (location.toLowerCase() !== value.toLowerCase()) {
+            changeLocation(value)
+        }
     }
 
     const onSearchClickHandler = () => {
@@ -120,6 +123,7 @@ export function Search() {
                     inputValue={inputValue}
                     visible={visible}
                     clickOnHint={(e) => onHintClickHandler(e)}
+                    clearHistory={clearHistory}
                 />
             </div>
         </div>

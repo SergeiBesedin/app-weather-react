@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useSettingsProvider } from '../../context/settings-context'
 import { useLocationProvider } from '../../context/location-context'
-import { useGetWeatherData } from '../../data/weather-data'
+import { useGetWeatherData } from '../../service/weather-data'
 import { CurrentWeather } from './current-weather/current-weather'
 import HourlyForecast from './hourly-forecast/hourly-forecast'
 import ForecastTomorrow from './forecast-tomorrow/forecast-tomorrow'

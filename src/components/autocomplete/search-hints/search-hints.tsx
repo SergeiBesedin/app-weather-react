@@ -1,4 +1,4 @@
-import { HintData } from '../../../data/search-hints-data'
+import { HintData } from '../../../service/search-hints-data'
 import { Hint } from './hint/hint'
 import styles from './search-hints.module.scss'
 
