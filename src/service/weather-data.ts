@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
 import { axiosOpenWeather } from '../axios/axios'
+import { useSearchHistory } from '../hooks/use-search-history'
 import { IWeather, IFiveDayForecast, ICurrentWeather } from '../typings/typings'
 import { dateFormat, getTomorrowDate } from '../utils/utils'
 
@@ -16,6 +17,8 @@ export function useGetWeatherData(location: string) {
     const [weatherData, setWeatherData] = useState<WeatherData>()
     const [loading, setLoading] = useState(false)
     const [errorStatus, setErrorStatus] = useState(200)
+
+    const { saveToHistory } = useSearchHistory()
 
     const fetchCurrentWeather = async (): Promise<{ currentWeather: ICurrentWeather }> => {
         // получаем данные для карточки с текущей погодой
@@ -34,6 +37,8 @@ export function useGetWeatherData(location: string) {
                 day: 'numeric',
             }),
         }
+
+        saveToHistory(response.data.name)
 
         return { currentWeather }
     }

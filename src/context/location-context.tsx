@@ -10,8 +10,10 @@ const USER_LOCATION_KEY = 'user_location'
 const useLocationState = () => {
     const [location, setLocation] = useState('Москва')
 
-    const changeLocation = (payload: string) => {
-        setLocation(payload)
+    const changeLocation = (value: string) => {
+        if (location.toLowerCase() === value.toLowerCase()) return
+
+        setLocation(value)
     }
 
     const getUserLocation = (): void => {
