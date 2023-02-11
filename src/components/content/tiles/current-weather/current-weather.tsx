@@ -1,8 +1,8 @@
-import { Tile } from '../tile/tile'
-import { Image } from '../../ui/image/image'
-import { ICurrentWeather } from '../../../typings/typings'
-import { unitFormat, ucFirst } from '../../../utils/utils'
-import { getIcon } from '../../../utils/get-icon'
+import { TileWrapper } from '../tile-wrapper/tile-wrapper'
+import { Image } from '../../../ui/image/image'
+import { ICurrentWeather } from '../../../../typings/typings'
+import { dateFormat, unitFormat, ucFirst } from '../../../../utils/utils'
+import { getIcon } from '../../../../utils/get-icon'
 import styles from './current-weather.module.scss'
 
 interface CurrentWeatherProps extends ICurrentWeather {
@@ -18,13 +18,21 @@ export function CurrentWeather({
     dateTime,
     units,
 }: CurrentWeatherProps) {
-    const title = `Сегодня, ${dateTime}`
+    const time = dateFormat(dateTime * 1000, {
+        month: 'long',
+        day: 'numeric',
+    })
+
+    const title = `Сегодня, ${time}`
+
     const temperature = unitFormat(temp.temp, units.temp)
+
     const windSpeed = unitFormat(wind, units.speed)
+
     const pressure = unitFormat(temp.pressure, units.pressure)
 
     return (
-        <Tile title={title} classes={[styles.currentWeather]}>
+        <TileWrapper title={title} classes={[styles.currentWeather]}>
             <div className={styles.weather}>
                 <div className={styles.city}>{city}</div>
                 <div className={styles.temp}>{temperature}</div>
@@ -40,6 +48,6 @@ export function CurrentWeather({
                 <div className={styles.wind}>{windSpeed}</div>
                 <div className={styles.pressure}>{pressure}</div>
             </div>
-        </Tile>
+        </TileWrapper>
     )
 }

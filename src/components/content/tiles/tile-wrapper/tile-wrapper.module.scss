@@ -1,9 +1,10 @@
-@import '../../../styles/common.scss';
+@import '../../../../styles/common.scss';
 
 .tile {
     border-radius: 32px;
     background-color: $white;
     position: relative;
+    overflow: hidden;
 
     .container {
         padding: 28px;

@@ -1,4 +1,4 @@
-@import '../../../styles/common.scss';
+@import '../../../../styles/common.scss';
 
 .hourlyForecast {
     display: flex;
@@ -68,11 +68,11 @@
 
     .leftArrow {
         left: 20px;
-        background-image: url('../../../assets/icons/left-arrow.svg');
+        background-image: url('../../../../assets/icons/left-arrow.svg');
     }
 
     .rightArrow {
         right: 20px;
-        background-image: url('../../../assets/icons/right-arrow.svg');
+        background-image: url('../../../../assets/icons/right-arrow.svg');
     }
 }

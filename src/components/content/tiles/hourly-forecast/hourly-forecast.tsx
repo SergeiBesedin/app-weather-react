@@ -1,9 +1,9 @@
 import { memo, useRef } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
-import { useCarouselScrolling } from '../../../hooks/carousel-scrolling'
-import { IWeather } from './../../../typings/typings'
-import { Tile } from '../tile/tile'
-import { Button } from '../../ui/button/button'
+import { useCarouselScrolling } from '../../../../hooks/carousel-scrolling'
+import { IWeather } from '../../../../typings/typings'
+import { TileWrapper } from '../tile-wrapper/tile-wrapper'
+import { Button } from '../../../ui/button/button'
 import { HourlyForecastItem } from './hourly-forecast-item/hourly-forecast-item'
 import styles from './hourly-forecast.module.scss'
 
@@ -37,7 +37,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     }
 
     return (
-        <Tile title={title} classes={classNames}>
+        <TileWrapper title={title} classes={classNames}>
             <div className={styles.wrapper} ref={wrapperRef}>
                 <Button
                     type={'button'}
@@ -83,7 +83,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     }
                 />
             </div>
-        </Tile>
+        </TileWrapper>
     )
 }
 

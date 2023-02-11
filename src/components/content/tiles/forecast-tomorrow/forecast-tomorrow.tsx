@@ -1,6 +1,6 @@
 import { memo } from 'react'
-import { IWeather } from '../../../typings/typings'
-import { generateForecastTomorrowMessage } from '../../../utils/generate-message-text'
+import { IWeather } from '../../../../typings/typings'
+import { generateForecastTomorrowMessage } from '../../../../utils/generate-message-text'
 import { TextBlock } from '../text-block/text-block'
 
 interface ForecastTomorrowProps {

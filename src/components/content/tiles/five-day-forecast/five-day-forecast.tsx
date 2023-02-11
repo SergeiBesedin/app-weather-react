@@ -1,6 +1,6 @@
 import { memo } from 'react'
-import { Tile } from '../tile/tile'
-import { IWeather } from '../../../typings/typings'
+import { TileWrapper } from '../tile-wrapper/tile-wrapper'
+import { IWeather } from '../../../../typings/typings'
 import { FiveDayForecastItem } from './five-day-forecast-item/five-day-forecast-item'
 import styles from './five-day-forecast.module.scss'
 
@@ -21,7 +21,7 @@ function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
     }
 
     return (
-        <Tile title={title} classes={classNames}>
+        <TileWrapper title={title} classes={classNames}>
             <ul>
                 {filteredItems.map((item) => (
                     <FiveDayForecastItem
@@ -34,7 +34,7 @@ function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
                     />
                 ))}
             </ul>
-        </Tile>
+        </TileWrapper>
     )
 }
 

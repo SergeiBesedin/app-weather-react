@@ -1,4 +1,4 @@
-import styles from './tile.module.scss'
+import styles from './tile-wrapper.module.scss'
 
 interface TileProps {
     classes: string[]
@@ -6,7 +6,7 @@ interface TileProps {
     title?: string
 }
 
-export function Tile({ classes, children, title }: TileProps) {
+export function TileWrapper({ classes, children, title }: TileProps) {
     const classNames = [styles.tile, ...classes].join(' ')
 
     return (
