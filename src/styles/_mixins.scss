@@ -55,3 +55,12 @@
         }
     }
 }
+
+// применяем hover только на устройствах с мышью
+@mixin at-mixin-hover-styles {
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            @content;
+        }
+    }
+}
