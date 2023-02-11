@@ -7,10 +7,8 @@
     padding: 12px 35px;
     cursor: pointer;
 
-    @media (hover: hover) and (pointer: fine) {
-        &:hover {
-            background-color: $light-grey;
-        }
+    @include at-mixin-hover-styles {
+        background-color: $light-grey;
     }
 
     @media (max-width: $breakpoint-tab) {
