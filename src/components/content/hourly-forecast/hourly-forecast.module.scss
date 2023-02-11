@@ -16,6 +16,16 @@
         @media (min-width: $breakpoint-desk + 1px) {
             padding: 0 54px;
         }
+
+        @media (max-width: $breakpoint-desk) {
+            @include at-mixin-hover-styles {
+                .leftArrow,
+                .rightArrow {
+                    display: flex;
+                    opacity: 0.7;
+                }
+            }
+        }
     }
 
     .listItems {
@@ -62,7 +72,7 @@
 
         &:disabled {
             opacity: 0.3;
-            cursor: not-allowed;
+            cursor: default;
         }
     }
 
