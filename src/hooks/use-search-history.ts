@@ -18,9 +18,7 @@ export function useSearchHistory() {
     const saveToHistory = (location: string) => {
         const history = getHistory()
 
-        const city = location.toLowerCase()
-
-        if (history.includes(city)) {
+        if (history.includes(location)) {
             return
         }
 
@@ -28,7 +26,7 @@ export function useSearchHistory() {
             history.pop()
         }
 
-        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([city, ...history]))
+        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([location, ...history]))
     }
 
     const clearHistory = () => {
