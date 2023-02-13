@@ -3,8 +3,6 @@ import { AxiosError } from 'axios'
 import { axiosDaData } from '../axios/axios'
 import constate from 'constate'
 
-const API_DADATA_KEY = process.env.REACT_APP_DD_API_KEY // ключ для сервиса DaData
-
 const USER_LOCATION_KEY = 'user_location'
 
 const useLocationState = () => {
@@ -25,7 +23,9 @@ const useLocationState = () => {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 // выполняется, если пользователей дает доступ к местоположению
                 const city = await getCityName(position.coords.latitude, position.coords.longitude)
+
                 localStorage.setItem(USER_LOCATION_KEY, city)
+
                 setLocation(city)
             })
         }
@@ -39,15 +39,11 @@ const useLocationState = () => {
         // обратное геокодирование. Передаем сервису широту и долготу, чтобы получить местоположение (название города) пользователя
         try {
             const url = 'suggestions/api/4_1/rs/geolocate/address'
+
             const coords = { lat, lon }
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                    Authorization: `Token ${API_DADATA_KEY}`,
-                },
-            }
-            const response = await axiosDaData.post(url, coords, options)
+
+            const response = await axiosDaData.post(url, coords)
+
             return response.data.suggestions[0].data.city
         } catch (e: unknown) {
             const error = e as AxiosError

@@ -11,7 +11,9 @@ export function useCarouselScrolling() {
         toLeft: boolean,
     ) => {
         if (!wrapperRef || !listItemsRef) return
+
         const containerWidth = wrapperRef.getBoundingClientRect().width
+
         const shift = (toLeft ? -1 : 1) * (containerWidth - itemWidth)
         listItemsRef.scrollBy({
             left: shift,
@@ -21,10 +23,14 @@ export function useCarouselScrolling() {
 
     const showOrHideButtons = (listItemsRef: HTMLElement | null) => {
         if (!listItemsRef) return
+
         const listItemsWidth = Math.round(listItemsRef.getBoundingClientRect().width)
+
         const scrollLeft = listItemsRef.scrollLeft
+
         const rightDelta = scrollLeft + listItemsWidth === listItemsRef.scrollWidth
         setLeftBtn(scrollLeft === 0)
+
         setRightBtn(rightDelta)
     }
 

@@ -10,7 +10,7 @@ import {
     RecommendedClothing,
     SunriseSunsetTimes,
 } from './tiles/index'
-import { ErrorComp } from '../error-comp/error-comp'
+import { ErrorComp } from './error-comp/error-comp'
 import { Loader } from '../ui/loader/loader'
 import styles from './content.module.scss'
 

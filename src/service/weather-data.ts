@@ -3,7 +3,7 @@ import { AxiosError } from 'axios'
 import { axiosOpenWeather } from '../axios/axios'
 import { useSearchHistory } from '../hooks/use-search-history'
 import { IWeather, IFiveDayForecast, ICurrentWeather } from '../typings/typings'
-import { dateFormat, getTomorrowDate } from '../utils/utils'
+import { getTomorrowDate } from '../utils/utils'
 
 type WeatherData = {
     currentWeather: ICurrentWeather
