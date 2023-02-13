@@ -5,8 +5,7 @@ import { useSearchHistory } from '../../hooks/use-search-history'
 import { Autocomplete } from '../autocomplete/autocomplete'
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg'
 import { ReactComponent as BackIcon } from '../../assets/icons/left-arrow.svg'
-import { Button } from '../ui/button/button'
-import Input from '../ui/input/input'
+import { Button, Input } from '../ui/index'
 import styles from './search.module.scss'
 
 export function Search() {

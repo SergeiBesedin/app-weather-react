@@ -1,6 +1,6 @@
 import { unitFormat, dateFormat } from '../../../../../utils/utils'
 import { getIcon } from '../../../../../utils/get-icon'
-import { Image } from '../../../../ui/image/image'
+import { Image } from '../../../../ui/index'
 import styles from './hourly-forecast-item.module.scss'
 
 interface HourlyForecastItemProps {

@@ -1,5 +1,5 @@
 import { getIcon } from '../../../../utils/get-icon'
-import { Image } from '../../../ui/image/image'
+import { Image } from '../../../ui/index'
 import styles from './text-block.module.scss'
 
 interface TextBlockProps {

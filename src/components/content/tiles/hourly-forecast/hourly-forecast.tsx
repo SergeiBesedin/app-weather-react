@@ -3,7 +3,7 @@ import { useDebouncedCallback } from 'use-debounce'
 import { useCarouselScrolling } from '../../../../hooks/carousel-scrolling'
 import { IWeather } from '../../../../typings/typings'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
-import { Button } from '../../../ui/button/button'
+import { Button } from '../../../ui/index'
 import { HourlyForecastItem } from './hourly-forecast-item/hourly-forecast-item'
 import styles from './hourly-forecast.module.scss'
 

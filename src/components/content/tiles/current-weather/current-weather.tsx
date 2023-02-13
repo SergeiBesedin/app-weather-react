@@ -1,5 +1,5 @@
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
-import { Image } from '../../../ui/image/image'
+import { Image } from '../../../ui/index'
 import { ICurrentWeather } from '../../../../typings/typings'
 import { dateFormat, unitFormat, ucFirst } from '../../../../utils/utils'
 import { getIcon } from '../../../../utils/get-icon'

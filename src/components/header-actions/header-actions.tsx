@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from '../ui/button/button'
+import { Button } from '../ui/index'
 import { ReactComponent as SettingsIcon } from '../../assets/icons/settings.svg'
 import { Settings } from './settings/settings'
 import options from '../../configuration/settings.json'

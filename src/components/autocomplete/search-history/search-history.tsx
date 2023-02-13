@@ -1,5 +1,5 @@
 import { HistoryItem } from './history-item/history-item'
-import { Button } from '../../ui/button/button'
+import { Button } from '../../ui/index'
 import styles from './search-history.module.scss'
 
 interface SearchHistoryProps {

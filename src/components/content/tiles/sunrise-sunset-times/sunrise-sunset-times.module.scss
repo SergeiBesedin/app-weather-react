@@ -8,12 +8,66 @@
 
     .wrapper {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .arrow {
+        background-image: url('../../../../assets/icons/sunrise-sunset/right-arrow-long.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 130px;
+        height: 20px;
+    }
+
+    .sunrise,
+    .sunset {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $dark-blue;
     }
 
     .sunrise {
+        margin-right: 8px;
     }
 
     .sunset {
+        margin-left: 8px;
+    }
+
+    .picture {
+        margin-bottom: 6px;
+    }
+
+    .title {
+        font-size: 18px;
+        line-height: (24/18);
+        margin-bottom: 6px;
+    }
+
+    .time {
+        font-size: 24px;
+        line-height: (28/24);
+        opacity: 0.5;
+    }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        .title {
+            font-size: 14px;
+            line-height: (19/14);
+        }
+
+        .time {
+            font-size: 22px;
+            line-height: (26/22);
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xxs) {
+        .arrow {
+            width: 112px;
+        }
     }
 }

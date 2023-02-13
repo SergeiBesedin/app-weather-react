@@ -1,5 +1,5 @@
 import { useSettingsProvider } from '../../../../context/settings-context'
-import Input from '../../../ui/input/input'
+import { Input } from '../../../ui/index'
 import { Option } from '../../../../typings/typings'
 import styles from './option-list.module.scss'
 
