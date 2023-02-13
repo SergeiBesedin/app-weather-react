@@ -18,6 +18,9 @@ import clearTomorrow from '../assets/icons/forecast-tomorrow/clear.svg'
 import rainTomorrow from '../assets/icons/forecast-tomorrow/rain.svg'
 import snowTomorrow from '../assets/icons/forecast-tomorrow/snow.svg'
 import rainAndSnowTomorrow from '../assets/icons/forecast-tomorrow/rain-and-snow.svg'
+// Иконки для блока с временем восхода и заката
+import sunrise from '../assets/icons/sunrise-sunset/sunrise.svg'
+import sunset from '../assets/icons/sunrise-sunset/sunset.svg'
 // Иконки для блока с рекомендуемой одеждой
 import thermometer from '../assets/icons/thermometer.svg'
 // Иконки для ошибок
@@ -50,6 +53,9 @@ export function getIcon(weather: string) {
 
         emptySearch,
         connectionError,
+
+        sunrise,
+        sunset,
     }
     return icons[weather]
 }

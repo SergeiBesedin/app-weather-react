@@ -1,0 +1,94 @@
+@import '../../../../../styles/common.scss';
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $dark-blue;
+
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .day {
+        font-size: 24px;
+        line-height: (28/24);
+        width: 155px;
+    }
+
+    .picture {
+        width: 45px;
+        height: 45px;
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            display: none;
+        }
+    }
+
+    .temp {
+        display: flex;
+        justify-content: end;
+        width: 165px;
+        font-size: 30px;
+        line-height: (36/30);
+
+        .min {
+            opacity: 0.5;
+            margin-right: 12px;
+        }
+    }
+
+    @media (max-width: $breakpoint-desk) {
+        .day {
+            font-size: 20px;
+            line-height: (24/20);
+        }
+
+        .picture {
+            width: 40px;
+            height: 40px;
+        }
+
+        .temp {
+            font-size: 26px;
+            line-height: (31/26);
+        }
+    }
+
+    @media (max-width: $breakpoint-tab) {
+        .day {
+            font-size: 24px;
+            line-height: (28/24);
+            margin-right: 12px;
+        }
+
+        .picture {
+            width: 45px;
+            height: 45px;
+        }
+
+        .temp {
+            font-size: 28px;
+            line-height: (33/28);
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        .day {
+            width: 100px;
+            font-size: 16px;
+            line-height: (19/16);
+        }
+
+        .picture {
+            width: 28px;
+            height: 28px;
+        }
+
+        .temp {
+            width: 100px;
+            font-size: 18px;
+            line-height: (21/18);
+        }
+    }
+}

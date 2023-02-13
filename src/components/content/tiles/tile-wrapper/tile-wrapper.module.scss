@@ -1,0 +1,60 @@
+@import '../../../../styles/common.scss';
+
+.tile {
+    border-radius: 32px;
+    background-color: $white;
+    position: relative;
+    overflow: hidden;
+
+    .container {
+        padding: 28px;
+
+        h3 {
+            font-size: 20px;
+            line-height: (24/20);
+            opacity: 0.5;
+        }
+    }
+
+    @media (max-width: $breakpoint-desk) {
+        .container {
+            padding: 24px;
+
+            h3 {
+                font-size: 16px;
+                line-height: (19/16);
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-tab) {
+        border-radius: 24px;
+
+        .container {
+            h3 {
+                font-size: 20px;
+                line-height: (24/20);
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        .container {
+            padding: 20px;
+
+            h3 {
+                font-size: 14px;
+                line-height: (17/14);
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xxs) {
+        .container {
+            h3 {
+                font-size: 12px;
+                line-height: (14/12);
+            }
+        }
+    }
+}

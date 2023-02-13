@@ -1,0 +1,88 @@
+@import '../../../../styles/common.scss';
+
+.hourlyForecast {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    h3 {
+        color: $dark-blue;
+        margin-bottom: 20px;
+    }
+
+    .wrapper {
+        overflow: hidden;
+
+        @media (min-width: $breakpoint-desk + 1px) {
+            padding: 0 54px;
+        }
+
+        @media (max-width: $breakpoint-desk) {
+            @include at-mixin-hover-styles {
+                .leftArrow,
+                .rightArrow {
+                    display: flex;
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+
+    .listItems {
+        display: flex;
+        gap: 45px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        user-select: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        @media (max-width: $breakpoint-desk) {
+            gap: 36px;
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            gap: 24px;
+        }
+    }
+
+    .leftArrow,
+    .rightArrow {
+        position: absolute;
+        top: 55%;
+        width: 40px;
+        height: 40px;
+        transform: translateY(-50%);
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 32px;
+        border-radius: 24px;
+        background-color: $light-grey;
+        opacity: 0.5;
+
+        @media (max-width: $breakpoint-desk) {
+            display: none;
+        }
+
+        &:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+    }
+
+    .leftArrow {
+        left: 20px;
+        background-image: url('../../../../assets/icons/left-arrow.svg');
+    }
+
+    .rightArrow {
+        right: 20px;
+        background-image: url('../../../../assets/icons/right-arrow.svg');
+    }
+}

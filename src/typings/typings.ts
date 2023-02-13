@@ -54,7 +54,9 @@ export interface ICurrentWeather {
     weatherDesc: string
     temp: Temp
     wind: number
-    dateTime: string
+    dateTime: number
+    sunrise: number
+    sunset: number
 }
 
 // плитка с прогнозом на пять дней

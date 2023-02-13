@@ -1,4 +1,4 @@
-import { Modal } from '../../ui/modal/modal'
+import { Modal } from '../../ui/index'
 import { OptionGroup } from './option-group/option-group'
 import { ISettings } from '../../../typings/typings'
 import styles from './settings.module.scss'

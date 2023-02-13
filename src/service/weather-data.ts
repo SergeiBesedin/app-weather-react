@@ -3,9 +3,7 @@ import { AxiosError } from 'axios'
 import { axiosOpenWeather } from '../axios/axios'
 import { useSearchHistory } from '../hooks/use-search-history'
 import { IWeather, IFiveDayForecast, ICurrentWeather } from '../typings/typings'
-import { dateFormat, getTomorrowDate } from '../utils/utils'
-
-const API_OW_KEY = process.env.REACT_APP_OW_API_KEY // ключ для сервиса OpenWeather
+import { getTomorrowDate } from '../utils/utils'
 
 type WeatherData = {
     currentWeather: ICurrentWeather
@@ -22,7 +20,7 @@ export function useGetWeatherData(location: string) {
 
     const fetchCurrentWeather = async (): Promise<{ currentWeather: ICurrentWeather }> => {
         // получаем данные для карточки с текущей погодой
-        const url = `weather?q=${location}&lang=ru&appid=${API_OW_KEY}&units=metric`
+        const url = `weather?q=${location}`
 
         const response = await axiosOpenWeather.get<IWeather>(url)
 
@@ -32,10 +30,9 @@ export function useGetWeatherData(location: string) {
             weatherDesc: response.data.weather[0].description,
             temp: response.data.main,
             wind: response.data.wind.speed,
-            dateTime: dateFormat(response.data.dt * 1000, {
-                month: 'long',
-                day: 'numeric',
-            }),
+            dateTime: response.data.dt,
+            sunrise: response.data.sys.sunrise,
+            sunset: response.data.sys.sunset,
         }
 
         saveToHistory(response.data.name)
@@ -47,7 +44,7 @@ export function useGetWeatherData(location: string) {
         fiveDayForecast: Array<IWeather>
     }> => {
         // получаем данные с почасовым прогнозом на 5 дней
-        const url = `forecast?q=${location}&lang=ru&units=metric&appid=${API_OW_KEY}`
+        const url = `forecast?q=${location}`
 
         const response = await axiosOpenWeather.get<IFiveDayForecast>(url)
 
@@ -65,12 +62,10 @@ export function useGetWeatherData(location: string) {
 
         Promise.all([fetchCurrentWeather(), fetchFiveDayForecast()])
             .then((data) => {
-                const weatherTomorrow = getWeatherForTomorrow(data[1].fiveDayForecast)
-
                 setWeatherData({
                     currentWeather: data[0].currentWeather,
                     fiveDayForecast: data[1].fiveDayForecast,
-                    weatherTomorrow,
+                    weatherTomorrow: getWeatherForTomorrow(data[1].fiveDayForecast),
                 })
             })
             .catch((e: unknown) => {

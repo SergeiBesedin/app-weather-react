@@ -1,0 +1,199 @@
+@import '../../../../styles/common.scss';
+
+.currentWeather {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(254.11deg, #6ab7ff 22.16%, #cbe6ff 103.68%);
+    overflow: hidden;
+
+    h3 {
+        color: $white;
+        margin-bottom: 4px;
+    }
+
+    .weather {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 30px;
+    }
+
+    .picture {
+        position: absolute;
+        top: 42%;
+        transform: translateY(-50%);
+        right: 14px;
+        height: calc(77% + 2px);
+        object-fit: contain;
+
+        @media (max-width: $breakpoint-desk) {
+            top: 48%;
+            right: -86px;
+            height: 96%;
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            top: calc(50% - 1px);
+            right: 0;
+            height: calc(100% - 2px);
+        }
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            top: 53%;
+            right: -33px;
+            height: 89%;
+        }
+    }
+
+    .city {
+        position: relative;
+        font-size: 36px;
+        line-height: (43/36);
+        color: $white;
+        padding-left: 48px;
+        margin-bottom: 18px;
+
+        @include pseudo-element-before(46px, 46px) {
+            background-image: url('/assets/icons/pin.svg');
+        }
+
+        @media (max-width: $breakpoint-desk) {
+            font-size: 24px;
+            line-height: (28/24);
+            padding-left: 38px;
+            @include pseudo-element-before(36px, 36px) {
+                top: -4px;
+            }
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            font-size: 36px;
+            line-height: (43/36);
+            padding-left: 48px;
+            @include pseudo-element-before(46px, 46px);
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            font-size: 26px;
+            line-height: (31/26);
+            padding-left: 33px;
+            margin-bottom: 11px;
+            @include pseudo-element-before(30px, 30px);
+        }
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            font-size: 20px;
+            line-height: (24/20);
+            padding-left: 26px;
+            @include pseudo-element-before(24px, 24px);
+        }
+    }
+
+    .temp {
+        color: $white;
+        font-size: 98px;
+        line-height: (116/98);
+        letter-spacing: -0.06em;
+        margin-bottom: 10px;
+
+        @media (max-width: $breakpoint-desk) {
+            font-size: 62px;
+            line-height: (73/62);
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            font-size: 72px;
+            line-height: (85/72);
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            font-size: 48px;
+            line-height: (57/48);
+        }
+
+        @media (max-width: $breakpoint-mob-xxs) {
+            font-size: 44px;
+            line-height: (52/44);
+        }
+    }
+
+    .description {
+        display: block;
+        text-align: center;
+        padding: 8px 14px;
+        color: $white;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 80px;
+        font-size: 20px;
+        line-height: (24/20);
+
+        @media (max-width: $breakpoint-desk) {
+            font-size: 16px;
+            line-height: (19/16);
+        }
+
+        @media (max-width: $breakpoint-tab) {
+            font-size: 20px;
+            line-height: (24/20);
+        }
+
+        @media (max-width: $breakpoint-mob-xs) {
+            padding: 3px 14px;
+            font-size: 14px;
+            line-height: (17/14);
+        }
+    }
+
+    .status {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            position: relative;
+            font-size: 18px;
+            line-height: (21/18);
+            color: $white;
+            padding-left: 44px;
+
+            &:not(:last-child) {
+                margin-right: 6px;
+            }
+
+            @media (max-width: $breakpoint-desk) {
+                padding-left: 24px;
+                font-size: 14px;
+                line-height: (17/14);
+            }
+
+            @media (max-width: $breakpoint-tab) {
+                padding-left: 42px;
+                font-size: 17px;
+                line-height: (20/17);
+            }
+
+            @media (max-width: $breakpoint-mob-xs) {
+                padding-left: 24px;
+                font-size: 14px;
+                line-height: (17/14);
+            }
+
+            @media (max-width: $breakpoint-mob-xxs) {
+                padding-left: 20px;
+                font-size: 12px;
+                line-height: (14/12);
+            }
+        }
+
+        .humidity {
+            @include insert-weather-status('/assets/icons/drop.svg');
+        }
+
+        .wind {
+            @include insert-weather-status('/assets/icons/wind.svg');
+        }
+
+        .pressure {
+            @include insert-weather-status('/assets/icons/pressure.svg');
+        }
+    }
+}

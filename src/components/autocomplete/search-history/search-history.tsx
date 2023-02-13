@@ -1,5 +1,5 @@
 import { HistoryItem } from './history-item/history-item'
-import { Button } from '../../ui/button/button'
+import { Button } from '../../ui/index'
 import styles from './search-history.module.scss'
 
 interface SearchHistoryProps {
@@ -10,14 +10,15 @@ interface SearchHistoryProps {
 
 export function SearchHistory({ history, clickOnHint, clearHistory }: SearchHistoryProps) {
     const title = 'История поиска'
-    const key = Date.now()
+
+    // TODO изменить key
 
     return (
         <div className={styles.history}>
             <h3>{title}</h3>
             <ul>
                 {history.map((item, index) => (
-                    <HistoryItem key={key + index} item={item} clickOnHint={clickOnHint} />
+                    <HistoryItem key={index} item={item} clickOnHint={clickOnHint} />
                 ))}
             </ul>
             <div className={styles.bottom}>

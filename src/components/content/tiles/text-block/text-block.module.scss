@@ -1,0 +1,55 @@
+@import '../../../../styles/common.scss';
+
+.textBlock {
+    border-radius: 24px;
+    background-color: $white;
+
+    .container {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .picture {
+        margin-right: 16px;
+    }
+
+    .message {
+        font-size: 18px;
+        line-height: (24/18);
+        color: $dark-blue;
+        opacity: 0.5;
+    }
+
+    @media (max-width: $breakpoint-desk) {
+        .message {
+            font-size: 16px;
+            line-height: (20/16);
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        border-radius: 12px;
+
+        .container {
+            padding: 14px 18px;
+        }
+
+        .message {
+            font-size: 14px;
+            line-height: (17/14);
+        }
+
+        .picture {
+            width: 36px;
+            height: 36px;
+            margin-right: 12px;
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xxs) {
+        .picture {
+            display: none;
+        }
+    }
+}

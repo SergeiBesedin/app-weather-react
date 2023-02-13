@@ -1,0 +1,74 @@
+@import '../../../../../styles/common.scss';
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-snap-align: start;
+
+    .time {
+        font-size: 24px;
+        line-height: (28/24);
+        color: $dark-blue;
+        margin-bottom: 10px;
+    }
+
+    .picture {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 11px;
+    }
+
+    .temp {
+        font-size: 38px;
+        line-height: (45/38);
+        color: $dark-blue;
+        white-space: nowrap;
+    }
+
+    @media (max-width: $breakpoint-desk) {
+        .time {
+            font-size: 20px;
+            line-height: (24/20);
+        }
+
+        .picture {
+            width: 50px;
+            height: 50px;
+        }
+
+        .temp {
+            font-size: 30px;
+            line-height: (36/30);
+        }
+    }
+
+    @media (max-width: $breakpoint-tab) {
+        .time {
+            font-size: 24px;
+            line-height: (28/24);
+        }
+
+        .temp {
+            font-size: 38px;
+            line-height: (45/38);
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        .time {
+            font-size: 14px;
+            line-height: (17/14);
+        }
+
+        .picture {
+            width: 34px;
+            height: 34px;
+        }
+
+        .temp {
+            font-size: 22px;
+            line-height: (26/22);
+        }
+    }
+}
