@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { useSettingsProvider } from '../../context/settings-context'
 import { useLocationProvider } from '../../context/location-context'
 import { useGetWeatherData } from '../../service/weather-data'
@@ -9,12 +8,13 @@ import {
     ForecastTomorrow,
     RecommendedClothing,
     SunriseSunsetTimes,
+    WeatherInCities,
 } from './tiles/index'
 import { ErrorComp } from './error-comp/error-comp'
 import { Loader } from '../ui/index'
 import styles from './content.module.scss'
 
-function Content() {
+export function Content() {
     const { units } = useSettingsProvider()
     const { location } = useLocationProvider()
 
@@ -34,7 +34,7 @@ function Content() {
         return <></>
     }
 
-    const { currentWeather, fiveDayForecast, weatherTomorrow } = weatherData
+    const { currentWeather, fiveDayForecast, weatherTomorrow, weatherInCities } = weatherData
 
     return (
         <div className={classNames}>
@@ -44,6 +44,7 @@ function Content() {
                     sunrise={currentWeather.sunrise}
                     sunset={currentWeather.sunset}
                 />
+                <WeatherInCities cities={weatherInCities} tempUnit={units.temp} />
                 <RecommendedClothing
                     feelsLikeTemp={currentWeather.temp.feels_like}
                     tempUnit={units.temp}
@@ -62,5 +63,3 @@ function Content() {
         </div>
     )
 }
-
-export default memo(Content)

@@ -4,3 +4,4 @@ export { default as ForecastTomorrow } from './forecast-tomorrow/forecast-tomorr
 export { default as HourlyForecast } from './hourly-forecast/hourly-forecast'
 export { default as RecommendedClothing } from './recommended-clothing/recommended-clothing'
 export { SunriseSunsetTimes } from './sunrise-sunset-times/sunrise-sunset-times'
+export { WeatherInCities } from './weather-in-cities/weather-in-cities'

@@ -4,7 +4,7 @@ import { useCarouselScrolling } from '../../../../hooks/carousel-scrolling'
 import { IWeather } from '../../../../typings/typings'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Button } from '../../../ui/index'
-import { HourlyForecastItem } from './hourly-forecast-item/hourly-forecast-item'
+import { Item } from './item/item'
 import styles from './hourly-forecast.module.scss'
 
 interface HourlyForecastProps {
@@ -59,7 +59,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     onScroll={debouncedCarouselScrolling}
                 >
                     {filteredItems.map((item) => (
-                        <HourlyForecastItem
+                        <Item
                             key={item.dt}
                             timestamp={item.dt}
                             weather={item.weather[0].main}

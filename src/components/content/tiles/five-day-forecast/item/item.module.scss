@@ -19,10 +19,6 @@
     .picture {
         width: 45px;
         height: 45px;
-
-        @media (max-width: $breakpoint-mob-xxs) {
-            display: none;
-        }
     }
 
     .temp {
@@ -89,6 +85,12 @@
             width: 100px;
             font-size: 18px;
             line-height: (21/18);
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xxs) {
+        .picture {
+            display: none;
         }
     }
 }

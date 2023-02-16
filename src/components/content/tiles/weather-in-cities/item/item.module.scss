@@ -1,0 +1,69 @@
+@import '../../../../../styles/common.scss';
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $dark-blue;
+
+    &:not(:last-child) {
+        margin-bottom: 12px;
+    }
+
+    .city {
+        font-size: 18px;
+        line-height: (24/18);
+    }
+
+    .picture {
+        width: 30px;
+        height: 30px;
+        margin-left: auto;
+    }
+
+    .temp {
+        display: flex;
+        justify-content: end;
+        width: 96px;
+        font-size: 24px;
+        line-height: (28/24);
+        margin-left: 16px;
+
+        .min {
+            opacity: 0.5;
+            margin-right: 8px;
+        }
+    }
+
+    @media (max-width: $breakpoint-tab) {
+        .city {
+            font-size: 24px;
+            line-height: (32/24);
+        }
+
+        .temp {
+            font-size: 28px;
+            line-height: (33/28);
+            width: 112px;
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        .city {
+            font-size: 16px;
+            line-height: (22/16);
+        }
+
+        .temp {
+            width: 76px;
+            font-size: 18px;
+            line-height: (21/18);
+        }
+    }
+
+    @media (max-width: $breakpoint-mob-xxs) {
+        .picture {
+            display: none;
+        }
+    }
+}
