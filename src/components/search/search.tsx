@@ -26,7 +26,7 @@ export function Search() {
     const focusOnInputDebounce = useDebouncedCallback(() => inputRef.current?.focus())
 
     const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value.trim())
+        setInputValue(e.target.value)
         setVisible(true)
     }
 
@@ -41,9 +41,11 @@ export function Search() {
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (inputValue === '') return
+        const value = inputValue.trim()
 
-        changeLocation(inputValue)
+        if (value === '') return
+
+        changeLocation(value)
         setVisible(false)
         setSearchOpen(false)
     }
