@@ -2,8 +2,6 @@ const SEARCH_HISTORY_KEY = 'search_history'
 
 const MAX_RECORDS = 4 // максимальное количество записей в историю
 
-// изначально задумывал функцию как кастомный хук, но в итоге выяснилось,
-// что useState здесь не нужен
 export function useSearchHistory() {
     const getHistory = (): Array<string> => {
         const storage = localStorage.getItem(SEARCH_HISTORY_KEY)
