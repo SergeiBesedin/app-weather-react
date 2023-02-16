@@ -17,7 +17,7 @@ export function useGetWeatherData(location: string) {
     const [loading, setLoading] = useState(false)
     const [errorStatus, setErrorStatus] = useState(200)
 
-    const { saveToHistory } = useSearchHistory()
+    const { removeLocationFromHistory } = useSearchHistory()
 
     const fetchCurrentWeather = async (
         city: string,
@@ -39,8 +39,6 @@ export function useGetWeatherData(location: string) {
             sunset: response.data.sys.sunset,
             timezone: response.data.timezone,
         }
-
-        saveToHistory(response.data.name)
 
         return { currentWeather }
     }
@@ -92,6 +90,11 @@ export function useGetWeatherData(location: string) {
                 const error = e as AxiosError
 
                 console.error(error)
+
+                if (error.response?.status === 404) {
+                    // если города не существует (получили ошибку), то удаляем запись о нем из истории
+                    removeLocationFromHistory()
+                }
 
                 setErrorStatus(error.response?.status || 401)
             })

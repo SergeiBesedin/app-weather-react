@@ -19,7 +19,7 @@ export function Search() {
 
     const { changeLocation } = useLocationProvider()
 
-    const { clearHistory } = useSearchHistory()
+    const { saveToHistory, clearHistory } = useSearchHistory()
 
     const onBlurHandlerDebounce = useDebouncedCallback(() => onBlurHandler(), 300)
 
@@ -46,6 +46,8 @@ export function Search() {
         if (value === '') return
 
         changeLocation(value)
+        saveToHistory(value)
+
         setVisible(false)
         setSearchOpen(false)
     }
@@ -53,6 +55,8 @@ export function Search() {
     const onHintClickHandler = (value: string) => {
         setInputValue(value)
         changeLocation(value)
+        saveToHistory(value)
+
         setSearchOpen(false)
         setVisible(false)
     }
