@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { IWeatherInOtherCities } from '../../../../typings/typings'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Item } from './item/item'
@@ -8,7 +9,7 @@ interface WeatherInCitiesProps {
     tempUnit: string
 }
 
-export function WeatherInCities({ cities, tempUnit }: WeatherInCitiesProps) {
+function WeatherInCities({ cities, tempUnit }: WeatherInCitiesProps) {
     return (
         <TileWrapper classes={[styles.weatherInCities]}>
             <ul className={styles.list}>
@@ -26,3 +27,5 @@ export function WeatherInCities({ cities, tempUnit }: WeatherInCitiesProps) {
         </TileWrapper>
     )
 }
+
+export default memo(WeatherInCities)

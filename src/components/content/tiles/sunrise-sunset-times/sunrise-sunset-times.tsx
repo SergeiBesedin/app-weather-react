@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { dateFormat, getLocalTime } from '../../../../utils/utils'
 import { getIcon } from '../../../../utils/get-icon'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
@@ -10,7 +11,7 @@ interface SunriseSunsetTimesProps {
     timezone: number
 }
 
-export function SunriseSunsetTimes({ sunrise, sunset, timezone }: SunriseSunsetTimesProps) {
+function SunriseSunsetTimes({ sunrise, sunset, timezone }: SunriseSunsetTimesProps) {
     const sunriseTime = dateFormat(getLocalTime(sunrise, timezone), {
         hour: '2-digit',
         minute: '2-digit',
@@ -41,3 +42,5 @@ export function SunriseSunsetTimes({ sunrise, sunset, timezone }: SunriseSunsetT
         </TileWrapper>
     )
 }
+
+export default memo(SunriseSunsetTimes)

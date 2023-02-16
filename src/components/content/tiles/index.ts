@@ -3,5 +3,5 @@ export { default as FiveDayForecast } from './five-day-forecast/five-day-forecas
 export { default as ForecastTomorrow } from './forecast-tomorrow/forecast-tomorrow'
 export { default as HourlyForecast } from './hourly-forecast/hourly-forecast'
 export { default as RecommendedClothing } from './recommended-clothing/recommended-clothing'
-export { SunriseSunsetTimes } from './sunrise-sunset-times/sunrise-sunset-times'
-export { WeatherInCities } from './weather-in-cities/weather-in-cities'
+export { default as SunriseSunsetTimes } from './sunrise-sunset-times/sunrise-sunset-times'
+export { default as WeatherInCities } from './weather-in-cities/weather-in-cities'
