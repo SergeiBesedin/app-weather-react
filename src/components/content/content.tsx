@@ -38,29 +38,30 @@ export function Content() {
 
     return (
         <div className={classNames}>
-            <div className={styles.leftColumn}>
-                <CurrentWeather {...currentWeather} units={units} />
-                <SunriseSunsetTimes
-                    sunrise={currentWeather.sunrise}
-                    sunset={currentWeather.sunset}
-                    timezone={currentWeather.timezone}
-                />
-                <WeatherInCities cities={weatherInCities} tempUnit={units.temp} />
-                <RecommendedClothing
-                    feelsLikeTemp={currentWeather.temp.feels_like}
-                    tempUnit={units.temp}
-                />
-            </div>
+            <CurrentWeather {...currentWeather} units={units} />
 
-            <div className={styles.rightColumn}>
-                <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
-                <ForecastTomorrow
-                    curTemp={currentWeather.temp.temp}
-                    tempUnit={units.temp}
-                    list={weatherTomorrow}
-                />
-                <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
-            </div>
+            <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
+
+            <SunriseSunsetTimes
+                sunrise={currentWeather.sunrise}
+                sunset={currentWeather.sunset}
+                timezone={currentWeather.timezone}
+            />
+
+            <WeatherInCities cities={weatherInCities} tempUnit={units.temp} />
+
+            <ForecastTomorrow
+                curTemp={currentWeather.temp.temp}
+                tempUnit={units.temp}
+                list={weatherTomorrow}
+            />
+
+            <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
+
+            <RecommendedClothing
+                feelsLikeTemp={currentWeather.temp.feels_like}
+                tempUnit={units.temp}
+            />
         </div>
     )
 }

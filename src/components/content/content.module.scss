@@ -1,40 +1,22 @@
 @import '../../styles/common.scss';
 
 .content {
-    display: flex;
-    justify-content: space-between;
-
-    .leftColumn,
-    .rightColumn {
-        display: flex;
-        flex-direction: column;
-        width: calc(50% - 14px);
-        row-gap: 28px;
-    }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        'cw hf'
+        'cw ft'
+        'ss fd'
+        'wc fd'
+        'rc fd';
+    gap: 28px;
 
     @media (max-width: $breakpoint-desk) {
         gap: 20px;
-
-        .leftColumn,
-        .rightColumn {
-            row-gap: 20px;
-        }
-
-        .leftColumn {
-            width: calc(47% - 10px);
-        }
-
-        .rightColumn {
-            width: calc(53% - 10px);
-        }
     }
 
     @media (max-width: $breakpoint-tab) {
+        display: flex;
         flex-direction: column;
-
-        .leftColumn,
-        .rightColumn {
-            width: 100%;
-        }
     }
 }

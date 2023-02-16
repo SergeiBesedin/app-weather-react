@@ -1,6 +1,8 @@
 @import '../../../../styles/common.scss';
 
 .sunriseSunsetTimes {
+    grid-area: ss;
+
     h3 {
         color: $dark-blue;
         margin-bottom: 20px;
