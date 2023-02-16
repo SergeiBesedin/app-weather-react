@@ -14,6 +14,10 @@ export function dateFormat(date: number | string | Date, params?: DateTimeFormat
     return new Intl.DateTimeFormat('ru', options).format(new Date(date))
 }
 
+export function getLocalTime(time: number, timezone: number): number {
+    return (time + timezone - 10800) * 1000
+}
+
 export function getTomorrowDate(): string {
     const tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1)
