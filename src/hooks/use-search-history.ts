@@ -15,10 +15,12 @@ export function useSearchHistory() {
         return []
     }
 
-    const saveToHistory = (location: string) => {
+    const saveToHistory = (location: string): void => {
         const history = getHistory()
 
-        if (history.includes(location)) {
+        const city = location.toLowerCase()
+
+        if (history.includes(city)) {
             return
         }
 
@@ -26,12 +28,20 @@ export function useSearchHistory() {
             history.pop()
         }
 
-        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([location, ...history]))
+        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([city, ...history]))
     }
 
-    const clearHistory = () => {
+    const removeLocationFromHistory = (): void => {
+        const history = getHistory()
+
+        history.shift()
+
+        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([...history]))
+    }
+
+    const clearHistory = (): void => {
         localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([]))
     }
 
-    return { getHistory, saveToHistory, clearHistory }
+    return { getHistory, saveToHistory, removeLocationFromHistory, clearHistory }
 }
