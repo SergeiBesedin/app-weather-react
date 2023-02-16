@@ -1,7 +1,7 @@
 import { dateFormat } from '../../../../utils/utils'
+import { getIcon } from '../../../../utils/get-icon'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Image } from '../../../ui/index'
-import { getIcon } from '../../../../utils/get-icon'
 import styles from './sunrise-sunset-times.module.scss'
 
 interface SunriseSunsetTimesProps {
@@ -24,7 +24,7 @@ export function SunriseSunsetTimes({ sunrise, sunset }: SunriseSunsetTimesProps)
         <TileWrapper classes={[styles.sunriseSunsetTimes]}>
             <div className={styles.wrapper}>
                 <div className={styles.sunrise}>
-                    <Image alt="восход" src={getIcon('sunrise')} classes={[styles.picture]} />
+                    <Image alt="sunrise" src={getIcon('sunrise')} classes={[styles.picture]} />
                     <div className={styles.title}>Восход</div>
                     <div className={styles.time}>{sunriseTime}</div>
                 </div>
@@ -32,7 +32,7 @@ export function SunriseSunsetTimes({ sunrise, sunset }: SunriseSunsetTimesProps)
                 <div className={styles.arrow}></div>
 
                 <div className={styles.sunset}>
-                    <Image alt="закат" src={getIcon('sunset')} classes={[styles.picture]} />
+                    <Image alt="sunset" src={getIcon('sunset')} classes={[styles.picture]} />
                     <div className={styles.title}>Закат</div>
                     <div className={styles.time}>{sunsetTime}</div>
                 </div>

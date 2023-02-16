@@ -26,6 +26,7 @@ export type Sys = {
 }
 
 export interface IWeather {
+    id: number
     name: string // название города
     dt: number // время расчета данных (timestamp)
     dt_txt: string // время расчета данных (UTC)
@@ -49,6 +50,7 @@ export interface IWeather {
 
 // плитка с погодой на текущий день
 export interface ICurrentWeather {
+    id: number
     city: string
     weatherName: string
     weatherDesc: string

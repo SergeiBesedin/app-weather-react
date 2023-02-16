@@ -1,12 +1,19 @@
 @import '../../../../styles/common.scss';
 
 .tile {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     border-radius: 32px;
     background-color: $white;
     position: relative;
     overflow: hidden;
 
     .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
         padding: 28px;
 
         h3 {

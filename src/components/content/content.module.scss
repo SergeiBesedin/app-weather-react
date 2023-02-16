@@ -3,42 +3,38 @@
 .content {
     display: flex;
     justify-content: space-between;
-}
-
-.leftColumn,
-.rightColumn {
-    display: flex;
-    flex-direction: column;
-    width: calc(50% - 14px);
-    row-gap: 28px;
-}
-
-@media (max-width: $breakpoint-desk) {
-    .content {
-        gap: 20px;
-    }
 
     .leftColumn,
     .rightColumn {
-        row-gap: 20px;
-    }
-
-    .leftColumn {
-        width: calc(47% - 10px);
-    }
-
-    .rightColumn {
-        width: calc(53% - 10px);
-    }
-}
-
-@media (max-width: $breakpoint-tab) {
-    .content {
+        display: flex;
         flex-direction: column;
+        width: calc(50% - 14px);
+        row-gap: 28px;
     }
 
-    .leftColumn,
-    .rightColumn {
-        width: 100%;
+    @media (max-width: $breakpoint-desk) {
+        gap: 20px;
+
+        .leftColumn,
+        .rightColumn {
+            row-gap: 20px;
+        }
+
+        .leftColumn {
+            width: calc(47% - 10px);
+        }
+
+        .rightColumn {
+            width: calc(53% - 10px);
+        }
+    }
+
+    @media (max-width: $breakpoint-tab) {
+        flex-direction: column;
+
+        .leftColumn,
+        .rightColumn {
+            width: 100%;
+        }
     }
 }

@@ -1,21 +1,16 @@
 import { unitFormat, dateFormat } from '../../../../../utils/utils'
 import { getIcon } from '../../../../../utils/get-icon'
 import { Image } from '../../../../ui/index'
-import styles from './hourly-forecast-item.module.scss'
+import styles from './item.module.scss'
 
-interface HourlyForecastItemProps {
+interface ItemProps {
     timestamp: number
     temp: number
     weather: string
     tempUnit: string
 }
 
-export function HourlyForecastItem({
-    timestamp,
-    temp,
-    weather,
-    tempUnit,
-}: HourlyForecastItemProps) {
+export function Item({ timestamp, temp, weather, tempUnit }: ItemProps) {
     const temperature = unitFormat(temp, tempUnit)
     const time = dateFormat(timestamp * 1000, {
         hour: '2-digit',

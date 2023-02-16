@@ -5,7 +5,7 @@ import clouds from '../assets/icons/main-images/clouds.svg'
 import rain from '../assets/icons/main-images/rain.svg'
 import snow from '../assets/icons/main-images/snow.svg'
 import thunder from '../assets/icons/main-images/thunder.svg'
-import fog from '../assets/icons/main-images/fog.svg'
+import mist from '../assets/icons/main-images/mist.svg'
 import drizzle from '../assets/icons/main-images/drizzle.svg'
 // Маленькие иконки
 import clearMini from '../assets/icons/mini-images/clear.svg'
@@ -13,6 +13,7 @@ import cloudsMini from '../assets/icons/mini-images/clouds.svg'
 // import partlyCloudyMini from '../assets/icons/mini-images/partly-cloudy.svg'
 import rainMini from '../assets/icons/mini-images/rain.svg'
 import snowMini from '../assets/icons/mini-images/snow.svg'
+import fogMini from '../assets/icons/mini-images/fog.svg'
 // Иконки для блока с прогнозом на завтра
 import clearTomorrow from '../assets/icons/forecast-tomorrow/clear.svg'
 import rainTomorrow from '../assets/icons/forecast-tomorrow/rain.svg'
@@ -34,7 +35,9 @@ export function getIcon(weather: string) {
         snow,
         thunder,
         clear,
-        fog,
+        mist,
+        fog: mist,
+        smoke: mist,
         drizzle,
         // 'partly-сloudy': partlyCloudy,
 
@@ -43,6 +46,9 @@ export function getIcon(weather: string) {
         // partlyCloudyMini,
         rainMini,
         snowMini,
+        fogMini,
+        mistMini: fogMini,
+        smokeMini: fogMini,
 
         clearTomorrow,
         rainTomorrow,
