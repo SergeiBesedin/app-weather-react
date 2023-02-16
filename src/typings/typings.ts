@@ -33,6 +33,7 @@ export interface IWeather {
     visibility: number // видимость, метр. Максимальное значение видимости = 10км
     main: Temp
     sys: Sys
+    timezone: number
     wind: Wind
     weather: Array<Weather>
     clouds: {
@@ -59,6 +60,7 @@ export interface ICurrentWeather {
     dateTime: number
     sunrise: number
     sunset: number
+    timezone: number
 }
 
 // плитка с прогнозом на пять дней

@@ -43,6 +43,7 @@ export function Content() {
                 <SunriseSunsetTimes
                     sunrise={currentWeather.sunrise}
                     sunset={currentWeather.sunset}
+                    timezone={currentWeather.timezone}
                 />
                 <WeatherInCities cities={weatherInCities} tempUnit={units.temp} />
                 <RecommendedClothing

@@ -1,4 +1,4 @@
-import { dateFormat } from '../../../../utils/utils'
+import { dateFormat, getLocalTime } from '../../../../utils/utils'
 import { getIcon } from '../../../../utils/get-icon'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Image } from '../../../ui/index'
@@ -7,15 +7,16 @@ import styles from './sunrise-sunset-times.module.scss'
 interface SunriseSunsetTimesProps {
     sunrise: number
     sunset: number
+    timezone: number
 }
 
-export function SunriseSunsetTimes({ sunrise, sunset }: SunriseSunsetTimesProps) {
-    const sunriseTime = dateFormat(sunrise * 1000, {
+export function SunriseSunsetTimes({ sunrise, sunset, timezone }: SunriseSunsetTimesProps) {
+    const sunriseTime = dateFormat(getLocalTime(sunrise, timezone), {
         hour: '2-digit',
         minute: '2-digit',
     })
 
-    const sunsetTime = dateFormat(sunset * 1000, {
+    const sunsetTime = dateFormat(getLocalTime(sunset, timezone), {
         hour: '2-digit',
         minute: '2-digit',
     })
