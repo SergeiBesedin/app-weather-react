@@ -63,6 +63,15 @@ export interface ICurrentWeather {
     timezone: number
 }
 
+// плитка с погодой в других городах (Москва, Новосибирск, Владивосток)
+export interface IWeatherInOtherCities {
+    id: number
+    city: string
+    weatherName: string
+    tempMax: number
+    tempMin: number
+}
+
 // плитка с прогнозом на пять дней
 export interface IFiveDayForecast {
     cnt: number // Количество меток времени, возвращенных в ответе API

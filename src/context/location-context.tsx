@@ -2,11 +2,18 @@ import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
 import { axiosDaData } from '../axios/axios'
 import constate from 'constate'
+import { useDataStorage } from '../hooks/use-data-storage'
 
 const USER_LOCATION_KEY = 'user_location'
+const EXPIRED_LIMIT = 604800 * 1000 // обновление местоположения раз в неделю
 
 const useLocationState = () => {
     const [location, setLocation] = useState('Москва')
+
+    const { checkStorage, saveDataToStorage } = useDataStorage<string>(
+        USER_LOCATION_KEY,
+        EXPIRED_LIMIT,
+    )
 
     const changeLocation = (value: string) => {
         if (location.toLowerCase() === value.toLowerCase()) return
@@ -15,24 +22,21 @@ const useLocationState = () => {
     }
 
     const getUserLocation = (): void => {
-        const location = checkLocationInStorage()
+        const location = checkStorage()
 
         if (location) {
             setLocation(location)
-        } else {
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                // выполняется, если пользователей дает доступ к местоположению
-                const city = await getCityName(position.coords.latitude, position.coords.longitude)
-
-                localStorage.setItem(USER_LOCATION_KEY, city)
-
-                setLocation(city)
-            })
+            return
         }
-    }
 
-    const checkLocationInStorage = (): string | null => {
-        return localStorage.getItem(USER_LOCATION_KEY)
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            // выполняется, если пользователей дает доступ к местоположению
+            const city = await getCityName(position.coords.latitude, position.coords.longitude)
+
+            saveDataToStorage(city)
+
+            setLocation(city)
+        })
     }
 
     const getCityName = async (lat: number, lon: number): Promise<string> => {

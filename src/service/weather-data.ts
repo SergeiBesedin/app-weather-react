@@ -1,16 +1,25 @@
 import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
 import { axiosOpenWeather } from '../axios/axios'
-import { IWeather, IFiveDayForecast, ICurrentWeather } from '../typings/typings'
+import {
+    IWeather,
+    IFiveDayForecast,
+    ICurrentWeather,
+    IWeatherInOtherCities,
+} from '../typings/typings'
 import { useSearchHistory } from '../hooks/use-search-history'
+import { useDataStorage } from '../hooks/use-data-storage'
 import { getTomorrowDate } from '../utils/utils'
 
 type WeatherData = {
     currentWeather: ICurrentWeather
     fiveDayForecast: Array<IWeather>
     weatherTomorrow: Array<IWeather>
-    weatherInCities: Array<ICurrentWeather>
+    weatherInCities: Array<IWeatherInOtherCities>
 }
+
+const WEATHER_KEY = 'weather_in_cities'
+const EXPIRED_LIMIT = 3600 * 1000 // обновление данных каждый час
 
 export function useGetWeatherData(location: string) {
     const [weatherData, setWeatherData] = useState<WeatherData>()
@@ -18,6 +27,11 @@ export function useGetWeatherData(location: string) {
     const [errorStatus, setErrorStatus] = useState(200)
 
     const { removeLocationFromHistory } = useSearchHistory()
+
+    const { checkStorage, saveDataToStorage } = useDataStorage<Array<IWeatherInOtherCities>>(
+        WEATHER_KEY,
+        EXPIRED_LIMIT,
+    )
 
     const fetchCurrentWeather = async (
         city: string,
@@ -43,6 +57,42 @@ export function useGetWeatherData(location: string) {
         return { currentWeather }
     }
 
+    const fetchWeatherInOtherCities = async () => {
+        // циклом запрашиваем погоду для городов из массива
+        const cities = ['Москва', 'Новосибирск', 'Владивосток']
+
+        const data = checkStorage()
+        // Для снижения нагрузки на сервис данные сохраняются в хранилище
+        // Если данные есть в хранилище и срок их хранения не истек, то берем их оттуда
+        // Данные обновляются каждый час
+
+        if (data) {
+            return data
+        }
+
+        const weatherInCities: Array<IWeatherInOtherCities> = []
+
+        for (const city of cities) {
+            const url = `weather?q=${city}`
+
+            const response = await axiosOpenWeather.get<IWeather>(url)
+
+            const data = {
+                id: response.data.id,
+                city: response.data.name,
+                weatherName: response.data.weather[0].main,
+                tempMax: response.data.main.temp_max,
+                tempMin: response.data.main.temp_min,
+            }
+
+            weatherInCities.push(data)
+        }
+
+        saveDataToStorage(weatherInCities)
+
+        return weatherInCities
+    }
+
     const fetchFiveDayForecast = async (
         city: string,
     ): Promise<{
@@ -61,14 +111,6 @@ export function useGetWeatherData(location: string) {
         return items.filter((item) => item.dt_txt?.includes(getTomorrowDate()))
     }
 
-    const fetchWeatherInCities = (): Promise<Array<ICurrentWeather>> => {
-        return Promise.all([
-            fetchCurrentWeather('Москва'),
-            fetchCurrentWeather('Новосибирск'),
-            fetchCurrentWeather('Владивосток'),
-        ]).then((data) => data.map((el) => el.currentWeather))
-    }
-
     const fetchAllData = (): void => {
         setErrorStatus(200)
         setLoading(true)
@@ -76,7 +118,7 @@ export function useGetWeatherData(location: string) {
         Promise.all([
             fetchCurrentWeather(location),
             fetchFiveDayForecast(location),
-            fetchWeatherInCities(),
+            fetchWeatherInOtherCities(),
         ])
             .then((data) => {
                 setWeatherData({
