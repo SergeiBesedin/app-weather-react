@@ -45,8 +45,13 @@ export function generateForecastTomorrowMessage(
     }
 
     getTempDifference(curTemp, tempUnit, list, message)
+
     getRainOrSnowTime(typeOfPrecipitation.rain, rain, message)
     getRainOrSnowTime(typeOfPrecipitation.snow, snow, message)
+
+    if (!rain.length && !snow.length) {
+        message.push('осадков не ожидается')
+    }
 
     return { icon, message: message.join('; ') }
 }
