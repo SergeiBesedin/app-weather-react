@@ -7,7 +7,6 @@ import {
     ICurrentWeather,
     IWeatherInOtherCities,
 } from '../typings/typings'
-import { useSearchHistory } from '../hooks/use-search-history'
 import { useDataStorage } from '../hooks/use-data-storage'
 import { getTomorrowDate } from '../utils/utils'
 
@@ -25,8 +24,6 @@ export function useGetWeatherData(location: string) {
     const [weatherData, setWeatherData] = useState<WeatherData>()
     const [loading, setLoading] = useState(false)
     const [errorStatus, setErrorStatus] = useState(200)
-
-    const { removeLocationFromHistory } = useSearchHistory()
 
     const { checkStorage, saveDataToStorage } = useDataStorage<Array<IWeatherInOtherCities>>(
         WEATHER_KEY,
@@ -132,11 +129,6 @@ export function useGetWeatherData(location: string) {
                 const error = e as AxiosError
 
                 console.error(error)
-
-                if (error.response?.status === 404) {
-                    // если города не существует (получили ошибку), то удаляем запись о нем из истории
-                    removeLocationFromHistory()
-                }
 
                 setErrorStatus(error.response?.status || 401)
             })

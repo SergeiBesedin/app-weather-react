@@ -29,17 +29,9 @@ export function useSearchHistory() {
         localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([city, ...history]))
     }
 
-    const removeLocationFromHistory = (): void => {
-        const history = getHistory()
-
-        history.shift()
-
-        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([...history]))
-    }
-
     const clearHistory = (): void => {
         localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([]))
     }
 
-    return { getHistory, saveToHistory, removeLocationFromHistory, clearHistory }
+    return { getHistory, saveToHistory, clearHistory }
 }
