@@ -70,6 +70,10 @@
     }
 
     @media (max-width: $breakpoint-mob-xs) {
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+
         .day {
             width: 100px;
             font-size: 16px;

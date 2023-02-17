@@ -1,7 +1,6 @@
 @import '../../../../styles/common.scss';
 
 .textBlock {
-    display: flex;
     border-radius: 24px;
     background-color: $white;
 
@@ -31,20 +30,22 @@
 
     @media (max-width: $breakpoint-mob-xs) {
         border-radius: 12px;
+        background-color: $light-grey;
+
+        .wrapper {
+            background-color: $white;
+            padding: 0 20px;
+        }
 
         .container {
             padding: 14px 18px;
+            background-color: $light-grey;
+            border-radius: 12px;
         }
 
         .message {
             font-size: 14px;
             line-height: (17/14);
-        }
-
-        .picture {
-            width: 36px;
-            height: 36px;
-            margin-right: 12px;
         }
     }
 

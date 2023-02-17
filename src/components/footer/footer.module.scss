@@ -1,12 +1,25 @@
 @import '../../styles/common.scss';
 
 .footer {
-    background-color: $white;
-    box-shadow: 0 0 16px 2px rgba(102, 148, 191, 0.1), 0 9px 13px -6px rgba(102, 148, 191, 0.05);
-}
+    background-color: $light-grey;
 
-.copyright {
-    display: flex;
-    justify-content: center;
-    color: $blue-2;
+    .copyright {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        color: $dark-blue;
+        font-size: 12px;
+        line-height: (14/12);
+    }
+
+    @media (min-width: $breakpoint-mob-xs + 1px) {
+        background-color: $white;
+        box-shadow: 0 0 16px 2px rgba(102, 148, 191, 0.1), 0 9px 13px -6px rgba(102, 148, 191, 0.05);
+
+        .copyright {
+            font-size: 18px;
+            line-height: (21/18);
+            color: $blue-2;
+        }
+    }
 }

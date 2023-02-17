@@ -13,9 +13,11 @@ export function TextBlock({ classes, message, img }: TextBlockProps) {
 
     return (
         <div className={classNames}>
-            <div className={styles.container}>
-                <Image alt={img} src={getIcon(img)} classes={[styles.picture]} />
-                <p className={styles.message}>{message}</p>
+            <div className={styles.wrapper}>
+                <div className={styles.container}>
+                    <Image alt={img} src={getIcon(img)} classes={[styles.picture]} />
+                    <p className={styles.message}>{message}</p>
+                </div>
             </div>
         </div>
     )

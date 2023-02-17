@@ -1,8 +1,11 @@
 @import '../../styles/common.scss';
 
 .content {
+    padding: 24px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: calc(50% - 14px) calc(50% - 14px);
     grid-template-areas:
         'cw hf'
         'cw ft'
@@ -12,11 +15,23 @@
     gap: 28px;
 
     @media (max-width: $breakpoint-desk) {
+        padding: 24px 32px;
         gap: 20px;
+        grid-template-columns: calc(47% - 10px) calc(53% - 10px);
     }
 
     @media (max-width: $breakpoint-tab) {
+        padding: 24px;
         display: flex;
         flex-direction: column;
+    }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        padding: 24px 0;
+        gap: 0;
+    }
+
+    @media (max-width: $breakpoint-mob-xxs) {
+        padding: 20px 0;
     }
 }

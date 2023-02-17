@@ -7,4 +7,13 @@
         color: $dark-blue;
         margin-bottom: 20px;
     }
+
+    @media (max-width: $breakpoint-mob-xs) {
+        border-radius: 0 0 24px 24px;
+        padding-top: 20px;
+
+        h3 {
+            margin-bottom: 14px;
+        }
+    }
 }

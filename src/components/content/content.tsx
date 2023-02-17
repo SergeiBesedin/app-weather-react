@@ -20,8 +20,6 @@ export function Content() {
 
     const { weatherData, loading, errorStatus } = useGetWeatherData(location)
 
-    const classNames = [styles.content, 'container'].join(' ')
-
     if (loading) {
         return <Loader />
     }
@@ -37,10 +35,15 @@ export function Content() {
     const { currentWeather, fiveDayForecast, weatherTomorrow, weatherInCities } = weatherData
 
     return (
-        <div className={classNames}>
+        <div className={styles.content}>
             <CurrentWeather {...currentWeather} units={units} />
 
             <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
+
+            <RecommendedClothing
+                feelsLikeTemp={currentWeather.temp.feels_like}
+                tempUnit={units.temp}
+            />
 
             <SunriseSunsetTimes
                 sunrise={currentWeather.sunrise}
@@ -57,11 +60,6 @@ export function Content() {
             />
 
             <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
-
-            <RecommendedClothing
-                feelsLikeTemp={currentWeather.temp.feels_like}
-                tempUnit={units.temp}
-            />
         </div>
     )
 }
