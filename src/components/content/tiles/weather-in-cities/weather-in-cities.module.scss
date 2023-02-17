@@ -1,2 +1,9 @@
+@import '../../../../styles/common.scss';
+
 .weatherInCities {
+    grid-area: wc;
+
+    @media (max-width: $breakpoint-mob-xs) {
+        padding-bottom: 15px;
+    }
 }

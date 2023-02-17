@@ -4,17 +4,13 @@
     position: relative;
     margin-left: 20px;
 
-    @media (max-width: $breakpoint-tab) {
-        margin-left: 15px;
-    }
-
     .actions {
         display: flex;
     }
 
-    .settings {
-        svg {
-            @media (min-width: $breakpoint-tab + 1px) {
+    @media (min-width: $breakpoint-tab + 1px) {
+        .settings {
+            svg {
                 width: 34px;
                 height: 34px;
             }

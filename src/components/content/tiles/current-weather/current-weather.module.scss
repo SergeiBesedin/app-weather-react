@@ -5,6 +5,12 @@
     flex-direction: column;
     background: linear-gradient(254.11deg, #6ab7ff 22.16%, #cbe6ff 103.68%);
     overflow: hidden;
+    grid-area: cw;
+
+    @media (max-width: $breakpoint-mob-xs) {
+        margin-bottom: 16px;
+        border-radius: 24px;
+    }
 
     h3 {
         color: $white;

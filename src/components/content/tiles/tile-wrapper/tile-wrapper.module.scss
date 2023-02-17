@@ -46,6 +46,8 @@
     }
 
     @media (max-width: $breakpoint-mob-xs) {
+        border-radius: 0;
+
         .container {
             padding: 20px;
 

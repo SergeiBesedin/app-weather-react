@@ -1,5 +1,3 @@
-import styles from './image.module.scss'
-
 interface ImageProps {
     src: string
     alt: string
@@ -7,7 +5,7 @@ interface ImageProps {
 }
 
 export function Image({ src, alt, classes }: ImageProps) {
-    const classNames = [styles.custom, ...classes].join(' ')
+    const classNames = [...classes].join(' ')
 
     return <img className={classNames} src={src} alt={alt} />
 }

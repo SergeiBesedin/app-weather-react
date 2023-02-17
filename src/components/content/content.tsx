@@ -20,8 +20,6 @@ export function Content() {
 
     const { weatherData, loading, errorStatus } = useGetWeatherData(location)
 
-    const classNames = [styles.content, 'container'].join(' ')
-
     if (loading) {
         return <Loader />
     }
@@ -37,30 +35,31 @@ export function Content() {
     const { currentWeather, fiveDayForecast, weatherTomorrow, weatherInCities } = weatherData
 
     return (
-        <div className={classNames}>
-            <div className={styles.leftColumn}>
-                <CurrentWeather {...currentWeather} units={units} />
-                <SunriseSunsetTimes
-                    sunrise={currentWeather.sunrise}
-                    sunset={currentWeather.sunset}
-                    timezone={currentWeather.timezone}
-                />
-                <WeatherInCities cities={weatherInCities} tempUnit={units.temp} />
-                <RecommendedClothing
-                    feelsLikeTemp={currentWeather.temp.feels_like}
-                    tempUnit={units.temp}
-                />
-            </div>
+        <div className={styles.content}>
+            <CurrentWeather {...currentWeather} units={units} />
 
-            <div className={styles.rightColumn}>
-                <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
-                <ForecastTomorrow
-                    curTemp={currentWeather.temp.temp}
-                    tempUnit={units.temp}
-                    list={weatherTomorrow}
-                />
-                <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
-            </div>
+            <HourlyForecast items={fiveDayForecast} tempUnit={units.temp} />
+
+            <RecommendedClothing
+                feelsLikeTemp={currentWeather.temp.feels_like}
+                tempUnit={units.temp}
+            />
+
+            <SunriseSunsetTimes
+                sunrise={currentWeather.sunrise}
+                sunset={currentWeather.sunset}
+                timezone={currentWeather.timezone}
+            />
+
+            <WeatherInCities cities={weatherInCities} tempUnit={units.temp} />
+
+            <ForecastTomorrow
+                curTemp={currentWeather.temp.temp}
+                tempUnit={units.temp}
+                list={weatherTomorrow}
+            />
+
+            <FiveDayForecast items={fiveDayForecast} tempUnit={units.temp} />
         </div>
     )
 }
