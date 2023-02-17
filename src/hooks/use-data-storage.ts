@@ -3,6 +3,7 @@ type StorageData<T> = {
     data: T
 }
 
+// Методы для работы с хранилищем
 export function useDataStorage<T>(key: string, expiredLimit: number) {
     const checkStorage = (): T | null => {
         const data = getDataFromStorage()
@@ -30,5 +31,9 @@ export function useDataStorage<T>(key: string, expiredLimit: number) {
         )
     }
 
-    return { checkStorage, saveDataToStorage }
+    const clearStorage = (): void => {
+        localStorage.removeItem(key)
+    }
+
+    return { checkStorage, saveDataToStorage, clearStorage }
 }

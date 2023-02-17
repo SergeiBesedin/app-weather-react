@@ -1,16 +1,21 @@
+import { useDataStorage } from '../hooks/use-data-storage'
+
 const SEARCH_HISTORY_KEY = 'search_history'
+
+const EXPIRED_LIMIT = 604800 * 1000 // обновление данных раз в неделю
 
 const MAX_RECORDS = 4 // максимальное количество записей в историю
 
 export function useSearchHistory() {
+    const { checkStorage, saveDataToStorage, clearStorage } = useDataStorage<Array<string>>(
+        SEARCH_HISTORY_KEY,
+        EXPIRED_LIMIT,
+    )
+
     const getHistory = (): Array<string> => {
-        const storage = localStorage.getItem(SEARCH_HISTORY_KEY)
+        const storage = checkStorage()
 
-        if (storage) {
-            return JSON.parse(storage)
-        }
-
-        return []
+        return storage ?? []
     }
 
     const saveToHistory = (location: string): void => {
@@ -26,12 +31,10 @@ export function useSearchHistory() {
             history.pop()
         }
 
-        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([city, ...history]))
+        saveDataToStorage([city, ...history])
     }
 
-    const clearHistory = (): void => {
-        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify([]))
-    }
+    const clearHistory = (): void => clearStorage()
 
     return { getHistory, saveToHistory, clearHistory }
 }
