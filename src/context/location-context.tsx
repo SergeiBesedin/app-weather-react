@@ -7,8 +7,10 @@ import { useDataStorage } from '../hooks/use-data-storage'
 const USER_LOCATION_KEY = 'user_location'
 const EXPIRED_LIMIT = 604800 * 1000 // обновление местоположения раз в неделю
 
+const initialValue = 'Москва'
+
 const useLocationState = () => {
-    const [location, setLocation] = useState('Москва')
+    const [location, setLocation] = useState(initialValue)
 
     const { checkStorage, saveDataToStorage } = useDataStorage<string>(
         USER_LOCATION_KEY,
@@ -19,6 +21,12 @@ const useLocationState = () => {
         if (location.toLowerCase() === value.toLowerCase()) return
 
         setLocation(value)
+    }
+
+    const changeLocationToDefault = () => {
+        const defaultLocation = checkStorage()
+
+        changeLocation(defaultLocation ?? initialValue)
     }
 
     const getUserLocation = (): void => {
@@ -61,7 +69,7 @@ const useLocationState = () => {
         getUserLocation()
     }, [])
 
-    return { location, changeLocation }
+    return { location, changeLocation, changeLocationToDefault }
 }
 
 export const [LocationProvider, useLocationProvider] = constate(useLocationState)

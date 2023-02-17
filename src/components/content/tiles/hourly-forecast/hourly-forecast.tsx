@@ -1,6 +1,6 @@
 import { memo, useRef } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
-import { useCarouselScrolling } from '../../../../hooks/carousel-scrolling'
+import { useCarouselScrolling } from '../../../../hooks/use-carousel-scrolling'
 import { IWeather } from '../../../../typings/typings'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Button } from '../../../ui/index'
