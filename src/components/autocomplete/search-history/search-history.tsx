@@ -11,16 +11,16 @@ interface SearchHistoryProps {
 export function SearchHistory({ history, clickOnHint, clearHistory }: SearchHistoryProps) {
     const title = 'История поиска'
 
-    // TODO изменить key
-
     return (
         <div className={styles.history}>
             <h3>{title}</h3>
+
             <ul>
                 {history.map((item, index) => (
                     <HistoryItem key={index} item={item} clickOnHint={clickOnHint} />
                 ))}
             </ul>
+
             <div className={styles.bottom}>
                 <Button
                     type={'button'}
