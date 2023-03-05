@@ -131,6 +131,7 @@ export function useGetWeatherData(location: string) {
 
     useEffect(() => {
         fetchAllData()
+        // eslint-disable-next-line
     }, [location])
 
     return { weatherData, errorStatus, loading }

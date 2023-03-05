@@ -63,6 +63,7 @@ const useLocationState = () => {
     // При первом рендере пытаемся узнать местоположение пользователя
     useEffect(() => {
         getUserLocation()
+        // eslint-disable-next-line
     }, [])
 
     return { location, changeLocation, changeLocationToDefault }

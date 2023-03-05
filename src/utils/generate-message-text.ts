@@ -67,8 +67,10 @@ function getTempDifference(
         tempUnit === 'fahrenheit' ? Math.round(curTemp * (9 / 5) + 32) : Math.round(curTemp)
     const tempTomorrow =
         tempUnit === 'fahrenheit'
-            ? Math.round(listItem!.main.temp * (9 / 5) + 32)
-            : Math.round(listItem!.main.temp)
+            ? // eslint-disable-next-line
+              Math.round(listItem!.main.temp * (9 / 5) + 32)
+            : // eslint-disable-next-line
+              Math.round(listItem!.main.temp)
 
     const difference = Math.abs(tempCurrent - tempTomorrow) // получаем разницу в температуре
 
