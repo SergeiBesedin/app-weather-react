@@ -1,14 +1,18 @@
 type StorageData<T> = {
-    expired: number
     data: T
+    expired?: number
 }
 
 // Методы для работы с хранилищем
-export function useDataStorage<T>(key: string, expiredLimit: number) {
+export function useDataStorage<T>(key: string, expiredLimit?: number) {
     const checkStorage = (): T | null => {
         const data = getDataFromStorage()
 
-        if (!data || data.expired < Date.now() - expiredLimit) {
+        if (!data) {
+            return null
+        }
+
+        if (expiredLimit && data.expired && data.expired < Date.now() - expiredLimit) {
             return null
         }
 
@@ -22,13 +26,13 @@ export function useDataStorage<T>(key: string, expiredLimit: number) {
     }
 
     const saveDataToStorage = (data: T): void => {
-        localStorage.setItem(
-            key,
-            JSON.stringify({
-                expired: Date.now() + expiredLimit,
-                data,
-            }),
-        )
+        const storageData: StorageData<T> = { data: data }
+
+        if (expiredLimit) {
+            storageData.expired = Date.now() + expiredLimit
+        }
+
+        localStorage.setItem(key, JSON.stringify(storageData))
     }
 
     const clearStorage = (): void => {

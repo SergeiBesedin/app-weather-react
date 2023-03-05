@@ -5,17 +5,13 @@ import constate from 'constate'
 import { useDataStorage } from '../hooks/use-data-storage'
 
 const USER_LOCATION_KEY = 'user_location'
-const EXPIRED_LIMIT = 604800 * 1000 // обновление местоположения раз в неделю
 
 const initialValue = 'Москва'
 
 const useLocationState = () => {
     const [location, setLocation] = useState(initialValue)
 
-    const { checkStorage, saveDataToStorage } = useDataStorage<string>(
-        USER_LOCATION_KEY,
-        EXPIRED_LIMIT,
-    )
+    const { checkStorage, saveDataToStorage } = useDataStorage<string>(USER_LOCATION_KEY)
 
     const changeLocation = (value: string) => {
         if (location.toLowerCase() === value.toLowerCase()) return

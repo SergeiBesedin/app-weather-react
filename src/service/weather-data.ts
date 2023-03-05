@@ -7,7 +7,7 @@ import {
     ICurrentWeather,
     IWeatherInOtherCities,
 } from '../typings/typings'
-import { useDataStorage } from '../hooks/use-data-storage'
+import { useWeatherInCitiesData } from '../hooks/use-weather-in-cities'
 import { getTomorrowDate } from '../utils/utils'
 
 type WeatherData = {
@@ -17,18 +17,12 @@ type WeatherData = {
     weatherInCities: Array<IWeatherInOtherCities>
 }
 
-const WEATHER_KEY = 'weather_in_cities'
-const EXPIRED_LIMIT = 3600 * 1000 // обновление данных каждый час
-
 export function useGetWeatherData(location: string) {
     const [weatherData, setWeatherData] = useState<WeatherData>()
     const [loading, setLoading] = useState(false)
     const [errorStatus, setErrorStatus] = useState(200)
 
-    const { checkStorage, saveDataToStorage } = useDataStorage<Array<IWeatherInOtherCities>>(
-        WEATHER_KEY,
-        EXPIRED_LIMIT,
-    )
+    const { checkStorage, saveDataToStorage } = useWeatherInCitiesData()
 
     const fetchCurrentWeather = async (
         city: string,

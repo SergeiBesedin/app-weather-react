@@ -2,15 +2,11 @@ import { useDataStorage } from '../hooks/use-data-storage'
 
 const SEARCH_HISTORY_KEY = 'search_history'
 
-const EXPIRED_LIMIT = 604800 * 1000 // обновление данных раз в неделю
-
 const MAX_RECORDS = 4 // максимальное количество записей в историю
 
 export function useSearchHistory() {
-    const { checkStorage, saveDataToStorage, clearStorage } = useDataStorage<Array<string>>(
-        SEARCH_HISTORY_KEY,
-        EXPIRED_LIMIT,
-    )
+    const { checkStorage, saveDataToStorage, clearStorage } =
+        useDataStorage<Array<string>>(SEARCH_HISTORY_KEY)
 
     const getHistory = (): Array<string> => {
         const storage = checkStorage()
