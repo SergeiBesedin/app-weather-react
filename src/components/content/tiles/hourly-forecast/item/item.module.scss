@@ -4,8 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    scroll-snap-align: start;
-    padding: 0 22px;
+    scroll-snap-align: end;
 
     .time {
         font-size: 24px;
@@ -28,8 +27,6 @@
     }
 
     @media (max-width: $breakpoint-desk) {
-        padding: 0 18px;
-
         .time {
             font-size: 20px;
             line-height: (24/20);
@@ -59,8 +56,6 @@
     }
 
     @media (max-width: $breakpoint-mob-xs) {
-        padding: 0 12px;
-
         .time {
             font-size: 14px;
             line-height: (17/14);
