@@ -50,7 +50,7 @@
         display: flex;
         gap: 45px;
         overflow-x: auto;
-        scroll-snap-type: x mandatory;
+
         user-select: none;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -68,6 +68,10 @@
         @media (max-width: $breakpoint-tab) {
             padding: 0 24px;
             scroll-padding: 0 24px;
+        }
+
+        @media (min-width: $breakpoint-mob-xs + 1px) {
+            scroll-snap-type: x mandatory;
         }
 
         @media (max-width: $breakpoint-mob-xs) {
