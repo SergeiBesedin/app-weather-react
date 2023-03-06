@@ -36,14 +36,6 @@
                 }
             }
         }
-
-        @media (max-width: $breakpoint-tab) {
-            margin: 0 -24px;
-        }
-
-        @media (max-width: $breakpoint-mob-xs) {
-            margin: 0 -20px;
-        }
     }
 
     .listItems {
@@ -65,14 +57,7 @@
             gap: 36px;
         }
 
-        @media (max-width: $breakpoint-tab) {
-            padding: 0 24px;
-            scroll-padding: 0 24px;
-        }
-
         @media (max-width: $breakpoint-mob-xs) {
-            padding: 0 20px;
-            scroll-padding: 0 20px;
             gap: 24px;
         }
     }
