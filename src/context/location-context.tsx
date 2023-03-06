@@ -9,9 +9,9 @@ const USER_LOCATION_KEY = 'user_location'
 const initialValue = 'Москва'
 
 const useLocationState = () => {
-    const [location, setLocation] = useState(initialValue)
-
     const { checkStorage, saveDataToStorage } = useDataStorage<string>(USER_LOCATION_KEY)
+
+    const [location, setLocation] = useState(checkStorage() ?? initialValue)
 
     const changeLocation = (value: string) => {
         if (location.toLowerCase() === value.toLowerCase()) return
