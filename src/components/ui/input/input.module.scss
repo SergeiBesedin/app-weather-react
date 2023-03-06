@@ -17,8 +17,7 @@
         }
 
         &:focus {
-            outline: 0;
-            outline: 1px solid $light-blue;
+            box-shadow: 0 0 1px 1px $light-blue;
         }
     }
 
