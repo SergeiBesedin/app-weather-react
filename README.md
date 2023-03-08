@@ -19,7 +19,7 @@ _Посмотреть приложение можно по [ссылке](https:
 ## Используемые API
 
 -   [OpenWeather API](https://openweathermap.org/api) - для получения данных о погоде
--   [DaData API](https://dadata.ru/api/) - для получения подсказок
+-   [DaData API](https://dadata.ru/api/) - для получения поисковых подсказок
 
 ## Локальная установка
 
