@@ -1,9 +1,9 @@
 import { IWeather } from '../typings/typings'
 import { dateFormat, unitFormat, tempUnitFormat } from './utils'
 
-const enum typeOfPrecipitation {
-    rain = 'дождь',
-    snow = 'снег',
+const enum TypeOfPrecipitation {
+    RAIN = 'дождь',
+    SNOW = 'снег',
 }
 
 type Message = {
@@ -46,8 +46,8 @@ export function generateForecastTomorrowMessage(
 
     getTempDifference(curTemp, tempUnit, list, message)
 
-    getRainOrSnowTime(typeOfPrecipitation.rain, rain, message)
-    getRainOrSnowTime(typeOfPrecipitation.snow, snow, message)
+    getRainOrSnowTime(TypeOfPrecipitation.RAIN, rain, message)
+    getRainOrSnowTime(TypeOfPrecipitation.SNOW, snow, message)
 
     if (!rain.length && !snow.length) {
         message.push('осадков не ожидается')
@@ -83,7 +83,11 @@ function getTempDifference(
     }
 }
 
-function getRainOrSnowTime(type: string, list: Array<IWeather>, message: Array<string>): void {
+function getRainOrSnowTime(
+    type: TypeOfPrecipitation,
+    list: Array<IWeather>,
+    message: Array<string>,
+): void {
     if (!list.length) return
 
     if (list.length >= 3) {
