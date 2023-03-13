@@ -1,5 +1,20 @@
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions
 
+export const enum TemperatureUnits {
+    FAHRENHEIT = 'fahrenheit',
+    CELSIUS = 'celsius',
+}
+
+export const enum SpeedUnits {
+    KH = 'kh',
+    MS = 'ms',
+}
+
+export const enum PressureUnits {
+    MM = 'mm',
+    HPA = 'hpa',
+}
+
 export function dateFormat(date: number | string | Date, params?: DateTimeFormatOptions): string {
     const options: DateTimeFormatOptions = params
         ? params
@@ -54,26 +69,26 @@ export function unitFormat(value: number, unit: string): string {
     // при необходимости функцию можно расширить, добавив дополнительные единицы измерения
     switch (unit) {
         // температура
-        case 'fahrenheit':
+        case TemperatureUnits.FAHRENHEIT:
             result = Math.round(value * (9 / 5) + 32)
             break
-        case 'celsius':
+        case TemperatureUnits.CELSIUS:
             result = Math.round(value) // получаем по умолчанию
             break
 
         // скорость
-        case 'kh':
+        case SpeedUnits.KH:
             result = Math.round(value * 3.6)
             break
-        case 'ms':
+        case SpeedUnits.MS:
             result = Math.round(value) // получаем по умолчанию
             break
 
         // давление
-        case 'mm':
+        case PressureUnits.MM:
             result = Math.round(value / 1.333)
             break
-        case 'hpa':
+        case PressureUnits.HPA:
             result = Math.round(value) // получаем по умолчанию
             break
 
@@ -82,7 +97,7 @@ export function unitFormat(value: number, unit: string): string {
             break
     }
 
-    return unit === 'fahrenheit' || unit === 'celsius'
+    return unit === TemperatureUnits.FAHRENHEIT || unit === TemperatureUnits.CELSIUS
         ? `${result}${symbols[unit]}`
         : `${result} ${symbols[unit]}`
 }
@@ -90,9 +105,9 @@ export function unitFormat(value: number, unit: string): string {
 // в отличие от unitFormat возвращает только число
 export function tempUnitFormat(value: number, unit: string): number {
     switch (unit) {
-        case 'fahrenheit':
+        case TemperatureUnits.FAHRENHEIT:
             return Math.round(value * (9 / 5) + 32)
-        case 'celsius':
+        case TemperatureUnits.CELSIUS:
             return Math.round(value) // получаем по умолчанию
         default:
             return Math.round(value)

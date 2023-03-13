@@ -1,5 +1,5 @@
 import { IWeather } from '../typings/typings'
-import { dateFormat, unitFormat, tempUnitFormat } from './utils'
+import { dateFormat, unitFormat, tempUnitFormat, TemperatureUnits } from './utils'
 
 const enum TypeOfPrecipitation {
     RAIN = 'дождь',
@@ -64,9 +64,11 @@ function getTempDifference(
 ): void {
     const listItem = list.find((item) => item.dt_txt?.includes('12:00:00')) // находим нужную временную метку
     const tempCurrent =
-        tempUnit === 'fahrenheit' ? Math.round(curTemp * (9 / 5) + 32) : Math.round(curTemp)
+        tempUnit === TemperatureUnits.FAHRENHEIT
+            ? Math.round(curTemp * (9 / 5) + 32)
+            : Math.round(curTemp)
     const tempTomorrow =
-        tempUnit === 'fahrenheit'
+        tempUnit === TemperatureUnits.FAHRENHEIT
             ? // eslint-disable-next-line
               Math.round(listItem!.main.temp * (9 / 5) + 32)
             : // eslint-disable-next-line
