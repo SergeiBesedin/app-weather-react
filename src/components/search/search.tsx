@@ -19,7 +19,9 @@ export function Search() {
 
     const { changeLocation } = useLocationProvider()
 
-    const { saveToHistory, clearHistory } = useSearchHistory()
+    const { getHistory, saveToHistory, clearHistory } = useSearchHistory()
+
+    const searchHistory = getHistory()
 
     const onBlurHandlerDebounce = useDebouncedCallback(() => onBlurHandler(), 300)
 
@@ -122,6 +124,7 @@ export function Search() {
                 <Autocomplete
                     inputValue={inputValue}
                     visible={visible}
+                    searchHistory={searchHistory}
                     clickOnHint={(e) => onHintClickHandler(e)}
                     clearHistory={clearHistory}
                 />

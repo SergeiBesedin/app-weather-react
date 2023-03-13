@@ -120,11 +120,12 @@ export function useGetWeatherData(location: string) {
                 })
             })
             .catch((e: unknown) => {
-                const error = e as AxiosError
-
-                console.error(error)
-
-                setErrorStatus(error.response?.status || 401)
+                if (e instanceof AxiosError) {
+                    console.error(e)
+                    setErrorStatus(e.response?.status || 401)
+                } else {
+                    setErrorStatus(401)
+                }
             })
             .finally(() => setLoading(false))
     }
