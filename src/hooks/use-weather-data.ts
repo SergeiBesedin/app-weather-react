@@ -1,52 +1,25 @@
 import { useState, useEffect } from 'react'
 import { AxiosError } from 'axios'
-import { axiosOpenWeather } from '../axios/axios'
-import {
-    IWeather,
-    IFiveDayForecast,
-    ICurrentWeather,
-    IWeatherInOtherCities,
-} from '../typings/typings'
-import { useWeatherInCitiesData } from '../hooks/use-weather-in-cities'
+import { ICurrentWeatherResponse, ICurrentWeather, IWeatherInOtherCities } from '../typings/typings'
+import { useWeatherInCitiesData } from './use-weather-in-cities'
 import { getTomorrowDate } from '../utils/utils'
+import { weatherApiClient } from '../service/weather-api-client'
 
 type WeatherData = {
     currentWeather: ICurrentWeather
-    fiveDayForecast: Array<IWeather>
-    weatherTomorrow: Array<IWeather>
+    fiveDayForecast: Array<ICurrentWeatherResponse>
+    weatherTomorrow: Array<ICurrentWeatherResponse>
     weatherInCities: Array<IWeatherInOtherCities>
 }
 
-export function useGetWeatherData(location: string) {
+export function useWeatherData(location: string) {
     const [weatherData, setWeatherData] = useState<WeatherData>()
     const [loading, setLoading] = useState(false)
     const [errorStatus, setErrorStatus] = useState(200)
 
+    const { fetchCurrentWeather, fetchFiveDayForecast } = weatherApiClient()
+
     const { checkStorage, saveDataToStorage } = useWeatherInCitiesData()
-
-    const fetchCurrentWeather = async (
-        city: string,
-    ): Promise<{ currentWeather: ICurrentWeather }> => {
-        // получаем данные для карточки с текущей погодой
-        const url = `weather?q=${city}`
-
-        const response = await axiosOpenWeather.get<IWeather>(url)
-
-        const currentWeather = {
-            id: response.data.id,
-            city: response.data.name,
-            weatherName: response.data.weather[0].main,
-            weatherDesc: response.data.weather[0].description,
-            temp: response.data.main,
-            wind: response.data.wind.speed,
-            dateTime: response.data.dt,
-            sunrise: response.data.sys.sunrise,
-            sunset: response.data.sys.sunset,
-            timezone: response.data.timezone,
-        }
-
-        return { currentWeather }
-    }
 
     const fetchWeatherInOtherCities = async () => {
         // циклом запрашиваем погоду для городов из массива
@@ -64,16 +37,14 @@ export function useGetWeatherData(location: string) {
         const weatherInCities: Array<IWeatherInOtherCities> = []
 
         for (const city of cities) {
-            const url = `weather?q=${city}`
-
-            const response = await axiosOpenWeather.get<IWeather>(url)
+            const { currentWeather } = await fetchCurrentWeather(city)
 
             const data = {
-                id: response.data.id,
-                city: response.data.name,
-                weatherName: response.data.weather[0].main,
-                tempMax: response.data.main.temp_max,
-                tempMin: response.data.main.temp_min,
+                id: currentWeather.id,
+                city: currentWeather.city,
+                weatherName: currentWeather.weatherName,
+                tempMax: currentWeather.temp.temp_max,
+                tempMin: currentWeather.temp.temp_min,
             }
 
             weatherInCities.push(data)
@@ -84,20 +55,9 @@ export function useGetWeatherData(location: string) {
         return weatherInCities
     }
 
-    const fetchFiveDayForecast = async (
-        city: string,
-    ): Promise<{
-        fiveDayForecast: Array<IWeather>
-    }> => {
-        // получаем данные с почасовым прогнозом на 5 дней
-        const url = `forecast?q=${city}`
-
-        const response = await axiosOpenWeather.get<IFiveDayForecast>(url)
-
-        return { fiveDayForecast: response.data.list }
-    }
-
-    const getWeatherForTomorrow = (items: Array<IWeather>): Array<IWeather> => {
+    const getWeatherForTomorrow = (
+        items: Array<ICurrentWeatherResponse>,
+    ): Array<ICurrentWeatherResponse> => {
         // прогноз на следующий день
         return items.filter((item) => item.dt_txt?.includes(getTomorrowDate()))
     }
@@ -122,6 +82,7 @@ export function useGetWeatherData(location: string) {
             .catch((e: unknown) => {
                 if (e instanceof AxiosError) {
                     console.error(e)
+
                     setErrorStatus(e.response?.status || 401)
                 } else {
                     setErrorStatus(401)

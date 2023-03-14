@@ -53,6 +53,7 @@ export function ucFirst(str: string): string {
 // функция изменения единиц измерения
 export function unitFormat(value: number, unit: string): string {
     let result: number
+
     const symbols: { [key: string]: string } = {
         // температура
         fahrenheit: '°',
@@ -66,6 +67,7 @@ export function unitFormat(value: number, unit: string): string {
         hpa: 'гПа',
         mm: 'мм. рт. ст.',
     }
+
     // при необходимости функцию можно расширить, добавив дополнительные единицы измерения
     switch (unit) {
         // температура

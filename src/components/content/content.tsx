@@ -1,6 +1,6 @@
 import { useSettingsProvider } from '../../context/settings-context'
 import { useLocationProvider } from '../../context/location-context'
-import { useGetWeatherData } from '../../service/weather-data'
+import { useWeatherData } from '../../hooks/use-weather-data'
 import {
     CurrentWeather,
     FiveDayForecast,
@@ -18,7 +18,7 @@ export function Content() {
     const { units } = useSettingsProvider()
     const { location } = useLocationProvider()
 
-    const { weatherData, loading, errorStatus } = useGetWeatherData(location)
+    const { weatherData, loading, errorStatus } = useWeatherData(location)
 
     if (loading) {
         return <Loader />
