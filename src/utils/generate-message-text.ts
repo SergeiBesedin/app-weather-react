@@ -13,7 +13,7 @@ type Message = {
 
 export function generateRecommendedClothingMessage(
     feelsLikeTemp: number,
-    tempUnit: string,
+    tempUnit: TemperatureUnits,
 ): Message {
     const temp = unitFormat(feelsLikeTemp, tempUnit)
     const recommendedClothing = getRecommendedClothes(Math.round(feelsLikeTemp), tempUnit)
@@ -110,7 +110,7 @@ function getTimeInHours(dt: number): string {
     })
 }
 
-function getRecommendedClothes(temp: number, tempUnit: string): string {
+function getRecommendedClothes(temp: number, tempUnit: TemperatureUnits): string {
     if (temp >= tempUnitFormat(20, tempUnit)) {
         return 'футболка, шорты и кепка'
     } else if (temp < tempUnitFormat(20, tempUnit) && temp >= tempUnitFormat(15, tempUnit)) {

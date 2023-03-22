@@ -78,13 +78,6 @@ export type Option = {
     unit: string
 }
 
-export interface ISettings {
-    optionId: string
-    optionGroup: string
-    unitName: string
-    values: Array<Option>
-}
-
 export interface HintsResponse {
     value: string
     unrestricted_value: string

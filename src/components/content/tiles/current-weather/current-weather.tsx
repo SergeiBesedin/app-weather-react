@@ -1,12 +1,12 @@
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Image } from '../../../ui/index'
 import { ICurrentWeather } from '../../../../typings/typings'
-import { dateFormat, unitFormat, ucFirst } from '../../../../utils/utils'
+import { dateFormat, unitFormat, ucFirst, AllUnitsType } from '../../../../utils/utils'
 import { getIcon } from '../../../../utils/get-icon'
 import styles from './current-weather.module.scss'
 
 interface CurrentWeatherProps extends ICurrentWeather {
-    units: { [key: string]: string }
+    units: { [key: string]: AllUnitsType }
 }
 
 export function CurrentWeather({

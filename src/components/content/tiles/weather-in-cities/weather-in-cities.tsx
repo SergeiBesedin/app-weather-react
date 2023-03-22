@@ -1,12 +1,13 @@
 import { memo } from 'react'
 import { IWeatherInOtherCities } from '../../../../typings/typings'
+import { TemperatureUnits } from '../../../../utils/utils'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Item } from './item/item'
 import styles from './weather-in-cities.module.scss'
 
 interface WeatherInCitiesProps {
     cities: Array<IWeatherInOtherCities>
-    tempUnit: string
+    tempUnit: TemperatureUnits
 }
 
 function WeatherInCities({ cities, tempUnit }: WeatherInCitiesProps) {
