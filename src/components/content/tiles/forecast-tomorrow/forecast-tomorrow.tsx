@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { IWeather } from '../../../../typings/typings'
+import { ICurrentWeatherResponse } from '../../../../typings/typings'
 import { generateForecastTomorrowMessage } from '../../../../utils/generate-message-text'
 import { TextBlock } from '../text-block/text-block'
 import styles from './forecast-tomorrow.module.scss'
@@ -7,7 +7,7 @@ import styles from './forecast-tomorrow.module.scss'
 interface ForecastTomorrowProps {
     curTemp: number
     tempUnit: string
-    list: Array<IWeather>
+    list: Array<ICurrentWeatherResponse>
 }
 
 function ForecastTomorrow({ curTemp, tempUnit, list }: ForecastTomorrowProps) {

@@ -1,4 +1,4 @@
-import { IWeather } from '../typings/typings'
+import { ICurrentWeatherResponse } from '../typings/typings'
 import { dateFormat, unitFormat, tempUnitFormat, TemperatureUnits } from './utils'
 
 const enum TypeOfPrecipitation {
@@ -26,7 +26,7 @@ export function generateRecommendedClothingMessage(
 export function generateForecastTomorrowMessage(
     curTemp: number,
     tempUnit: string,
-    list: Array<IWeather>,
+    list: Array<ICurrentWeatherResponse>,
 ): Message {
     const message: Array<string> = []
     let icon: string
@@ -59,7 +59,7 @@ export function generateForecastTomorrowMessage(
 function getTempDifference(
     curTemp: number,
     tempUnit: string,
-    list: Array<IWeather>,
+    list: Array<ICurrentWeatherResponse>,
     message: Array<string>,
 ): void {
     const listItem = list.find((item) => item.dt_txt?.includes('12:00:00')) // находим нужную временную метку
@@ -87,7 +87,7 @@ function getTempDifference(
 
 function getRainOrSnowTime(
     type: TypeOfPrecipitation,
-    list: Array<IWeather>,
+    list: Array<ICurrentWeatherResponse>,
     message: Array<string>,
 ): void {
     if (!list.length) return

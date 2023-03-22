@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import constate from 'constate'
 import { useDataStorage } from '../hooks/use-data-storage'
-import { getCityName } from '../service/get-city-name'
+import { getCityName } from '../service/city-name'
 
 const USER_LOCATION_KEY = 'user_location'
 

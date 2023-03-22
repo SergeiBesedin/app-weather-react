@@ -1,19 +1,7 @@
-import { AxiosError } from 'axios'
 import { axiosDaData } from '../axios/axios'
+import { HintsResponse } from '../typings/typings'
 
 const MAX_HINTS = 4
-
-interface HintsResponseData {
-    value: string
-    unrestricted_value: string
-    data: {
-        country: string
-        country_iso_code: string
-        city: string
-        city_with_type: string
-        city_fias_id: string
-    }
-}
 
 export type HintData = {
     city: string
@@ -39,10 +27,7 @@ export async function getSearchHints(q: string): Promise<Array<HintData>> {
     }
 
     try {
-        const response = await axiosDaData.post<{ suggestions: Array<HintsResponseData> }>(
-            url,
-            query,
-        )
+        const response = await axiosDaData.post<{ suggestions: Array<HintsResponse> }>(url, query)
 
         const hintsData = response.data.suggestions.map((el) => {
             return { city: el.data.city, id: el.data.city_fias_id }
@@ -50,8 +35,8 @@ export async function getSearchHints(q: string): Promise<Array<HintData>> {
 
         return hintsData
     } catch (e: unknown) {
-        const error = e as AxiosError
-        console.error(error)
+        console.error(e)
+
         return []
     }
 }

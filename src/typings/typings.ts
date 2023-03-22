@@ -25,7 +25,7 @@ export type Sys = {
     sunset: number // время заката (unix)
 }
 
-export interface IWeather {
+export interface ICurrentWeatherResponse {
     id: number
     name: string // название города
     dt: number // время расчета данных (timestamp)
@@ -72,12 +72,6 @@ export interface IWeatherInOtherCities {
     tempMin: number
 }
 
-// плитка с прогнозом на пять дней
-export interface IFiveDayForecast {
-    cnt: number // Количество меток времени, возвращенных в ответе API
-    list: Array<IWeather>
-}
-
 export type Option = {
     optionValueId: string
     optionValue: string
@@ -89,4 +83,16 @@ export interface ISettings {
     optionGroup: string
     unitName: string
     values: Array<Option>
+}
+
+export interface HintsResponse {
+    value: string
+    unrestricted_value: string
+    data: {
+        country: string
+        country_iso_code: string
+        city: string
+        city_with_type: string
+        city_fias_id: string
+    }
 }
