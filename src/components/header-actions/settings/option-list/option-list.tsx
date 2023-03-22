@@ -1,17 +1,20 @@
 import { useSettingsProvider } from '../../../../context/settings-context'
+import { AllUnitsType } from '../../../../utils/utils'
 import { Input } from '../../../ui/index'
 import { Option } from '../../../../typings/typings'
 import styles from './option-list.module.scss'
 
+export type UnitsCategories = 'temp' | 'speed' | 'pressure'
+
 interface OptionListProps {
-    unitName: string
+    unitName: UnitsCategories
     values: Array<Option>
 }
 
 export function OptionList({ unitName, values }: OptionListProps) {
     const { units, changeUnit } = useSettingsProvider()
 
-    const onChangeHandler = (option: { [key: string]: string }) => {
+    const onChangeHandler = (option: { [key: string]: AllUnitsType }) => {
         changeUnit(option)
     }
 
@@ -28,7 +31,7 @@ export function OptionList({ unitName, values }: OptionListProps) {
                         checked={units[unitName] === value.unit}
                         classes={['']}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            onChangeHandler({ [e.target.name]: e.target.value })
+                            onChangeHandler({ [e.target.name]: e.target.value as AllUnitsType })
                         }
                     />
                 </li>

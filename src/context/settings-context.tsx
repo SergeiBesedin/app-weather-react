@@ -1,18 +1,25 @@
 import { useLocalStorage } from '../hooks/use-localStorage'
 import constate from 'constate'
+import { AllUnitsType, TemperatureUnits, PressureUnits, SpeedUnits } from '../utils/utils'
 
 const SETTINGS_KEY = 'settings'
 
-const initialState = {
-    temp: 'celsius',
-    speed: 'ms',
-    pressure: 'hpa',
+export type SettingsType = {
+    temp: TemperatureUnits
+    speed: SpeedUnits
+    pressure: PressureUnits
+}
+
+const initialState: SettingsType = {
+    temp: TemperatureUnits.CELSIUS,
+    speed: SpeedUnits.MS,
+    pressure: PressureUnits.HPA,
 }
 
 const useSettingsState = () => {
-    const [units, setUnit] = useLocalStorage<{ [key: string]: string }>(initialState, SETTINGS_KEY)
+    const [units, setUnit] = useLocalStorage<SettingsType>(initialState, SETTINGS_KEY)
 
-    const changeUnit = (payload: { [key: string]: string }) => {
+    const changeUnit = (payload: { [key: string]: AllUnitsType }) => {
         setUnit({ ...units, ...payload })
     }
 

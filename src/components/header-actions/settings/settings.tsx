@@ -1,7 +1,14 @@
 import { Modal } from '../../ui/index'
 import { OptionGroup } from './option-group/option-group'
-import { ISettings } from '../../../typings/typings'
+import { Option } from '../../../typings/typings'
 import styles from './settings.module.scss'
+
+interface ISettings {
+    optionId: string
+    optionGroup: string
+    unitName: string
+    values: Array<Option>
+}
 
 interface SettingsProps {
     options: Array<ISettings>

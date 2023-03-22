@@ -1,4 +1,4 @@
-import { unitFormat, dateFormat } from '../../../../../utils/utils'
+import { unitFormat, dateFormat, TemperatureUnits } from '../../../../../utils/utils'
 import { getIcon } from '../../../../../utils/get-icon'
 import { Image } from '../../../../ui/index'
 import styles from './item.module.scss'
@@ -7,7 +7,7 @@ interface ItemProps {
     timestamp: number
     temp: number
     weather: string
-    tempUnit: string
+    tempUnit: TemperatureUnits
 }
 
 export function Item({ timestamp, temp, weather, tempUnit }: ItemProps) {

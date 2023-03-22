@@ -15,6 +15,8 @@ export const enum PressureUnits {
     HPA = 'hpa',
 }
 
+export type AllUnitsType = TemperatureUnits | SpeedUnits | PressureUnits
+
 export function dateFormat(date: number | string | Date, params?: DateTimeFormatOptions): string {
     const options: DateTimeFormatOptions = params
         ? params
@@ -51,7 +53,7 @@ export function ucFirst(str: string): string {
 }
 
 // функция изменения единиц измерения
-export function unitFormat(value: number, unit: string): string {
+export function unitFormat(value: number, unit: AllUnitsType): string {
     let result: number
 
     const symbols: { [key: string]: string } = {
@@ -105,12 +107,14 @@ export function unitFormat(value: number, unit: string): string {
 }
 
 // в отличие от unitFormat возвращает только число
-export function tempUnitFormat(value: number, unit: string): number {
+export function tempUnitFormat(value: number, unit: TemperatureUnits): number {
     switch (unit) {
         case TemperatureUnits.FAHRENHEIT:
             return Math.round(value * (9 / 5) + 32)
+
         case TemperatureUnits.CELSIUS:
             return Math.round(value) // получаем по умолчанию
+
         default:
             return Math.round(value)
     }

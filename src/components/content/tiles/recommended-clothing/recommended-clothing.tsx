@@ -1,11 +1,12 @@
 import { memo } from 'react'
+import { TemperatureUnits } from '../../../../utils/utils'
 import { TextBlock } from '../text-block/text-block'
 import { generateRecommendedClothingMessage } from '../../../../utils/generate-message-text'
 import styles from './recommended-clothing.module.scss'
 
 interface RecommendedClothingProps {
     feelsLikeTemp: number
-    tempUnit: string
+    tempUnit: TemperatureUnits
 }
 
 function RecommendedClothing({ feelsLikeTemp, tempUnit }: RecommendedClothingProps) {
