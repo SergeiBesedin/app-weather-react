@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios'
 import { axiosDaData } from '../axios/axios'
 import { HintsResponse } from '../typings/typings'
 
@@ -36,8 +35,8 @@ export async function getSearchHints(q: string): Promise<Array<HintData>> {
 
         return hintsData
     } catch (e: unknown) {
-        const error = e as AxiosError
-        console.error(error)
+        console.error(e)
+
         return []
     }
 }

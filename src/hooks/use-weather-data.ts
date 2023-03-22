@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { AxiosError } from 'axios'
 import { ICurrentWeatherResponse, ICurrentWeather, IWeatherInOtherCities } from '../typings/typings'
 import { useWeatherInCitiesData } from './use-weather-in-cities'
 import { getTomorrowDate } from '../utils/utils'
@@ -17,11 +16,12 @@ export function useWeatherData(location: string) {
     const [loading, setLoading] = useState(false)
     const [errorStatus, setErrorStatus] = useState(200)
 
-    const { fetchCurrentWeather, fetchFiveDayForecast } = weatherApiClient()
+    const { fetchCurrentWeather, fetchFiveDayForecast, fetchWeatherInOtherCities } =
+        weatherApiClient()
 
     const { checkStorage, saveDataToStorage } = useWeatherInCitiesData()
 
-    const fetchWeatherInOtherCities = async () => {
+    const getWeatherInOtherCities = async () => {
         // циклом запрашиваем погоду для городов из массива
         const cities = ['Москва', 'Новосибирск', 'Владивосток']
 
@@ -30,25 +30,9 @@ export function useWeatherData(location: string) {
         // Если данные есть в хранилище и срок их хранения не истек, то берем их оттуда
         // Данные обновляются каждый час
 
-        if (data) {
-            return data
-        }
+        if (data) return data
 
-        const weatherInCities: Array<IWeatherInOtherCities> = []
-
-        for (const city of cities) {
-            const { currentWeather } = await fetchCurrentWeather(city)
-
-            const data = {
-                id: currentWeather.id,
-                city: currentWeather.city,
-                weatherName: currentWeather.weatherName,
-                tempMax: currentWeather.temp.temp_max,
-                tempMin: currentWeather.temp.temp_min,
-            }
-
-            weatherInCities.push(data)
-        }
+        const weatherInCities = await fetchWeatherInOtherCities(cities)
 
         saveDataToStorage(weatherInCities)
 
@@ -69,7 +53,7 @@ export function useWeatherData(location: string) {
         Promise.all([
             fetchCurrentWeather(location),
             fetchFiveDayForecast(location),
-            fetchWeatherInOtherCities(),
+            getWeatherInOtherCities(),
         ])
             .then((data) => {
                 setWeatherData({
@@ -79,14 +63,10 @@ export function useWeatherData(location: string) {
                     weatherInCities: data[2],
                 })
             })
-            .catch((e: unknown) => {
-                if (e instanceof AxiosError) {
-                    console.error(e)
+            .catch((e: Error) => {
+                const error = JSON.parse(e.message)
 
-                    setErrorStatus(e.response?.status || 401)
-                } else {
-                    setErrorStatus(401)
-                }
+                setErrorStatus(error.cod)
             })
             .finally(() => setLoading(false))
     }

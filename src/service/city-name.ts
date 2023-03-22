@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios'
 import { axiosDaData } from '../axios/axios'
 import { HintsResponse } from '../typings/typings'
 
@@ -14,9 +13,7 @@ export async function getCityName(lat: number, lon: number): Promise<string> {
 
         return response.data.suggestions[0].data.city
     } catch (e: unknown) {
-        if (e instanceof AxiosError) {
-            console.error(e)
-        }
+        console.error(e)
 
         return 'Москва'
     }
