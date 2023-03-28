@@ -56,7 +56,7 @@ export function ucFirst(str: string): string {
 export function unitFormat(value: number, unit: AllUnitsType): string {
     let result: number
 
-    const symbols: { [key: string]: string } = {
+    const symbols: Record<string, string> = {
         // температура
         fahrenheit: '°',
         celsius: '°',

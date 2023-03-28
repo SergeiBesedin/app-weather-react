@@ -29,7 +29,7 @@ import emptySearch from '../assets/icons/empty-search-error.svg'
 import connectionError from '../assets/icons/connection-error.svg'
 
 export function getIcon(weather: string) {
-    const icons: { [key: string]: string } = {
+    const icons: Record<string, string> = {
         clouds,
         rain,
         snow,

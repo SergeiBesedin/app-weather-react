@@ -14,7 +14,7 @@ interface OptionListProps {
 export function OptionList({ unitName, values }: OptionListProps) {
     const { units, changeUnit } = useSettingsProvider()
 
-    const onChangeHandler = (option: { [key: string]: AllUnitsType }) => {
+    const onChangeHandler = (option: Record<string, AllUnitsType>) => {
         changeUnit(option)
     }
 

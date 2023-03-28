@@ -6,7 +6,7 @@ import { getIcon } from '../../../../utils/get-icon'
 import styles from './current-weather.module.scss'
 
 interface CurrentWeatherProps extends ICurrentWeather {
-    units: { [key: string]: AllUnitsType }
+    units: Record<string, AllUnitsType>
 }
 
 export function CurrentWeather({
