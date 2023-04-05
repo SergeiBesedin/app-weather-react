@@ -29,11 +29,10 @@ export async function getSearchHints(q: string): Promise<Array<HintData>> {
     try {
         const response = await axiosDaData.post<{ suggestions: Array<IHintsResponse> }>(url, query)
 
-        const hintsData = response.data.suggestions.map((el) => {
-            return { city: el.data.city, id: el.data.city_fias_id }
-        })
-
-        return hintsData
+        return response.data.suggestions.map((el) => ({
+            city: el.data.city,
+            id: el.data.city_fias_id,
+        }))
     } catch (e: unknown) {
         console.error(e)
 
