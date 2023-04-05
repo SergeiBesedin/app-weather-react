@@ -63,5 +63,6 @@ export function getIcon(weather: string) {
         sunrise,
         sunset,
     }
+
     return icons[weather]
 }

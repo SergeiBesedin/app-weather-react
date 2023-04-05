@@ -1,5 +1,5 @@
 import { axiosDaData } from '../axios/axios'
-import { HintsResponse } from '../typings/typings'
+import { IHintsResponse } from '../typings/typings'
 
 const initialValue = 'Москва'
 
@@ -11,8 +11,9 @@ export async function getCityName(lat: number, lon: number): Promise<string> {
     const coords = { lat, lon }
 
     try {
-        const response = await axiosDaData.post<{ suggestions: Array<HintsResponse> }>(url, coords)
+        const response = await axiosDaData.post<{ suggestions: Array<IHintsResponse> }>(url, coords)
 
+        // eslint-disable-next-line
         const { city, region, region_type_full } = response.data.suggestions[0].data
 
         if (city) return city

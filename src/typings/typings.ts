@@ -1,3 +1,5 @@
+// Типы, которые используются сразу в нескольких компонентах
+
 export type Temp = {
     temp: number // температура (единица по умолчанию: Кельвин)
     temp_max: number // максимальная температура на данный момент
@@ -78,7 +80,7 @@ export type Option = {
     unit: string
 }
 
-export interface HintsResponse {
+export interface IHintsResponse {
     value: string
     unrestricted_value: string
     data: {
