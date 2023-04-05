@@ -1,12 +1,12 @@
 import { memo } from 'react'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
-import { ICurrentWeatherResponse } from '../../../../typings/typings'
+import { IWeatherItem } from '../../../../typings/typings'
 import { Item } from './item/item'
 import styles from './five-day-forecast.module.scss'
 import { TemperatureUnits } from '../../../../utils/utils'
 
 interface FiveDayForecastProps {
-    items: Array<ICurrentWeatherResponse>
+    items: Array<IWeatherItem>
     tempUnit: TemperatureUnits
 }
 
