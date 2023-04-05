@@ -7,10 +7,12 @@ const USER_LOCATION_KEY = 'user_location'
 
 const initialValue = 'Москва'
 
-const useLocationState = () => {
+function useLocationState() {
     const { checkStorage, saveDataToStorage } = useDataStorage<string>(USER_LOCATION_KEY)
 
-    const [location, setLocation] = useState(checkStorage() ?? initialValue)
+    const userLocation = checkStorage() ?? initialValue
+
+    const [location, setLocation] = useState<string>(userLocation)
 
     const changeLocation = (value: string) => {
         if (location.toLowerCase() === value.toLowerCase()) return
@@ -32,7 +34,7 @@ const useLocationState = () => {
             return
         }
 
-        navigator.geolocation.getCurrentPosition(async (position) => {
+        navigator.geolocation.getCurrentPosition(async (position: GeolocationPosition) => {
             // выполняется, если пользователей дает доступ к местоположению
             const city = await getCityName(position.coords.latitude, position.coords.longitude)
 

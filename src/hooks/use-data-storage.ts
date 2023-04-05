@@ -35,9 +35,7 @@ export function useDataStorage<T>(key: string, expiredLimit?: number) {
         localStorage.setItem(key, JSON.stringify(storageData))
     }
 
-    const clearStorage = (): void => {
-        localStorage.removeItem(key)
-    }
+    const clearStorage = (): void => localStorage.removeItem(key)
 
     return { checkStorage, saveDataToStorage, clearStorage }
 }

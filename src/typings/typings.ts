@@ -87,5 +87,7 @@ export interface HintsResponse {
         city: string
         city_with_type: string
         city_fias_id: string
+        region: string
+        region_type_full: string
     }
 }
