@@ -26,9 +26,9 @@ export function useCarouselScrolling() {
 
         const listItemsWidth = Math.round(listItemsRef.getBoundingClientRect().width)
 
-        const scrollLeft = listItemsRef.scrollLeft
+        const { scrollLeft, scrollWidth } = listItemsRef
 
-        const rightDelta = scrollLeft + listItemsWidth === listItemsRef.scrollWidth
+        const rightDelta = scrollLeft + listItemsWidth === scrollWidth
         setLeftBtn(scrollLeft === 0)
 
         setRightBtn(rightDelta)
