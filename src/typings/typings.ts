@@ -1,4 +1,6 @@
-export type Temp = {
+// Типы, которые используются сразу в нескольких компонентах
+
+type Temp = {
     temp: number // температура (единица по умолчанию: Кельвин)
     temp_max: number // максимальная температура на данный момент
     temp_min: number // минимальная температура на данный момент
@@ -7,25 +9,31 @@ export type Temp = {
     pressure: number // атмосферное давление
 }
 
-export type Wind = {
+type Wind = {
     speed: number // скорость ветра (единица измерения по умолчанию: метр/сек)
     gust: number // порывы ветра (единица измерения по умолчанию: метр/сек)
     deg: number // направление ветра, градусы (метеорологические)
 }
 
-export type Weather = {
+type Weather = {
     id: number
     main: string // дождь, снег и тд
     description: string // пасмурно, солнечно
 }
 
-export type Sys = {
+type Sys = {
     id: number
     sunrise: number // время восхода солнца (unix)
     sunset: number // время заката (unix)
 }
 
-export interface ICurrentWeatherResponse {
+export type Option = {
+    optionValueId: string
+    optionValue: string
+    unit: string
+}
+
+export interface IWeatherItem {
     id: number
     name: string // название города
     dt: number // время расчета данных (timestamp)
@@ -72,13 +80,7 @@ export interface IWeatherInOtherCities {
     tempMin: number
 }
 
-export type Option = {
-    optionValueId: string
-    optionValue: string
-    unit: string
-}
-
-export interface HintsResponse {
+export interface IHintsResponse {
     value: string
     unrestricted_value: string
     data: {
@@ -87,5 +89,7 @@ export interface HintsResponse {
         city: string
         city_with_type: string
         city_fias_id: string
+        region: string
+        region_type_full: string
     }
 }

@@ -37,11 +37,14 @@ export function getLocalTime(time: number, timezone: number): number {
 
 export function getTomorrowDate(): string {
     const tomorrow = new Date()
+
     tomorrow.setDate(tomorrow.getDate() + 1)
 
     const year = tomorrow.getFullYear()
+
     const month =
         tomorrow.getMonth() + 1 < 10 ? '0' + (tomorrow.getMonth() + 1) : tomorrow.getMonth() + 1
+
     const day = tomorrow.getDate() < 10 ? '0' + tomorrow.getDate() : tomorrow.getDate()
 
     return `${year}-${month}-${day}`
@@ -54,9 +57,7 @@ export function ucFirst(str: string): string {
 
 // функция изменения единиц измерения
 export function unitFormat(value: number, unit: AllUnitsType): string {
-    let result: number
-
-    const symbols: { [key: string]: string } = {
+    const symbols: Record<string, string> = {
         // температура
         fahrenheit: '°',
         celsius: '°',
@@ -69,6 +70,8 @@ export function unitFormat(value: number, unit: AllUnitsType): string {
         hpa: 'гПа',
         mm: 'мм. рт. ст.',
     }
+
+    let result: number
 
     // при необходимости функцию можно расширить, добавив дополнительные единицы измерения
     switch (unit) {

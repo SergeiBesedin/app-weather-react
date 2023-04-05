@@ -1,5 +1,5 @@
 import { axiosDaData } from '../axios/axios'
-import { HintsResponse } from '../typings/typings'
+import { IHintsResponse } from '../typings/typings'
 
 const MAX_HINTS = 4
 
@@ -27,7 +27,7 @@ export async function getSearchHints(q: string): Promise<Array<HintData>> {
     }
 
     try {
-        const response = await axiosDaData.post<{ suggestions: Array<HintsResponse> }>(url, query)
+        const response = await axiosDaData.post<{ suggestions: Array<IHintsResponse> }>(url, query)
 
         const hintsData = response.data.suggestions.map((el) => {
             return { city: el.data.city, id: el.data.city_fias_id }

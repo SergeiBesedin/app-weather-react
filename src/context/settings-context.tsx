@@ -16,10 +16,10 @@ const initialState: SettingsType = {
     pressure: PressureUnits.HPA,
 }
 
-const useSettingsState = () => {
+function useSettingsState() {
     const [units, setUnit] = useLocalStorage<SettingsType>(initialState, SETTINGS_KEY)
 
-    const changeUnit = (payload: { [key: string]: AllUnitsType }) => {
+    const changeUnit = (payload: Record<string, AllUnitsType>) => {
         setUnit({ ...units, ...payload })
     }
 

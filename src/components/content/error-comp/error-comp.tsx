@@ -28,7 +28,7 @@ const ERROR_STATUSES: ErrorMessage = {
     },
 }
 
-type ErrorMessage = { [key: number]: { title: string; message: string; image: string } }
+type ErrorMessage = Record<number, { title: string; message: string; image: string }>
 
 interface ErrorMessageProps {
     status: number

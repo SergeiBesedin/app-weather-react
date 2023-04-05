@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
-import { ICurrentWeatherResponse, ICurrentWeather, IWeatherInOtherCities } from '../typings/typings'
+import { IWeatherItem, ICurrentWeather, IWeatherInOtherCities } from '../typings/typings'
 import { useWeatherInCitiesData } from './use-weather-in-cities'
 import { getTomorrowDate } from '../utils/utils'
 import { weatherApiClient } from '../service/weather-api-client'
 
+type WeatherList = Array<IWeatherItem>
+
 type WeatherData = {
     currentWeather: ICurrentWeather
-    fiveDayForecast: Array<ICurrentWeatherResponse>
-    weatherTomorrow: Array<ICurrentWeatherResponse>
+    fiveDayForecast: WeatherList
+    weatherTomorrow: WeatherList
     weatherInCities: Array<IWeatherInOtherCities>
 }
 
@@ -39,9 +41,7 @@ export function useWeatherData(location: string) {
         return weatherInCities
     }
 
-    const getWeatherForTomorrow = (
-        items: Array<ICurrentWeatherResponse>,
-    ): Array<ICurrentWeatherResponse> => {
+    const getWeatherForTomorrow = (items: WeatherList): WeatherList => {
         // прогноз на следующий день
         return items.filter((item) => item.dt_txt?.includes(getTomorrowDate()))
     }

@@ -1,10 +1,12 @@
 import { AxiosError } from 'axios'
 import { axiosOpenWeather } from '../axios/axios'
-import { ICurrentWeatherResponse, ICurrentWeather, IWeatherInOtherCities } from '../typings/typings'
+import { IWeatherItem, ICurrentWeather, IWeatherInOtherCities } from '../typings/typings'
+
+type WeatherList = Array<IWeatherItem>
 
 interface IFiveDayForecastResponse {
     cnt: number // Количество меток времени, возвращенных в ответе API
-    list: Array<ICurrentWeatherResponse>
+    list: WeatherList
 }
 
 export function weatherApiClient() {
@@ -15,7 +17,7 @@ export function weatherApiClient() {
         const url = `weather?q=${city}`
 
         try {
-            const response = await axiosOpenWeather.get<ICurrentWeatherResponse>(url)
+            const response = await axiosOpenWeather.get<IWeatherItem>(url)
 
             const currentWeather: ICurrentWeather = {
                 id: response.data.id,
@@ -49,7 +51,7 @@ export function weatherApiClient() {
     const fetchFiveDayForecast = async (
         city: string,
     ): Promise<{
-        fiveDayForecast: Array<ICurrentWeatherResponse>
+        fiveDayForecast: WeatherList
     }> => {
         // получаем данные с почасовым прогнозом на 5 дней
         const url = `forecast?q=${city}`
