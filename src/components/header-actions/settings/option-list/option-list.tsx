@@ -14,10 +14,6 @@ interface OptionListProps {
 export function OptionList({ unitName, values }: OptionListProps) {
     const { units, changeUnit } = useSettingsProvider()
 
-    const onChangeHandler = (option: Record<string, AllUnitsType>) => {
-        changeUnit(option)
-    }
-
     return (
         <ul>
             {values.map((value) => (
@@ -31,7 +27,7 @@ export function OptionList({ unitName, values }: OptionListProps) {
                         checked={units[unitName] === value.unit}
                         classes={['']}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            onChangeHandler({ [e.target.name]: e.target.value as AllUnitsType })
+                            changeUnit({ [e.target.name]: e.target.value as AllUnitsType })
                         }
                     />
                 </li>

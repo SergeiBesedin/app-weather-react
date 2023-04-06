@@ -11,6 +11,11 @@ interface SunriseSunsetTimesProps {
     timezone: number
 }
 
+const enum SunriseOrSunset {
+    SUNRISE = 'sunrise',
+    SUNSET = 'sunset',
+}
+
 function SunriseSunsetTimes({ sunrise, sunset, timezone }: SunriseSunsetTimesProps) {
     const sunriseTime = dateFormat(getLocalTime(sunrise, timezone), {
         hour: '2-digit',
@@ -22,11 +27,19 @@ function SunriseSunsetTimes({ sunrise, sunset, timezone }: SunriseSunsetTimesPro
         minute: '2-digit',
     })
 
+    const sunriseIcon = getIcon(SunriseOrSunset.SUNRISE)
+
+    const sunsetIcon = getIcon(SunriseOrSunset.SUNSET)
+
     return (
         <TileWrapper classes={[styles.sunriseSunsetTimes]}>
             <div className={styles.wrapper}>
                 <div className={styles.sunrise}>
-                    <Image alt="sunrise" src={getIcon('sunrise')} classes={[styles.picture]} />
+                    <Image
+                        alt={SunriseOrSunset.SUNRISE}
+                        src={sunriseIcon}
+                        classes={[styles.picture]}
+                    />
                     <div className={styles.title}>Восход</div>
                     <div className={styles.time}>{sunriseTime}</div>
                 </div>
@@ -34,7 +47,11 @@ function SunriseSunsetTimes({ sunrise, sunset, timezone }: SunriseSunsetTimesPro
                 <div className={styles.arrow}></div>
 
                 <div className={styles.sunset}>
-                    <Image alt="sunset" src={getIcon('sunset')} classes={[styles.picture]} />
+                    <Image
+                        alt={SunriseOrSunset.SUNSET}
+                        src={sunsetIcon}
+                        classes={[styles.picture]}
+                    />
                     <div className={styles.title}>Закат</div>
                     <div className={styles.time}>{sunsetTime}</div>
                 </div>

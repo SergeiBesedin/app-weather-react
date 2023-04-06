@@ -51,7 +51,7 @@ export function getTomorrowDate(): string {
 }
 
 // функция, которая делает первую букву в слове заглавной
-export function ucFirst(str: string): string {
+export function upperCaseFirst(str: string): string {
     return str[0].toUpperCase() + str.slice(1)
 }
 

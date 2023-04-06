@@ -12,19 +12,20 @@ interface ItemProps {
 
 export function Item({ timestamp, temp, weather, tempUnit }: ItemProps) {
     const temperature = unitFormat(temp, tempUnit)
+
     const time = dateFormat(timestamp * 1000, {
         hour: '2-digit',
         minute: '2-digit',
     })
 
+    const icon = getIcon(weather.toLowerCase() + 'Mini')
+
     return (
         <li className={styles.item}>
             <div className={styles.time}>{time}</div>
-            <Image
-                alt={weather}
-                src={getIcon(weather.toLowerCase() + 'Mini')}
-                classes={[styles.picture]}
-            />
+
+            <Image alt={weather} src={icon} classes={[styles.picture]} />
+
             <div className={styles.temp}>{temperature}</div>
         </li>
     )

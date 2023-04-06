@@ -13,6 +13,9 @@ interface HourlyForecastProps {
     tempUnit: TemperatureUnits
 }
 
+const ITEM_WIDTH = 60
+const UNIX_TIME_DAY = 86400 // день, переведенный в unix
+
 function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -25,8 +28,6 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
         300,
     )
 
-    const ITEM_WIDTH = 60
-    const UNIX_TIME_DAY = 86400 // день, переведенный в unix
     const title = 'Почасовой прогноз'
 
     const filteredItems = items.filter((item) => item.dt <= items[0].dt + UNIX_TIME_DAY) // показываем в карусели только 9 временных меток
@@ -54,6 +55,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                         )
                     }
                 />
+
                 <ul
                     className={styles.listItems}
                     ref={listItemsRef}
@@ -69,6 +71,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                         />
                     ))}
                 </ul>
+
                 <Button
                     type={'button'}
                     aria-label="Прокрутить вперед"

@@ -1,7 +1,4 @@
-import { useState, useRef } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
-import { useLocationProvider } from '../../context/location-context'
-import { useSearchHistory } from '../../hooks/use-search-history'
+import { useSearch } from '../../hooks/use-search'
 import { Autocomplete } from '../autocomplete/autocomplete'
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg'
 import { ReactComponent as BackIcon } from '../../assets/icons/left-arrow.svg'
@@ -9,70 +6,21 @@ import { Button, Input } from '../ui/index'
 import styles from './search.module.scss'
 
 export function Search() {
-    const [inputValue, setInputValue] = useState('')
-    // Состояние для переключения стилей (десктоп-мобила)
-    const [searchOpen, setSearchOpen] = useState(false)
-    // Состояние для переключения видимости подсказок
-    const [visible, setVisible] = useState(false)
-
-    const inputRef = useRef<HTMLInputElement>(null)
-
-    const { changeLocation } = useLocationProvider()
-
-    const { getHistory, saveToHistory, clearHistory } = useSearchHistory()
-
-    const searchHistory = getHistory()
-
-    const onBlurHandlerDebounce = useDebouncedCallback(() => onBlurHandler(), 300)
-
-    const focusOnInputDebounce = useDebouncedCallback(() => inputRef.current?.focus())
-
-    const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value)
-        setVisible(true)
-    }
-
-    const onFocusHandler = () => {
-        setVisible(true)
-    }
-
-    const onBlurHandler = () => {
-        setVisible(false)
-    }
-
-    const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-
-        const value = inputValue.trim()
-
-        if (value === '') return
-
-        changeLocation(value)
-        saveToHistory(value)
-
-        setVisible(false)
-        setSearchOpen(false)
-    }
-
-    const onHintClickHandler = (value: string) => {
-        setInputValue(value)
-        changeLocation(value)
-        saveToHistory(value)
-
-        setSearchOpen(false)
-        setVisible(false)
-    }
-
-    const onSearchClickHandler = () => {
-        setSearchOpen(true)
-        focusOnInputDebounce()
-    }
-
-    const onBackClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        setVisible(false)
-        setSearchOpen(false)
-    }
+    const {
+        clearHistory,
+        onBackClickHandler,
+        onChangeHandler,
+        onFocusHandler,
+        onHintClickHandler,
+        onSearchClickHandler,
+        onSubmitHandler,
+        searchHistory,
+        searchOpen,
+        visible,
+        inputValue,
+        inputRef,
+        onBlurHandlerDebounce,
+    } = useSearch()
 
     const classes = [styles.search]
 

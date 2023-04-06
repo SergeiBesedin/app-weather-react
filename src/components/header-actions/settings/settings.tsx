@@ -3,7 +3,7 @@ import { OptionGroup } from './option-group/option-group'
 import { Option } from '../../../typings/typings'
 import styles from './settings.module.scss'
 
-interface ISettings {
+interface IOptions {
     optionId: string
     optionGroup: string
     unitName: string
@@ -11,7 +11,7 @@ interface ISettings {
 }
 
 interface SettingsProps {
-    options: Array<ISettings>
+    options: Array<IOptions>
     close: () => void
 }
 

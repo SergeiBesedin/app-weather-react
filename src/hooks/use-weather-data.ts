@@ -13,10 +13,12 @@ type WeatherData = {
     weatherInCities: Array<IWeatherInOtherCities>
 }
 
+type StatusCode = 401 | 404 | 429 | 200
+
 export function useWeatherData(location: string) {
     const [weatherData, setWeatherData] = useState<WeatherData>()
     const [loading, setLoading] = useState(false)
-    const [errorStatus, setErrorStatus] = useState(200)
+    const [errorStatus, setErrorStatus] = useState<StatusCode>(200)
 
     const { fetchCurrentWeather, fetchFiveDayForecast, fetchWeatherInOtherCities } =
         weatherApiClient()

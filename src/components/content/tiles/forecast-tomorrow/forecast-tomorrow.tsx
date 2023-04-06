@@ -13,13 +13,9 @@ interface ForecastTomorrowProps {
 function ForecastTomorrow({ curTemp, tempUnit, list }: ForecastTomorrowProps) {
     const message = generateForecastTomorrowMessage(curTemp, tempUnit, list)
 
-    return (
-        <TextBlock
-            message={message.message}
-            img={message.icon + 'Tomorrow'}
-            classes={[styles.forecastTomorrow]}
-        />
-    )
+    const icon = message.icon + 'Tomorrow'
+
+    return <TextBlock message={message.message} img={icon} classes={[styles.forecastTomorrow]} />
 }
 
 export default memo(ForecastTomorrow)

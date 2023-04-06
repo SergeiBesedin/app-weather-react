@@ -15,15 +15,13 @@ export function Item({ city, tempMin, tempMax, weather, tempUnit }: ItemProps) {
     const tMin = unitFormat(tempMin, tempUnit)
     const tMax = unitFormat(tempMax, tempUnit)
 
+    const icon = getIcon(weather.toLowerCase() + 'Mini')
+
     return (
         <li className={styles.item}>
             <div className={styles.city}>{city}</div>
 
-            <Image
-                alt={weather}
-                src={getIcon(weather.toLowerCase() + 'Mini')}
-                classes={[styles.picture]}
-            />
+            <Image alt={weather} src={icon} classes={[styles.picture]} />
 
             <div className={styles.temp}>
                 <span className={styles.min}>{tMin}</span>

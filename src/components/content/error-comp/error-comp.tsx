@@ -10,7 +10,7 @@ import styles from './error.module.scss'
 429 - превышен лимит вызовов API (сделали более 60 вызовов в минуту)
 */
 
-const ERROR_STATUSES: ErrorMessage = {
+const ERROR_STATUSES = {
     401: {
         title: 'Сервис временно недоступен',
         message: 'Мы ведем технические работы, чтобы сделать наш сайт лучше',
@@ -28,10 +28,8 @@ const ERROR_STATUSES: ErrorMessage = {
     },
 }
 
-type ErrorMessage = Record<number, { title: string; message: string; image: string }>
-
 interface ErrorMessageProps {
-    status: number
+    status: keyof typeof ERROR_STATUSES
 }
 
 export function ErrorComp({ status }: ErrorMessageProps) {
@@ -39,11 +37,13 @@ export function ErrorComp({ status }: ErrorMessageProps) {
 
     const { title, message, image } = ERROR_STATUSES[status]
 
+    const icon = getIcon(image)
+
     return (
         <div className={styles.error}>
             <div className={classNames}>
                 <div className={styles.wrapper}>
-                    <Image alt={title} src={getIcon(image)} classes={['']} />
+                    <Image alt={title} src={icon} classes={['']} />
                 </div>
                 <div>
                     <h2 className={styles.title}>{title}</h2>

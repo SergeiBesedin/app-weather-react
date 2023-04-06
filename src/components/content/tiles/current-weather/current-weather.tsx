@@ -1,7 +1,7 @@
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Image } from '../../../ui/index'
 import { ICurrentWeather } from '../../../../typings/typings'
-import { dateFormat, unitFormat, ucFirst, AllUnitsType } from '../../../../utils/utils'
+import { dateFormat, unitFormat, upperCaseFirst, AllUnitsType } from '../../../../utils/utils'
 import { getIcon } from '../../../../utils/get-icon'
 import styles from './current-weather.module.scss'
 
@@ -31,18 +31,20 @@ export function CurrentWeather({
 
     const pressure = unitFormat(temp.pressure, units.pressure)
 
+    const icon = getIcon(weatherName.toLowerCase())
+
+    const weatherInUpperCase = upperCaseFirst(weatherDesc)
+
     return (
         <TileWrapper title={title} classes={[styles.currentWeather]}>
             <div className={styles.weather}>
                 <div className={styles.city}>{city}</div>
                 <div className={styles.temp}>{temperature}</div>
-                <div className={styles.description}>{ucFirst(weatherDesc)}</div>
-                <Image
-                    alt={weatherName}
-                    src={getIcon(weatherName.toLowerCase())}
-                    classes={[styles.picture]}
-                />
+                <div className={styles.description}>{weatherInUpperCase}</div>
+
+                <Image alt={weatherName} src={icon} classes={[styles.picture]} />
             </div>
+
             <div className={styles.status}>
                 <div className={styles.humidity}>{temp.humidity}%</div>
                 <div className={styles.wind}>{windSpeed}</div>

@@ -12,13 +12,9 @@ interface RecommendedClothingProps {
 function RecommendedClothing({ feelsLikeTemp, tempUnit }: RecommendedClothingProps) {
     const message = generateRecommendedClothingMessage(feelsLikeTemp, tempUnit)
 
-    return (
-        <TextBlock
-            message={message.message}
-            img={message.icon}
-            classes={[styles.recommendedClothing]}
-        />
-    )
+    const icon = message.icon
+
+    return <TextBlock message={message.message} img={icon} classes={[styles.recommendedClothing]} />
 }
 
 export default memo(RecommendedClothing)

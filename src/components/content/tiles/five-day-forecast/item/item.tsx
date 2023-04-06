@@ -1,4 +1,9 @@
-import { unitFormat, dateFormat, ucFirst, TemperatureUnits } from '../../../../../utils/utils'
+import {
+    unitFormat,
+    dateFormat,
+    upperCaseFirst,
+    TemperatureUnits,
+} from '../../../../../utils/utils'
 import { getIcon } from '../../../../../utils/get-icon'
 import { Image } from '../../../../ui/index'
 import styles from './item.module.scss'
@@ -15,7 +20,7 @@ export function Item({ timestamp, tempMin, tempMax, weather, tempUnit }: ItemPro
     const tMin = unitFormat(tempMin, tempUnit)
     const tMax = unitFormat(tempMax, tempUnit)
 
-    const dayOfTheWeek = ucFirst(
+    const dayOfTheWeek = upperCaseFirst(
         dateFormat(timestamp * 1000, {
             weekday: 'long',
         }),

@@ -10,10 +10,12 @@ interface FiveDayForecastProps {
     tempUnit: TemperatureUnits
 }
 
+const TIME = '12:00:00'
+
 function FiveDayForecast({ items, tempUnit }: FiveDayForecastProps) {
     const title = 'Прогноз на 5 дней'
 
-    const filteredItems = items.filter((item) => item.dt_txt.includes('12:00:00'))
+    const filteredItems = items.filter((item) => item.dt_txt.includes(TIME))
 
     const classNames = [styles.fiveDayForecast]
 

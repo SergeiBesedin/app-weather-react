@@ -1,9 +1,11 @@
 import { forwardRef } from 'react'
 import styles from './input.module.scss'
 
+type InputTypes = 'button' | 'checkbox' | 'password' | 'radio' | 'submit' | 'text'
+
 interface InputProps {
     id: string
-    type: string
+    type: InputTypes
     value: string
     classes: string[]
     name?: string
