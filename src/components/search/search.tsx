@@ -73,7 +73,7 @@ export function Search() {
                     inputValue={inputValue}
                     visible={visible}
                     searchHistory={searchHistory}
-                    clickOnHint={(e) => onHintClickHandler(e)}
+                    clickOnHint={onHintClickHandler}
                     clearHistory={clearHistory}
                 />
             </div>

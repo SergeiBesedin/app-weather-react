@@ -27,12 +27,9 @@ function useLocationState() {
     }
 
     const getUserLocation = (): void => {
-        const location = checkStorage()
+        const userLocation = checkStorage()
 
-        if (location) {
-            setLocation(location)
-            return
-        }
+        if (userLocation) return
 
         navigator.geolocation.getCurrentPosition(async (position: GeolocationPosition) => {
             // выполняется, если пользователей дает доступ к местоположению
