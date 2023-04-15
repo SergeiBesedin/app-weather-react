@@ -73,14 +73,18 @@ function getTempDifference(
     message: Array<string>,
 ): void {
     const listItem = list.find((item) => item.dt_txt?.includes('12:00:00')) // находим нужную временную метку
+
+    if (!listItem) return
+
     const tempCurrent =
         tempUnit === TemperatureUnits.FAHRENHEIT
             ? Math.round(curTemp * (9 / 5) + 32)
             : Math.round(curTemp)
+
     const tempTomorrow =
         tempUnit === TemperatureUnits.FAHRENHEIT
-            ? Math.round(listItem!.main.temp * (9 / 5) + 32)
-            : Math.round(listItem!.main.temp)
+            ? Math.round(listItem.main.temp * (9 / 5) + 32)
+            : Math.round(listItem.main.temp)
 
     const difference = Math.abs(tempCurrent - tempTomorrow) // получаем разницу в температуре
 
