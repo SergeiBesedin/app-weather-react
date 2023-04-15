@@ -45,6 +45,7 @@ export function ErrorComp({ status }: ErrorMessageProps) {
                 <div className={styles.wrapper}>
                     <Image alt={title} src={icon} classes={['']} />
                 </div>
+
                 <div>
                     <h2 className={styles.title}>{title}</h2>
                     <p className={styles.message}>{message}</p>

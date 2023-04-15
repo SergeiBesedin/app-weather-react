@@ -13,13 +13,15 @@ export async function getCityName(lat: number, lon: number): Promise<string> {
     try {
         const response = await axiosDaData.post<{ suggestions: Array<IHintsResponse> }>(url, coords)
 
-        // eslint-disable-next-line
         const { city, region, region_type_full } = response.data.suggestions[0].data
 
-        if (city) return city
+        if (city) {
+            return city
+        }
 
-        // eslint-disable-next-line
-        if (region) return `${region} ${region_type_full}`
+        if (region) {
+            return `${region} ${region_type_full}`
+        }
 
         return initialValue
     } catch (e: unknown) {

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_OW_KEY, API_DADATA_KEY } from './keys'
+import { API_OW_KEY, API_DADATA_KEY } from './api-keys'
 
 export const axiosOpenWeather = axios.create({
     baseURL: 'https://api.openweathermap.org/data/2.5/',
