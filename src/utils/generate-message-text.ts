@@ -6,6 +6,14 @@ const enum TypeOfPrecipitation {
     SNOW = 'снег',
 }
 
+const enum Icons {
+    RAIN_AND_SNOW = 'rainAndSnow',
+    RAIN = 'rain',
+    SNOW = 'snow',
+    CLEAR = 'clear',
+    THERMOMETER = 'thermometer',
+}
+
 type Message = {
     icon: string
     message: string
@@ -22,7 +30,7 @@ export function generateRecommendedClothingMessage(
 
     const message = `Ощущается как ${temp}. Лучшая одежда для этой погоды: ${recommendedClothing}.`
 
-    return { icon: 'thermometer', message }
+    return { icon: Icons.THERMOMETER, message }
 }
 
 export function generateForecastTomorrowMessage(
@@ -37,13 +45,13 @@ export function generateForecastTomorrowMessage(
     const snow = list.filter((el) => el.snow)
 
     if (rain.length && snow.length) {
-        icon = 'rainAndSnow'
+        icon = Icons.RAIN_AND_SNOW
     } else if (rain.length) {
-        icon = 'rain'
+        icon = Icons.RAIN
     } else if (snow.length) {
-        icon = 'snow'
+        icon = Icons.SNOW
     } else {
-        icon = 'clear'
+        icon = Icons.CLEAR
     }
 
     getTempDifference(curTemp, tempUnit, list, message)
@@ -65,16 +73,18 @@ function getTempDifference(
     message: Array<string>,
 ): void {
     const listItem = list.find((item) => item.dt_txt?.includes('12:00:00')) // находим нужную временную метку
+
+    if (!listItem) return
+
     const tempCurrent =
         tempUnit === TemperatureUnits.FAHRENHEIT
             ? Math.round(curTemp * (9 / 5) + 32)
             : Math.round(curTemp)
+
     const tempTomorrow =
         tempUnit === TemperatureUnits.FAHRENHEIT
-            ? // eslint-disable-next-line
-              Math.round(listItem!.main.temp * (9 / 5) + 32)
-            : // eslint-disable-next-line
-              Math.round(listItem!.main.temp)
+            ? Math.round(listItem.main.temp * (9 / 5) + 32)
+            : Math.round(listItem.main.temp)
 
     const difference = Math.abs(tempCurrent - tempTomorrow) // получаем разницу в температуре
 

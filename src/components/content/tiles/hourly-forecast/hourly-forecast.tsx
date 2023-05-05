@@ -18,15 +18,20 @@ const UNIX_TIME_DAY = 86400 // день, переведенный в unix
 
 function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
     const wrapperRef = useRef<HTMLDivElement>(null)
-
     const listItemsRef = useRef<HTMLUListElement>(null)
 
-    const { leftBtn, rightBtn, buttonClickHandler, showOrHideButtons } = useCarouselScrolling()
+    const { leftBtn, rightBtn, onClickHandler, showOrHideButtons } = useCarouselScrolling()
 
     const debouncedCarouselScrolling = useDebouncedCallback(
         () => showOrHideButtons(listItemsRef.current),
         300,
     )
+
+    const leftArrowClickHandler = () =>
+        onClickHandler(wrapperRef.current, listItemsRef.current, ITEM_WIDTH, true)
+
+    const rightArrowClickHandler = () =>
+        onClickHandler(wrapperRef.current, listItemsRef.current, ITEM_WIDTH, false)
 
     const title = 'Почасовой прогноз'
 
@@ -46,14 +51,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     aria-label="Прокрутить назад"
                     classes={[styles.leftArrow]}
                     disabled={leftBtn}
-                    onClick={() =>
-                        buttonClickHandler(
-                            wrapperRef.current,
-                            listItemsRef.current,
-                            ITEM_WIDTH,
-                            true,
-                        )
-                    }
+                    onClick={leftArrowClickHandler}
                 />
 
                 <ul
@@ -77,14 +75,7 @@ function HourlyForecast({ items, tempUnit }: HourlyForecastProps) {
                     aria-label="Прокрутить вперед"
                     classes={[styles.rightArrow]}
                     disabled={rightBtn}
-                    onClick={() =>
-                        buttonClickHandler(
-                            wrapperRef.current,
-                            listItemsRef.current,
-                            ITEM_WIDTH,
-                            false,
-                        )
-                    }
+                    onClick={rightArrowClickHandler}
                 />
             </div>
         </TileWrapper>
