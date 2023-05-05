@@ -1,10 +1,13 @@
-//breakpoints
+// font-family
+$font-family-rubik: 'Rubik', sans-serif;
+
+// breakpoints
 $breakpoint-desk: 1024px;
 $breakpoint-tab: 768px;
 $breakpoint-mob-xs: 480px;
 $breakpoint-mob-xxs: 360px;
 
-//colors: light theme
+// colors: light theme
 $white: #ffffff;
 $light-grey: #f0f4f5;
 $blue: #b4d7f8;
@@ -13,8 +16,6 @@ $light-blue: #cae6ff;
 $dark-blue: #1f2d5e;
 $dark-blue-2: #6587a8;
 
-//colors: dark theme
-
-//z-index
+// z-index
 $z-index-overlay: 5;
 $z-index-modal: 10;

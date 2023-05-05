@@ -1,5 +1,5 @@
-@import './styles/reset.scss';
-@import './styles/fonts.scss';
+@import './styles/_reset.scss';
+@import './styles/_fonts.scss';
 @import './styles/common.scss';
 
 html,
@@ -9,7 +9,7 @@ body {
     min-width: 300px;
     height: 100%;
     background-color: $light-grey;
-    font-family: 'Rubik', sans-serif;
+    font-family: $font-family-rubik;
 }
 
 #root {
