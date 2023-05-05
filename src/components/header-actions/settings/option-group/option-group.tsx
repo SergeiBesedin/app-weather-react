@@ -1,5 +1,5 @@
 import { OptionList, UnitsCategories } from '../option-list/option-list'
-import { Option } from '../../../../typings/typings'
+import { Option } from 'typings'
 import styles from './option-group.module.scss'
 
 interface OptionGroupProps {

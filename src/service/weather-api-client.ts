@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 import { axiosOpenWeather } from '../axios/axios'
-import { IWeatherItem, ICurrentWeather, IWeatherInOtherCities } from '../typings/typings'
+import { IWeatherItem, ICurrentWeather, IWeatherInOtherCities } from 'typings'
 
 type WeatherList = Array<IWeatherItem>
 

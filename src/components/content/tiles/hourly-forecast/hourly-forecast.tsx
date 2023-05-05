@@ -1,7 +1,7 @@
 import { memo, useRef } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useCarouselScrolling } from '../../../../hooks/use-carousel-scrolling'
-import { IWeatherItem } from '../../../../typings/typings'
+import { IWeatherItem } from 'typings'
 import { TemperatureUnits } from '../../../../utils/utils'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Button } from '../../../ui/index'

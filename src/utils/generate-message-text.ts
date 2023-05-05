@@ -1,4 +1,4 @@
-import { IWeatherItem } from '../typings/typings'
+import { IWeatherItem } from 'typings'
 import { dateFormat, unitFormat, tempUnitFormat, TemperatureUnits } from './utils'
 
 const enum TypeOfPrecipitation {

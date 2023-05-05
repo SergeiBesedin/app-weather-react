@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { IWeatherInOtherCities } from '../../../../typings/typings'
+import { IWeatherInOtherCities } from 'typings'
 import { TemperatureUnits } from '../../../../utils/utils'
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Item } from './item/item'

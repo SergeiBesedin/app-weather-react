@@ -1,4 +1,4 @@
-import { IWeatherInOtherCities } from '../typings/typings'
+import { IWeatherInOtherCities } from 'typings'
 import { useDataStorage } from '../hooks/use-data-storage'
 
 const WEATHER_KEY = 'weather_in_cities'

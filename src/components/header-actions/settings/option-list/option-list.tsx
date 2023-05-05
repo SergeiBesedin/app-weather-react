@@ -1,7 +1,7 @@
 import { useSettingsProvider } from '../../../../context/settings-context'
 import { AllUnitsType } from '../../../../utils/utils'
 import { Input } from '../../../ui/index'
-import { Option } from '../../../../typings/typings'
+import { Option } from 'typings'
 import styles from './option-list.module.scss'
 
 export type UnitsCategories = 'temp' | 'speed' | 'pressure'

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { IWeatherItem, ICurrentWeather, IWeatherInOtherCities } from '../typings/typings'
+import { IWeatherItem, ICurrentWeather, IWeatherInOtherCities } from 'typings'
 import { useWeatherInCitiesData } from './use-weather-in-cities'
 import { getTomorrowDate } from '../utils/utils'
 import { weatherApiClient } from '../service/weather-api-client'

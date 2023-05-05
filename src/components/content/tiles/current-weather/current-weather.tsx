@@ -1,6 +1,6 @@
 import { TileWrapper } from '../tile-wrapper/tile-wrapper'
 import { Image } from '../../../ui/index'
-import { ICurrentWeather } from '../../../../typings/typings'
+import { ICurrentWeather } from 'typings'
 import { dateFormat, unitFormat, upperCaseFirst, AllUnitsType } from '../../../../utils/utils'
 import { getIcon } from '../../../../utils/get-icon'
 import styles from './current-weather.module.scss'

@@ -1,5 +1,5 @@
 import { axiosDaData } from '../axios/axios'
-import { IHintsResponse } from '../typings/typings'
+import { IHintsResponse } from 'typings'
 
 const initialValue = 'Москва'
 
