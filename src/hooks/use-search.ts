@@ -25,7 +25,9 @@ export function useSearch() {
     const focusOnInputDebounce = useDebouncedCallback(() => inputRef.current?.focus())
 
     const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value)
+        const formattedValue = e.target.value.replace(/\d/, '')
+
+        setInputValue(formattedValue)
         setVisible(true)
     }
 
